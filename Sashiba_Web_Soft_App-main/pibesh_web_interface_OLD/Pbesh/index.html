@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pibesh | প্রজেক্ট বেজড লার্নিং প্ল্যাটফর্ম</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght=300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-black text-white font-['Hind_Siliguri']">
+    <!-- Header / Navigation -->
+    <nav
+      class="fixed w-full z-[100] bg-black/80 backdrop-blur-md border-b border-white/10 px-4 py-3"
+    >
+      <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-8">
+          <div
+            onclick="goHome()"
+            class="text-2xl font-bold tracking-tighter text-cyan-400 cursor-pointer select-none"
+          >
+            PIBESH
+            <span class="text-white text-xs font-light italic">beta</span>
+          </div>
+
+          <!-- Main Menus -->
+          <div
+            class="hidden lg:flex items-center space-x-6 text-[15px] font-medium"
+          >
+            <!-- স্কুল কারিকুলাম Dropdown (১ম - ১০ম শ্রেণি) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🏫 স্কুল কারিকুলাম
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-48 bg-[#111] border border-white/10 rounded-xl py-2 hidden group-hover:block shadow-2xl"
+              >
+                <div class="grid grid-cols-2 gap-1 px-2">
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('১ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >১ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('২য় শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >২য় শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৩য় শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৩য় শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৪র্থ শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৪র্থ শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৫ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৫ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৬ষ্ঠ শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৬ষ্ঠ শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৭ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৭ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৮ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৮ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৯ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >৯ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('১০ম শ্রেণি')"
+                    class="hover:bg-white/5 p-2 rounded-lg text-sm"
+                    >১০ম শ্রেণি</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- কলেজ কারিকুলাম Dropdown -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🎓 কলেজ কারিকুলাম
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-40 bg-[#111] border border-white/10 rounded-xl py-2 hidden group-hover:block"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('একাদশ শ্রেণি')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >একাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('দ্বাদশ শ্রেণি')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >দ্বাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('এডমিশন')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >এডমিশন</a
+                >
+              </div>
+            </div>
+
+            <!-- ইউনিভার্সিটি কারিকুলাম Dropdown -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🏛️ ইউনিভার্সিটি
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-56 bg-[#111] border border-white/10 rounded-xl py-2 hidden group-hover:block"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('কম্পিউটার সায়েন্স (CSE)')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >কম্পিউটার সায়েন্স (CSE)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('ইলেকট্রিক্যাল (EEE)')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >ইলেকট্রিক্যাল (EEE)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('সিভিল ইঞ্জিনিয়ারিং')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >সিভিল ইঞ্জিনিয়ারিং</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('মেকানিক্যাল')"
+                  class="block hover:bg-white/5 px-4 py-2 text-sm"
+                  >মেকানিক্যাল</a
+                >
+              </div>
+            </div>
+
+            <!-- প্রজেক্টস এবং স্কিলস লিংকসমূহ -->
+            <a
+              href="javascript:void(0)"
+              onclick="loadProjectsPage()"
+              class="hover:text-cyan-400 transition"
+              >🚀 প্রোজেক্টস</a
+            >
+            <a
+              href="javascript:void(0)"
+              onclick="loadSkillsPage()"
+              class="hover:text-cyan-400 transition"
+              >🛠️ স্কিলস</a
+            >
+
+            <!-- Admin Button -->
+            <button
+              onclick="showPage('admin-panel')"
+              class="text-[15px] text-gray-400 hover:text-cyan-400 transition font-medium"
+            >
+              Admin
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Actions: Search & Login -->
+        <div class="flex items-center gap-4">
+          <!-- Search Bar with Thick Border -->
+          <div
+            class="hidden md:flex items-center bg-white/5 border-2 border-white/20 rounded-full px-4 py-1.5 w-64 group hover:border-white/40 focus-within:border-cyan-500 transition-all duration-200"
+          >
+            <span class="text-gray-400">🔍</span>
+            <input
+              type="text"
+              placeholder="সার্চ করুন..."
+              class="bg-transparent border-none focus:ring-0 text-sm ml-2 w-full outline-none text-white placeholder:text-gray-500"
+            />
+          </div>
+
+          <!-- Language Toggle -->
+          <div
+            class="flex bg-white/5 rounded-lg p-1 text-[10px] font-bold border border-white/10"
+          >
+            <button class="bg-cyan-500 text-black px-2 py-1 rounded">BN</button>
+            <button class="px-2 py-1 text-gray-400">EN</button>
+          </div>
+
+          <!-- Login Button -->
+          <button
+            class="bg-[#1bb055] hover:bg-[#169648] text-white font-bold py-2 px-6 rounded-lg text-sm transition-all shadow-lg"
+          >
+            লগ-ইন
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Containers -->
+    <main id="main-content">
+      <!-- ১. অ্যাডমিন প্যানেল (Hidden by default) -->
+      <section
+        id="admin-panel"
+        class="page-content hidden pt-24 px-12 py-10 bg-gray-900 min-h-screen"
+      >
+        <h2 class="text-3xl font-bold mb-8 text-yellow-500">
+          অ্যাডমিন কন্ট্রোল প্যানেল
+        </h2>
+
+        <div
+          class="max-w-2xl bg-white/5 p-8 rounded-2xl border border-white/10"
+        >
+          <h3 class="text-xl mb-4">প্রথম কোর্সের তথ্য পরিবর্তন করুন</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm text-gray-400">কোর্সের নাম</label>
+              <input
+                type="text"
+                id="admin-course-title"
+                class="w-full bg-black border border-white/20 p-2 rounded mt-1 outline-none focus:border-cyan-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-400">কোর্সের দাম</label>
+              <input
+                type="text"
+                id="admin-course-price"
+                class="w-full bg-black border border-white/20 p-2 rounded mt-1 outline-none focus:border-cyan-500"
+              />
+            </div>
+            <button
+              onclick="updateWebsiteContent()"
+              class="bg-yellow-500 text-black font-bold py-2 px-6 rounded-lg hover:bg-yellow-600 transition"
+            >
+              আপডেট করুন
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ২. ডাইনামিক লাইট-থিম কন্টেন্ট পেজ (সমস্ত সাব-পেজের জন্য একক ডাইনামিক ভিউ) -->
+      <section
+        id="dynamic-page"
+        class="hidden pt-28 pb-20 px-6 bg-[#f8fafc] text-slate-900 min-h-screen"
+      >
+        <div class="max-w-[1400px] mx-auto">
+          <!-- Dynamic Filter Header -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-6 mb-8 gap-4"
+          >
+            <div>
+              <h2
+                id="dynamic-title"
+                class="text-3xl font-extrabold text-slate-900"
+              >
+                কারিকুলাম লোড হচ্ছে...
+              </h2>
+              <p id="dynamic-subtitle" class="text-slate-500 text-sm mt-1">
+                আপনার প্রয়োজনীয় বিষয় বা কোর্সটি বেছে নিন
+              </p>
+            </div>
+            <div id="dynamic-meta" class="flex items-center gap-4">
+              <span
+                id="dynamic-count"
+                class="text-slate-700 font-semibold text-sm"
+                >কোর্স পাওয়া গেছে</span
+              >
+              <div class="relative">
+                <select
+                  class="bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-sky-500 appearance-none pr-8 cursor-pointer"
+                >
+                  <option>Default Sorting</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                </select>
+                <span
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                  >▼</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Sidebar + Right Grid Layout -->
+          <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Dynamic Sidebar container -->
+            <div
+              id="dynamic-sidebar"
+              class="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm h-fit"
+            >
+              <!-- Sidebar content dynamically rendered via JS -->
+            </div>
+
+            <!-- Dynamic Cards Grid -->
+            <div class="flex-1">
+              <div
+                id="dynamic-grid"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <!-- Cards dynamically loaded via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ৩. হোম পেজের Hero Section -->
+      <section
+        id="hero-section"
+        class="relative h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-black to-purple-900/20 z-0"
+        ></div>
+        <div
+          class="absolute w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse"
+        ></div>
+
+        <div class="relative z-10 text-center px-4">
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            শুধু শিখবেন না, <br /><span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"
+              >তৈরি করতে শিখুন।</span
+            >
+          </h1>
+          <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+            পিবেশ—বাংলাদেশের প্রথম প্রজেক্ট-বেজড এডুকেশন সিস্টেম। এখানে আমরা
+            থিওরি নয়, সরাসরি কাজ শিখি।
+          </p>
+          <div class="flex flex-col md:flex-row justify-center gap-4">
+            <button
+              class="bg-white text-black font-bold py-4 px-10 rounded-xl hover:bg-cyan-400 transition-all"
+            >
+              ফ্রি ট্রায়াল শুরু করুন
+            </button>
+            <button
+              class="border border-white/20 py-4 px-10 rounded-xl hover:bg-white/10 transition-all"
+            >
+              কিভাবে কাজ করে?
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ৪. হোম পেজের Featured Projects Grid -->
+      <section id="featured-projects" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <h2 class="text-3xl font-bold mb-2">জনপ্রিয় প্রজেক্টসমূহ</h2>
+            <p class="text-gray-500">
+              সরাসরি রিয়েল-ওয়ার্ল্ড প্রজেক্ট দিয়ে শুরু করুন
+            </p>
+          </div>
+          <a
+            href="javascript:void(0)"
+            onclick="loadProjectsPage()"
+            class="text-cyan-400 hover:underline"
+            >সবগুলো দেখুন →</a
+          >
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="project-card group cursor-pointer"
+            onclick="
+              showCourseDetails(
+                'AI চ্যাটবট তৈরি',
+                'পাইথন দিয়ে নিজের জন্য একটি পার্সোনাল AI অ্যাসিস্ট্যান্ট বানান। এই কোর্সে আমরা OpenAI API ব্যবহার করা শিখবো।',
+                '৳ ৯৯৯',
+              )
+            "
+          >
+            <div
+              class="h-48 bg-gray-800 rounded-t-2xl overflow-hidden relative"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+                class="w-full h-full object-cover group-hover:scale-110 transition-duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-cyan-500 text-black text-xs font-bold px-2 py-1 rounded"
+              >
+                নতুন
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white/5 border border-white/10 rounded-b-2xl group-hover:border-cyan-500/50 transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">AI চ্যাটবট তৈরি</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                পাইথন দিয়ে নিজের জন্য একটি পার্সোনাল AI অ্যাসিস্ট্যান্ট বানান।
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-cyan-400">৮টি মডিউল</span>
+                <span class="text-lg font-bold">৳ ৯৯৯</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="project-card group cursor-pointer"
+            onclick="
+              showCourseDetails(
+                'মডার্ন ড্যাশবোর্ড ডিজাইন',
+                'ফিগুমা দিয়ে প্রিমিয়াম UI/UX ডিজাইন প্রজেক্ট। এই কোর্সে আমরা অ্যাডভান্সড অটো-লেআউট এবং প্রোটোটাইপিং শিখবো।',
+                '৳ ১৪৯৯',
+              )
+            "
+          >
+            <div
+              class="h-48 bg-gray-800 rounded-t-2xl overflow-hidden relative"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1581291518655-9523bb99d9f6"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div
+              class="p-6 bg-white/5 border border-white/10 rounded-b-2xl group-hover:border-cyan-500/50 transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">মডার্ন ড্যাশবোর্ড ডিজাইন</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                ফিগুমা দিয়ে প্রিমিয়াম UI/UX ডিজাইন প্রজেক্ট।
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-cyan-400">১২টি মডিউল</span>
+                <span class="text-lg font-bold">৳ ১৪৯৯</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="project-card group cursor-pointer"
+            onclick="
+              showCourseDetails(
+                'ডিজিটাল স্টার্টআপ প্ল্যান',
+                'একটি সম্পূর্ণ বিজনেস মডেল তৈরির হাতে কলমে শিক্ষা। আপনার আইডিয়াকে কিভাবে বাস্তবে রূপ দেবেন তা শিখুন এখানে।',
+                'ফ্রি',
+              )
+            "
+          >
+            <div
+              class="h-48 bg-gray-800 rounded-t-2xl overflow-hidden relative"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div
+              class="p-6 bg-white/5 border border-white/10 rounded-b-2xl group-hover:border-cyan-500/50 transition-all"
+            >
+              <h3 class="text-xl font-bold mb-2">ডিজিটাল স্টার্টআপ প্ল্যান</h3>
+              <p class="text-gray-400 text-sm mb-4">
+                একটি সম্পূর্ণ বিজনেস মডেল তৈরির হাতে কলমে শিক্ষা।
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-cyan-400">৫টি মডিউল</span>
+                <span class="text-lg font-bold">ফ্রি</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Course Detail Modal/Page (Hidden) -->
+    <section
+      id="course-details"
+      class="hidden fixed inset-0 z-[60] bg-black overflow-y-auto pt-24 px-6"
+    >
+      <div class="max-w-6xl mx-auto">
+        <button
+          onclick="hideCourseDetails()"
+          class="mb-8 text-cyan-400 flex items-center gap-2"
+        >
+          ← ফিরে যান
+        </button>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            <h2 id="detail-title" class="text-4xl font-bold mb-4">
+              কোর্সের নাম
+            </h2>
+            <p id="detail-desc" class="text-gray-400 mb-8 text-lg">
+              বিস্তারিত বিবরণ...
+            </p>
+            <h3 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">
+              প্রজেক্ট কারিকুলাম
+            </h3>
+            <div class="space-y-4">
+              <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                ০১. প্রজেক্ট পরিচিতি ও সেটআপ
+              </div>
+              <div
+                class="p-4 bg-white/5 rounded-xl border border-white/5 opacity-50"
+              >
+                ০২. বেসিক স্ট্রাকচার তৈরি (Lock 🔒)
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-1">
+            <div
+              class="sticky top-28 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl"
+            >
+              <div
+                class="text-3xl font-bold mb-2 text-cyan-400"
+                id="detail-price"
+              >
+                ৳ ৯৯৯
+              </div>
+              <p class="text-sm text-gray-400 mb-6 italic">
+                একবার কিনলে আজীবন এক্সেস
+              </p>
+              <button
+                onclick="startLearning()"
+                class="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-4 rounded-2xl transition-all"
+              >
+                এখনই এনরোল করুন
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Portal (Hidden) -->
+    <section
+      id="learning-portal"
+      class="hidden fixed inset-0 z-[70] bg-[#050505] flex flex-col md:flex-row"
+    >
+      <div class="flex-1 p-4 md:p-8 flex flex-col h-full">
+        <div class="flex justify-between items-center mb-4">
+          <div class="text-cyan-400 font-bold">PIBESH PLAYER</div>
+          <button
+            onclick="closePortal()"
+            class="text-gray-500 hover:text-white"
+          >
+            বন্ধ করুন [X]
+          </button>
+        </div>
+        <div
+          class="aspect-video bg-black rounded-3xl border border-white/10 flex items-center justify-center"
+        >
+          <p class="text-cyan-400 animate-pulse text-xl">
+            ভিডিও প্লেয়ার লোড হচ্ছে...
+          </p>
+        </div>
+      </div>
+      <div
+        class="w-full md:w-80 bg-white/5 border-l border-white/10 p-6 overflow-y-auto"
+      >
+        <h3 class="font-bold mb-6">মডিউলসমূহ</h3>
+        <div class="space-y-4">
+          <div
+            class="p-3 bg-cyan-500/20 border border-cyan-500 text-cyan-400 rounded-lg"
+          >
+            ০১. পরিচিতি
+          </div>
+          <div class="p-3 bg-white/5 rounded-lg opacity-40">০২. টুলস সেটআপ</div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

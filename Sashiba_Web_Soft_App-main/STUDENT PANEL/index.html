@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SashiBa | শিক্ষার্থী বাতায়ন (Student Portal LMS)</title>
+  
+  <!-- Google Fonts: Outfit & Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-light">
+
+  <!-- Blue Light Shield Filter Overlay -->
+  <div id="blueLightOverlay" class="blue-light-shield"></div>
+
+  <!-- Skeleton Loading Screen Overlay for Native View Transition -->
+  <div id="skeletonLoader" class="skeleton-loader-overlay">
+    <div class="skeleton-shimmer-bar"></div>
+    <div class="skeleton-card-grid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+
+  <!-- Animated XP & Coin Reward Toast Notification -->
+  <div id="xpRewardToast" class="xp-toast">
+    <div class="xp-toast-icon"><i class="fa-solid fa-bolt"></i></div>
+    <div class="xp-toast-text">
+      <span class="xp-title">+৫০ XP অর্জিত!</span>
+      <span class="xp-sub">আজকের লক্ষ্য সম্পন্ন করার জন্য চমৎকার!</span>
+    </div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div id="appShell" class="app-shell">
+
+    <!-- Top Navigation Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button id="sidebarToggle" class="btn-icon" title="সাইডবার টগল">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+        <div class="brand">
+          <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="brand-text">
+            <span class="brand-name">SashiBa</span>
+            <span class="brand-sub">শিক্ষার্থী বাতায়ন LMS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Class Level Selector Bar (Touch Scrollable) -->
+      <div class="class-level-bar">
+        <span class="level-label"><i class="fa-solid fa-layer-group"></i> স্তর:</span>
+        <div class="level-pills" id="levelPills">
+          <button class="level-pill" data-level="primary">প্রাথমিক</button>
+          <button class="level-pill" data-level="secondary">মাধ্যমিক</button>
+          <button class="level-pill" data-level="higher-secondary">উচ্চ মাধ্যমিক</button>
+          <button class="level-pill active" data-level="ssc">SSC</button>
+          <button class="level-pill" data-level="hsc">HSC</button>
+          <button class="level-pill" data-level="admission">ভর্তি</button>
+        </div>
+      </div>
+
+      <!-- Topbar Utilities & Profile -->
+      <div class="topbar-right">
+        <button class="btn-quick-timer" id="quickPomodoroBtn" title="পমোদোরো টাইমার" onclick="switchView('study-manager')">
+          <i class="fa-solid fa-stopwatch"></i>
+          <span id="timerDisplayMini">25:00</span>
+        </button>
+
+        <div class="theme-menu">
+          <button id="themeToggleBtn" class="btn-icon" title="চোখের সুরক্ষার থিম টগল">
+            <i class="fa-solid fa-sun" id="themeIcon"></i>
+          </button>
+          <button id="blueLightToggleBtn" class="btn-icon" title="ব্লু-লাইট ফিল্টার অন/অফ">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <div class="notification-wrap">
+          <button class="btn-icon" id="notifBtn" title="বিজ্ঞপ্তি">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-badge">3</span>
+          </button>
+        </div>
+
+        <div class="student-profile-chip" id="studentProfileChip">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Student Photo" class="profile-avatar">
+          <div class="profile-meta">
+            <span class="profile-name">রাহাত খান</span>
+            <span class="profile-school">ঢাকা রেসিডেনশিয়াল মডেল কলেজ</span>
+          </div>
+          <i class="fa-solid fa-chevron-down profile-arrow"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Body Container -->
+    <div class="app-body">
+
+      <!-- Navigation Sidebar (Re-organized Clean UX) -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-student-card">
+          <div class="student-card-header">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="card-avatar">
+            <div class="card-details">
+              <h4 class="student-name">রাহাত খান</h4>
+              <p class="student-class"><i class="fa-solid fa-school-flag"></i> শ্রেণি ১০ম (বিজ্ঞান)</p>
+              <p class="student-roll"><i class="fa-solid fa-id-card"></i> রোল: ১০৪ | SSC 2027</p>
+            </div>
+          </div>
+          <div class="student-card-stats">
+            <div class="c-stat">
+              <span class="c-val" id="sidebarLvl">LVL 12</span>
+              <span class="c-lbl">লেভেল</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val" id="sidebarXp">2,450</span>
+              <span class="c-lbl">XP</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val" id="sidebarCoins">🪙 1,250</span>
+              <span class="c-lbl">কয়েন</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <!-- CORE PRIMARY MENU ITEMS -->
+          <button class="nav-item active" data-view="home">
+            <i class="fa-solid fa-house nav-icon"></i>
+            <span>হোম (Dashboard)</span>
+          </button>
+
+          <button class="nav-item" data-view="subjects">
+            <i class="fa-solid fa-book-open nav-icon"></i>
+            <span>আমার বিষয়সমূহ</span>
+          </button>
+
+          <button class="nav-item" data-view="daily-planner">
+            <i class="fa-solid fa-calendar-check nav-icon"></i>
+            <span>আজকের পড়া (Planner)</span>
+          </button>
+
+          <button class="nav-item" data-view="practice">
+            <i class="fa-solid fa-pen-ruler nav-icon"></i>
+            <span>অনুশীলন ও AI কুইজ</span>
+          </button>
+
+          <button class="nav-item" data-view="exams">
+            <i class="fa-solid fa-brain nav-icon"></i>
+            <span>পরীক্ষা প্রস্তুতি</span>
+          </button>
+
+          <button class="nav-item" data-view="ai-assistant">
+            <i class="fa-solid fa-robot nav-icon ai-glow"></i>
+            <span>AI স্টাডি সহকারী</span>
+          </button>
+
+          <!-- COLLAPSIBLE "MORE TOOLS" ACCORDION -->
+          <div class="more-tools-accordion">
+            <button class="more-tools-toggle" id="moreToolsToggle">
+              <span><i class="fa-solid fa-cubes text-primary"></i> অন্যান্য টুলস (More Tools)</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow" id="moreToolsArrow"></i>
+            </button>
+            <div class="more-tools-content" id="moreToolsContent">
+              <button class="nav-item sub-nav" data-view="progress">
+                <i class="fa-solid fa-chart-line nav-icon"></i>
+                <span>আমার অগ্রগতি (Analytics)</span>
+              </button>
+
+              <button class="nav-item sub-nav" data-view="achievements">
+                <i class="fa-solid fa-trophy nav-icon text-warning"></i>
+                <span>অর্জন ও রিওয়ার্ড শপ</span>
+              </button>
+
+              <button class="nav-item sub-nav" data-view="resources">
+                <i class="fa-solid fa-folder-open nav-icon"></i>
+                <span>রিসোর্স হাব</span>
+              </button>
+
+              <button class="nav-item sub-nav special-feature" data-view="study-manager">
+                <i class="fa-solid fa-graduation-cap nav-icon"></i>
+                <span>Smart Study Manager</span>
+                <span class="badge-new">PRO</span>
+              </button>
+
+              <button class="nav-item sub-nav" data-view="settings">
+                <i class="fa-solid fa-gear nav-icon"></i>
+                <span>সেটিংস ও আই-কেয়ার</span>
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="eye-care-status">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>আই-প্রোটেকশন সক্রিয়</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Stage -->
+      <main class="content-stage" id="contentStage">
+
+        <!-- DYNAMIC BREADCRUMBS NAVIGATION BAR -->
+        <nav class="breadcrumbs-bar" id="breadcrumbsBar">
+          <span class="bc-item" onclick="switchView('home')"><i class="fa-solid fa-house"></i> হোম</span>
+          <span class="bc-sep"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="bc-item active" id="bcActiveView">ড্যাশবোর্ড</span>
+        </nav>
+
+        <!-- ================= VIEW 1: HOME DASHBOARD ================= -->
+        <section class="view-panel active" id="view-home">
+          <div class="quick-action-launcher">
+            <span class="launcher-title"><i class="fa-solid fa-bolt text-warning"></i> দ্রুত অ্যাকশন:</span>
+            <div class="launcher-buttons">
+              <button class="launch-btn" onclick="openSubjectWorkspace('physics')">
+                <i class="fa-solid fa-circle-play text-primary"></i> পড়া চালিয়ে যান
+              </button>
+              <button class="launch-btn" onclick="switchView('study-manager')">
+                <i class="fa-solid fa-clock text-success"></i> ২৫ মি. পমোদোরো
+              </button>
+              <button class="launch-btn" onclick="switchView('ai-assistant')">
+                <i class="fa-solid fa-wand-magic-sparkles text-purple"></i> AI প্রশ্ন করুন
+              </button>
+              <button class="launch-btn" onclick="switchView('practice')">
+                <i class="fa-solid fa-wand-magic text-danger"></i> AI কুইজ পরীক্ষা
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-greeting-card">
+            <div class="greeting-content">
+              <div class="greeting-pill"><i class="fa-solid fa-sun"></i> শুভ সকাল!</div>
+              <h1 class="greeting-title">সুপ্রভাত, রাহাত! 👋</h1>
+              <p class="greeting-desc">আজকের লক্ষ্য পূরণে আপনি সঠিক পথে আছেন। নিয়মিত অধ্যয়নই সাফল্যের চাবিকাঠি।</p>
+              
+              <div class="greeting-metrics">
+                <div class="g-metric-item">
+                  <div class="g-icon"><i class="fa-solid fa-bullseye"></i></div>
+                  <div>
+                    <span class="g-val" id="goalProgressText">৩/৫</span>
+                    <span class="g-lbl">আজকের লক্ষ্য সম্পন্ন</span>
+                  </div>
+                </div>
+
+                <div class="g-metric-item">
+                  <div class="g-icon"><i class="fa-solid fa-clock"></i></div>
+                  <div>
+                    <span class="g-val" id="homeStudyTime">2h 10m</span>
+                    <span class="g-lbl">Study Time (আজকে)</span>
+                  </div>
+                </div>
+
+                <div class="g-metric-item">
+                  <div class="g-icon flame"><i class="fa-solid fa-fire"></i></div>
+                  <div>
+                    <span class="g-val">৭ দিন</span>
+                    <span class="g-lbl">স্ট্রিক বজায় আছে</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="greeting-quote-box">
+              <div class="quote-header"><i class="fa-solid fa-quote-left"></i> আজকের মোটিভেশন</div>
+              <p class="quote-text" id="dailyQuote">"জ্ঞান অর্জনের কোনো বিকল্প নেই, আজকের পরিশ্রমই আগামীকালের সাফল্যের ভিত্তি।"</p>
+              <button class="btn-text-sm" id="nextQuoteBtn"><i class="fa-solid fa-rotate"></i> নতুন বাণী</button>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="dash-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-bullseye card-ic text-primary"></i> আজকের লক্ষ্য (Today's Goal)</h3>
+                <span class="badge-pill" id="goalPercentBadge">৬০% সম্পন্ন</span>
+              </div>
+              <div class="goal-list" id="homeGoalList">
+                <label class="goal-item done">
+                  <input type="checkbox" checked onchange="toggleGoalItem(this, 50)">
+                  <span class="goal-text">পদার্থবিজ্ঞান: অধ্যায় ৩ ভিডিও দেখা</span>
+                  <span class="goal-xp-tag">+50 XP</span>
+                </label>
+                <label class="goal-item done">
+                  <input type="checkbox" checked onchange="toggleGoalItem(this, 50)">
+                  <span class="goal-text">উচ্চতর গণিত: ত্রিকোণমিতি ৫টি অঙ্ক সমাধান</span>
+                  <span class="goal-xp-tag">+50 XP</span>
+                </label>
+                <label class="goal-item done">
+                  <input type="checkbox" checked onchange="toggleGoalItem(this, 50)">
+                  <span class="goal-text">ইংরেজি: Paragraph Writing Practice</span>
+                  <span class="goal-xp-tag">+50 XP</span>
+                </label>
+                <label class="goal-item">
+                  <input type="checkbox" onchange="toggleGoalItem(this, 50)">
+                  <span class="goal-text">রসায়ন: পর্যায় সারণি MCQ টেস্ট দেওয়া</span>
+                  <span class="goal-xp-tag">+50 XP</span>
+                </label>
+                <label class="goal-item">
+                  <input type="checkbox" onchange="toggleGoalItem(this, 50)">
+                  <span class="goal-text">ICT: HTML ফরম প্র্যাকটিস</span>
+                  <span class="goal-xp-tag">+50 XP</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-video card-ic text-success"></i> আজকের লাইভ ক্লাস ও পড়া</h3>
+                <button class="btn-link" onclick="switchView('daily-planner')">সব দেখুন</button>
+              </div>
+              <div class="class-timeline">
+                <div class="timeline-item active pulse-border">
+                  <div class="live-dot-pulse"></div>
+                  <div class="t-time">১০:৩০ AM</div>
+                  <div class="t-details">
+                    <h4>পদার্থবিজ্ঞান - বল ও গতিবিদ্যা</h4>
+                    <p>ড. আশরাফুল আলম স্যার • লাইভ চলছে</p>
+                  </div>
+                  <button class="btn-sm btn-primary" onclick="alert('লাইভ ক্লাসে যুক্ত হচ্ছেন...')"><i class="fa-solid fa-play"></i> যুক্ত হন</button>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="t-time">০২:৩০ PM</div>
+                  <div class="t-details">
+                    <h4>উচ্চতর গণিত - ক্যালকুলাস সেশন</h4>
+                    <p>মাসুদ পারভেজ স্যার • রেকর্ড করা লেকচার</p>
+                  </div>
+                  <button class="btn-sm btn-outline">দেখা বাকি</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-list-check card-ic text-warning"></i> অসমাপ্ত কাজ (Pending Tasks)</h3>
+              </div>
+              <div class="task-cards-mini">
+                <div class="task-mini-item">
+                  <div class="t-icon warning"><i class="fa-solid fa-file-pen"></i></div>
+                  <div class="t-info">
+                    <h5>জীববিজ্ঞান অ্যাসাইনমেন্ট ৩</h5>
+                    <p>জমা দেওয়ার শেষ সময়: আজ রাত ১১:৫৯ PM</p>
+                  </div>
+                  <button class="btn-sm btn-warning" onclick="switchView('subjects')">জমা দিন</button>
+                </div>
+
+                <div class="task-mini-item">
+                  <div class="t-icon danger"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                  <div class="t-info">
+                    <h5>ইংরেজি রিভিশন মডেল টেস্ট</h5>
+                    <p>বাকী ২ দিন</p>
+                  </div>
+                  <button class="btn-sm btn-outline" onclick="switchView('exams')">পরীক্ষা দিন</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-note-sticky card-ic text-purple"></i> শিক্ষকের নতুন নোট</h3>
+              </div>
+              <div class="notes-feed">
+                <div class="note-feed-item">
+                  <div class="n-author">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Teacher">
+                    <div>
+                      <h6>অনন্যা চৌধুরী ম্যাডাম</h6>
+                      <span>বাংলা ২য় পত্র • ১ ঘন্টা আগে</span>
+                    </div>
+                  </div>
+                  <p class="n-snippet">"সমাস চেনার সহজ টেকনিক ও ১০টি কমন বোর্ড প্রশ্নের সমাধান শিট শেয়ার করা হলো।"</p>
+                  <button class="btn-text-sm" onclick="alert('PDF ডাউনলোড হচ্ছে...')"><i class="fa-solid fa-download"></i> PDF ডাউনলোড (2.4 MB)</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-stopwatch card-ic text-danger"></i> পরবর্তী পরীক্ষা (Upcoming Exam)</h3>
+              </div>
+              <div class="exam-countdown-box">
+                <div class="exam-header">
+                  <span class="exam-subject-tag">SSC Model Test 2027</span>
+                  <h4 class="exam-name">সাধারণ গণিত পূর্ণাঙ্গ মডেল টেস্ট - ০১</h4>
+                </div>
+                <div class="countdown-digits">
+                  <div class="digit-box"><span class="d-num">০২</span><span class="d-lbl">দিন</span></div>
+                  <div class="digit-sep">:</div>
+                  <div class="digit-box"><span class="d-num">১৪</span><span class="d-lbl">ঘন্টা</span></div>
+                  <div class="digit-sep">:</div>
+                  <div class="digit-box"><span class="d-num">৩৫</span><span class="d-lbl">মিনিট</span></div>
+                </div>
+                <button class="btn-primary btn-block" onclick="switchView('exams')"><i class="fa-solid fa-pen-to-square"></i> পরীক্ষার সিলেবাস দেখুন</button>
+              </div>
+            </div>
+
+            <div class="dash-card ai-highlight-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-wand-magic-sparkles card-ic"></i> AI স্টাডি অ্যাসিস্ট্যান্ট</h3>
+              </div>
+              <p>যেকোনো কঠিন প্রশ্ন বা অঙ্ক নিয়ে সাহায্য দরকার?</p>
+              <div class="ai-quick-input">
+                <input type="text" id="quickAiInput" placeholder="আপনার প্রশ্ন বা সমীকরণ লিখুন...">
+                <button id="quickAiBtn" class="btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= VIEW 2: MY SUBJECTS & CHAPTER OUTLINE ================= -->
+        <section class="view-panel" id="view-subjects">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-book-open"></i> আমার বিষয়সমূহ (My Subjects)</h2>
+              <p class="section-subtitle">আপনার বিষয় নির্বাচন করুন এবং সকল অধ্যায়ের তালিকা (Course Outline) দেখুন</p>
+            </div>
+            <div class="subject-filter-tabs">
+              <button class="sub-tab active" data-subcat="all">সব বিষয়</button>
+              <button class="sub-tab" data-subcat="science">বিজ্ঞান বিভাগ</button>
+              <button class="sub-tab" data-subcat="general">আবশ্যিক বিষয়</button>
+            </div>
+          </div>
+
+          <!-- SUBJECT SELECTION CARDS GRID -->
+          <div class="subjects-grid" id="subjectsGrid">
+            <!-- Injected dynamically via script.js -->
+          </div>
+
+          <!-- COURSE OUTLINE / CHAPTER LISTING OVERVIEW (STEP 1 BEFORE CHAPTER WORKSPACE) -->
+          <div id="subjectCourseOutlineContainer" class="course-outline-container" style="display: none; margin-top: 2rem;">
+            <!-- Dynamically rendered when a subject is clicked -->
+          </div>
+        </section>
+
+        <!-- ================= VIEW 3: INNER CHAPTER WORKSPACE ================= -->
+        <section class="view-panel" id="view-subject-inner">
+          <div class="subject-inner-topbar">
+            <button class="btn-outline-sm" id="backToOutlineBtn"><i class="fa-solid fa-arrow-left"></i> অধ্যায় সূচিপত্র (Course Outline)</button>
+            <div class="subject-title-meta">
+              <h2 id="activeSubjectTitle">পদার্থবিজ্ঞান (Physics)</h2>
+              <span id="activeSubjectCode" class="badge-code">কোড: ১৭৪</span>
+            </div>
+            <div class="subject-progress-pill">
+              <span>অধ্যায় অগ্রগতি: </span>
+              <strong id="activeSubjectProgressText">৮০%</strong>
+            </div>
+          </div>
+
+          <div class="subject-workspace">
+            <aside class="subject-sidebar">
+              <div class="subj-sidebar-title">অধ্যায় নেভিগেশন</div>
+              <ul class="subj-nav-list" id="subjNavList">
+                <li class="subj-nav-item active" data-tab="overview"><i class="fa-solid fa-house"></i> 🏠 Overview</li>
+                <li class="subj-nav-item" data-tab="videos"><i class="fa-solid fa-circle-play"></i> 🎥 Video Lecture</li>
+                <li class="subj-nav-item" data-tab="notes"><i class="fa-solid fa-file-lines"></i> 📄 Notes</li>
+                <li class="subj-nav-item" data-tab="practice"><i class="fa-solid fa-pen-clip"></i> ✍ Practice & Flashcards</li>
+                <li class="subj-nav-item" data-tab="quiz"><i class="fa-solid fa-clipboard-question"></i> 📝 Quiz</li>
+                <li class="subj-nav-item" data-tab="discussion"><i class="fa-solid fa-comments"></i> 💬 Chapter Chat (চ্যাট)</li>
+              </ul>
+            </aside>
+
+            <div class="subject-main-content">
+              <div class="auto-suggested-topics-card">
+                <div class="ast-header">
+                  <i class="fa-solid fa-wand-magic-sparkles text-primary"></i>
+                  <span>এই অধ্যায়ের অটো-সাজেস্টেড গুরুত্বপূর্ণ টপিকসমূহ (Exam Focus Areas):</span>
+                </div>
+                <div class="ast-tags" id="autoSuggestedTags">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <div id="subjTabContent" class="subj-tab-content">
+                <!-- Content dynamically populated by script.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 4: DAILY PLANNER ================= -->
+        <section class="view-panel" id="view-daily-planner">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-calendar-check"></i> আজকের পড়া (Daily Planner)</h2>
+              <p class="section-subtitle">আজকের নির্ধারিত লেকচার, ভিডিও, নোটস ও অনুশীলনের তালিকা</p>
+            </div>
+            <div class="planner-date-badge">
+              <i class="fa-solid fa-calendar-day"></i> ২৩ জুলাই, ২০২৬ (বৃহস্পতিবার)
+            </div>
+          </div>
+
+          <div class="hero-continue-card">
+            <div class="hc-text">
+              <span class="hc-tag"><i class="fa-solid fa-circle-play"></i> পূর্বে দেখা লেকচার থেকে চালিয়ে যান</span>
+              <h3>পদার্থবিজ্ঞান: অধ্যায় ৩ - বল (Force) ও নিউটনের সূত্র</h3>
+              <p>আপনার অগ্রগতি: ৮০% সম্পন্ন | বাকী ৬ মিনিট</p>
+            </div>
+            <button class="btn-primary btn-lg" onclick="openSubjectWorkspace('physics', 3)"><i class="fa-solid fa-play"></i> পড়া চালিয়ে যান (Continue)</button>
+          </div>
+
+          <div class="planner-grid">
+            <div class="planner-card">
+              <h3><i class="fa-solid fa-video text-primary"></i> আজকের ভিডিও লেকচার</h3>
+              <div class="planner-list">
+                <div class="p-item done">
+                  <div class="p-icon"><i class="fa-solid fa-circle-check text-success"></i></div>
+                  <div class="p-info">
+                    <h6>উচ্চতর গণিত: ত্রিকোণমিতি ৭.২</h6>
+                    <span>দৈর্ঘ্য: ২৫ মিনিট • সম্পন্ন</span>
+                  </div>
+                  <button class="btn-text-sm">পুনরায় দেখুন</button>
+                </div>
+                <div class="p-item">
+                  <div class="p-icon"><i class="fa-regular fa-circle"></i></div>
+                  <div class="p-info">
+                    <h6>রসায়ন: মোলের ধারণা ও রাসায়নিক গণনা</h6>
+                    <span>দৈর্ঘ্য: ৩৫ মিনিট • বাকি</span>
+                  </div>
+                  <button class="btn-sm btn-primary" onclick="openSubjectWorkspace('chemistry', 4)">প্লে করুন</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="planner-card">
+              <h3><i class="fa-solid fa-file-pen text-success"></i> আজকের অনুশীলন ও হোমওয়ার্ক</h3>
+              <div class="planner-list">
+                <div class="p-item">
+                  <div class="p-icon"><i class="fa-regular fa-circle"></i></div>
+                  <div class="p-info">
+                    <h6>ICT: HTML ফরম প্র্যাকটিস</h6>
+                    <span>হোমওয়ার্ক জমা দেওয়ার শেষ সময় আজ</span>
+                  </div>
+                  <button class="btn-sm btn-outline">জমা দিন</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 5: PRACTICE ZONE, AI QUIZ & FLASHCARDS ================= -->
+        <section class="view-panel" id="view-practice">
+          <div class="practice-hero-header">
+            <div class="ph-text">
+              <span class="ph-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI-Powered Student Practice Lab</span>
+              <h2 class="ph-title">অনুশীলন, এআই কুইজ ও ফ্ল্যাশকার্ডস 🎯</h2>
+              <p class="ph-desc">এআই কুইজ জেনারেট করো, ফ্ল্যাশকার্ড দিয়ে দ্রুত রিভিশন দাও এবং ভুল উত্তরের কারণ জেনে নাও!</p>
+            </div>
+            
+            <!-- TIMED VS CASUAL MODE TOGGLE -->
+            <div class="practice-mode-toggle">
+              <span class="pm-lbl">মোড:</span>
+              <button class="pm-btn active" id="modeTimedBtn"><i class="fa-solid fa-stopwatch"></i> ⏱️ Timed Mode</button>
+              <button class="pm-btn" id="modeCasualBtn"><i class="fa-solid fa-mug-hot"></i> ☕ Casual Mode</button>
+            </div>
+          </div>
+
+          <!-- GENERATIVE AI QUIZ GENERATOR CARD -->
+          <div class="ai-quiz-generator-card" id="aiQuizGeneratorCard">
+            <div class="card-title">
+              <div class="ai-title-wrap">
+                <div class="ai-sparkle-icon"><i class="fa-solid fa-brain"></i></div>
+                <div>
+                  <h3>জেনারেটিভ এআই-ভিত্তিক কুইজ ও ফ্ল্যাশকার্ড জেনারেটর</h3>
+                  <span class="ai-sub-desc">Gemini AI দ্বারা চালিত ইন্টারেক্টিভ অ্যাসেসমেন্ট তৈরি করুন</span>
+                </div>
+              </div>
+              <span class="badge-pill gold-glow"><i class="fa-solid fa-bolt"></i> Gemini Free Version</span>
+            </div>
+
+            <div class="quiz-gen-form-grid">
+              <div class="form-group">
+                <label><i class="fa-solid fa-graduation-cap text-primary"></i> শ্রেণি (Class / Level):</label>
+                <select id="aiQuizClass" class="form-control">
+                  <option value="ssc" selected>SSC (১০ম শ্রেণি)</option>
+                  <option value="hsc">HSC (১১- ১২শ শ্রেণি)</option>
+                  <option value="secondary">মাধ্যমিক (৮ম-৯ম শ্রেণি)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa-solid fa-book-bookmark text-success"></i> বিষয় (Subject):</label>
+                <select id="aiQuizSubject" class="form-control">
+                  <option value="physics" selected>পদার্থবিজ্ঞান (Physics)</option>
+                  <option value="hmath">উচ্চতর গণিত (Higher Math)</option>
+                  <option value="chemistry">রসায়ন (Chemistry)</option>
+                  <option value="ict">ICT (তথ্য প্রযুক্তি)</option>
+                </select>
+              </div>
+
+              <div class="form-group span-2-form">
+                <label><i class="fa-solid fa-pen-to-square text-warning"></i> অধ্যায় / নির্দিষ্ট টপিক (Topic Prompt):</label>
+                <input type="text" id="aiQuizTopic" class="form-control" value="অধ্যায় ৩: বল (Force) ও নিউটনের গতিসূত্র" placeholder="যেমন: গতিশক্তি, কারক সমাস, ত্রিকোণমিতি...">
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa-solid fa-list-check text-purple"></i> প্রশ্নের ধরন (Type):</label>
+                <select id="aiQuizType" class="form-control">
+                  <option value="mcq" selected>🎯 এম.সি.কিউ (MCQ)</option>
+                  <option value="flashcards">🎴 ✨ AI ফ্ল্যাশকার্ডস (Flashcards)</option>
+                  <option value="one-word">✍️ এক কথায় উত্তর (One Word)</option>
+                  <option value="short">📝 সংক্ষিপ্ত উত্তর (Short Question)</option>
+                  <option value="explanatory">🧠 ব্যাখ্যা মূলক (Explanatory)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa-solid fa-hashtags text-cyan"></i> প্রশ্নের সংখ্যা:</label>
+                <select id="aiQuizCount" class="form-control">
+                  <option value="5" selected>৫টি প্রশ্ন</option>
+                  <option value="10">১০টি প্রশ্ন</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="quiz-gen-actions">
+              <button class="btn-primary btn-lg btn-shimmer" id="generateAiQuizBtn">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ AI কুইজ জেনারেট করুন (Generate Assessment)
+              </button>
+            </div>
+          </div>
+
+          <!-- PRACTICE CATEGORY SUBMENU PILLS -->
+          <div class="practice-category-bar">
+            <button class="p-cat-card active" data-ptype="mcq">
+              <i class="fa-solid fa-bullseye p-ic"></i>
+              <span>MCQ কুইজ</span>
+            </button>
+            <button class="p-cat-card" data-ptype="flashcard">
+              <i class="fa-solid fa-layer-group p-ic"></i>
+              <span>AI ফ্ল্যাশকার্ড</span>
+            </button>
+            <button class="p-cat-card" data-ptype="short">
+              <i class="fa-solid fa-file-pen p-ic"></i>
+              <span>সংক্ষিপ্ত উত্তর</span>
+            </button>
+            <button class="p-cat-card" data-ptype="cq">
+              <i class="fa-solid fa-pen-ruler p-ic"></i>
+              <span>সৃজনশীল (CQ)</span>
+            </button>
+            <button class="p-cat-card" data-ptype="math">
+              <i class="fa-solid fa-calculator p-ic"></i>
+              <span>Math Solver</span>
+            </button>
+          </div>
+
+          <!-- INTERACTIVE PRACTICE & FLASHCARDS CONTAINER -->
+          <div class="practice-container" id="practiceContainer">
+            <!-- Populated via script.js -->
+          </div>
+        </section>
+
+        <!-- ================= VIEW 6: EXAM PREP ================= -->
+        <section class="view-panel" id="view-exams">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-brain"></i> পরীক্ষা প্রস্তুতি (Exam Prep)</h2>
+              <p class="section-subtitle">মডেল টেস্ট, সাপ্তাহিক পরীক্ষা ও বোর্ড প্রশ্ন সমাধান কেন্দ্র</p>
+            </div>
+          </div>
+
+          <div class="exam-submenu-bar">
+            <button class="e-menu-btn active" data-etype="class">Class Test</button>
+            <button class="e-menu-btn" data-etype="weekly">Weekly Test</button>
+            <button class="e-menu-btn" data-etype="ssc">SSC Model Test</button>
+            <button class="e-menu-btn" data-etype="hsc">HSC Model Test</button>
+            <button class="e-menu-btn" data-etype="admission">Admission Test</button>
+          </div>
+
+          <div class="exams-grid" id="examsGrid">
+            <!-- Rendered via script.js -->
+          </div>
+        </section>
+
+        <!-- ================= VIEW 7: MY PROGRESS ANALYTICS ================= -->
+        <section class="view-panel" id="view-progress">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-chart-line"></i> আমার অগ্রগতি (Analytics & Reports)</h2>
+              <p class="section-subtitle">অধ্যয়নের সময়, বিষয়ভিত্তিক দক্ষতা ও পরীক্ষার ফলাফলের ভিজ্যুয়াল রিপোর্ট</p>
+            </div>
+          </div>
+
+          <div class="progress-grid">
+            <div class="progress-card span-2">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-clock text-primary"></i> সাপ্তাহিক স্টাডি টাইম (Study Hours Trend)</h3>
+                <span class="badge-pill">মোট: ১৮.৫ ঘণ্টা</span>
+              </div>
+              <div class="chart-container-box">
+                <div class="bar-chart-sim" id="studyTimeChart">
+                  <div class="bar-col"><div class="bar-fill" style="height: 60%"><span>2.5h</span></div><span class="bar-lbl">শনৈ</span></div>
+                  <div class="bar-col"><div class="bar-fill" style="height: 85%"><span>3.2h</span></div><span class="bar-lbl">রবি</span></div>
+                  <div class="bar-col"><div class="bar-fill" style="height: 45%"><span>1.8h</span></div><span class="bar-lbl">সোম</span></div>
+                  <div class="bar-col"><div class="bar-fill" style="height: 70%"><span>2.8h</span></div><span class="bar-lbl">মঙ্গল</span></div>
+                  <div class="bar-col"><div class="bar-fill" style="height: 90%"><span>3.5h</span></div><span class="bar-lbl">বুধ</span></div>
+                  <div class="bar-col active"><div class="bar-fill" style="height: 65%"><span>2.1h</span></div><span class="bar-lbl">বৃহঃ</span></div>
+                  <div class="bar-col"><div class="bar-fill" style="height: 30%"><span>1.0h</span></div><span class="bar-lbl">শুক্রবার</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-pie-chart text-success"></i> বিষয়ভিত্তিক দক্ষতা</h3>
+              </div>
+              <div class="subject-progress-list">
+                <div class="sp-row">
+                  <span>পদার্থবিজ্ঞান</span>
+                  <div class="p-bar"><div class="p-fill" style="width: 85%"></div></div>
+                  <strong>৮৫%</strong>
+                </div>
+                <div class="sp-row">
+                  <span>উচ্চতর গণিত</span>
+                  <div class="p-bar"><div class="p-fill" style="width: 90%"></div></div>
+                  <strong>৯০%</strong>
+                </div>
+                <div class="sp-row">
+                  <span>রসায়ন</span>
+                  <div class="p-bar"><div class="p-fill warning" style="width: 60%"></div></div>
+                  <strong>৬০%</strong>
+                </div>
+                <div class="sp-row">
+                  <span>জীববিজ্ঞান</span>
+                  <div class="p-bar"><div class="p-fill danger" style="width: 45%"></div></div>
+                  <strong>৪৫%</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="card-title">
+                <h3><i class="fa-solid fa-triangle-exclamation text-danger"></i> দুর্বল টপিক (Weak Topics)</h3>
+              </div>
+              <div class="weak-topic-list">
+                <div class="wt-item">
+                  <div class="wt-badge danger">রসায়ন</div>
+                  <div class="wt-info">
+                    <h6>জারণ-বিজারণ সমীকরণ সমতাকরণ</h6>
+                    <span>কুইজ স্কোর: ৪৫% • বিশেষ মনোযোগ প্রয়োজন</span>
+                  </div>
+                  <button class="btn-text-sm" onclick="switchView('ai-assistant')">AI রিভিশন</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 8: ACHIEVEMENTS, LEADERBOARD & REWARDS SHOP ================= -->
+        <section class="view-panel" id="view-achievements">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-trophy"></i> অর্জন, লিডারবোর্ড ও রিওয়ার্ড শপ 🛍️</h2>
+              <p class="section-subtitle">পয়েন্ট ও কয়েন অর্জন করুন, লিডারবোর্ডে উঠে আসুন এবং স্পেশাল রিওয়ার্ড আনলক করুন</p>
+            </div>
+            <div class="xp-counter-badge">
+              <i class="fa-solid fa-coins text-warning"></i> <span id="coinsVal">কয়েন: ১২৫০</span> | <i class="fa-solid fa-bolt text-primary"></i> <span id="xpVal">XP: ২৪৫০</span>
+            </div>
+          </div>
+
+          <!-- LEADERBOARD TOGGLE SWITCHER (GLOBAL VS SCHOOL FRIENDS) -->
+          <div class="podium-section">
+            <div class="podium-header-bar">
+              <h3 class="ach-subhead"><i class="fa-solid fa-crown text-warning"></i> চ্যাম্পিয়ন লিডারবোর্ড (Leaderboard)</h3>
+              <div class="leaderboard-tabs">
+                <button class="lb-tab active" id="lbGlobalTab"><i class="fa-solid fa-globe"></i> গ্লোবাল র‍্যাঙ্কিং</button>
+                <button class="lb-tab" id="lbSchoolTab"><i class="fa-solid fa-school"></i> স্কুল সহপাঠী (DRMC)</button>
+              </div>
+            </div>
+
+            <!-- PODIUM CARDS -->
+            <div class="podium-cards" id="podiumCards">
+              <!-- Dynamically populated via script.js -->
+            </div>
+          </div>
+
+          <!-- VIRTUAL REWARDS SHOP SECTION -->
+          <div class="rewards-shop-section" style="margin-top: 2.5rem;">
+            <div class="shop-header">
+              <h3><i class="fa-solid fa-store text-primary"></i> 🛍️ ভার্চুয়াল রিওয়ার্ড শপ (Spend Coins to Unlock)</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">অর্জিত কয়েন খরচ করে নতুন থিম, ক্রাউন ফ্রেম ও VIP AI টিউটর আনলক করুন!</p>
+            </div>
+
+            <div class="shop-grid" id="shopItemsGrid">
+              <!-- Injected via script.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 9: RESOURCE LIBRARY ================= -->
+        <section class="view-panel" id="view-resources">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> রিসোর্স হাব (Resource Library)</h2>
+              <p class="section-subtitle">সহায়ক নোট, পিডিএফ, মাইন্ড ম্যাপ, সূত্র ও ডিকশনারি</p>
+            </div>
+          </div>
+
+          <div class="resources-grid">
+            <div class="res-card">
+              <div class="res-icon pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <div class="res-meta">
+                <h4>পদার্থবিজ্ঞান ১ম ও ২য় পত্রের সকল সূত্রমালা</h4>
+                <p>সাইজ: ৪.৫ MB • আপডেট: ১০ জুলাই</p>
+              </div>
+              <button class="btn-outline-sm" onclick="alert('PDF ডাউনলোড হচ্ছে...')"><i class="fa-solid fa-download"></i> ডাউনলোড</button>
+            </div>
+
+            <div class="res-card">
+              <div class="res-icon mindmap"><i class="fa-solid fa-sitemap"></i></div>
+              <div class="res-meta">
+                <h4>রসায়ন: পর্যায় সারণি সহজে মনে রাখার মাইন্ড ম্যাপ</h4>
+                <p>সাইজ: ২.১ MB • ফাইল: PNG</p>
+              </div>
+              <button class="btn-outline-sm" onclick="alert('ভিউ হচ্ছে...')"><i class="fa-solid fa-eye"></i> দেখুন</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 10: AI ASSISTANT ================= -->
+        <section class="view-panel" id="view-ai-assistant">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-robot text-primary"></i> SashiBa AI স্টাডি টিউটর</h2>
+              <p class="section-subtitle">আপনার ২৪/৭ ব্যক্তিগত স্মার্ট শিক্ষা সহকারী</p>
+            </div>
+          </div>
+
+          <div class="ai-tools-grid">
+            <button class="ai-tool-card" onclick="setAiPrompt('অঙ্ক সমাধান: \\int (3x^2 + 2x) dx')">
+              <i class="fa-solid fa-calculator"></i>
+              <span>Solve Math (অঙ্ক সমাধান)</span>
+            </button>
+
+            <button class="ai-tool-card" onclick="setAiPrompt('সহজ ভাষায় ব্যাখ্যা করো: নিউটনের ৩য় গতিসূত্র')">
+              <i class="fa-solid fa-lightbulb"></i>
+              <span>Explain Simply (সহজ ব্যাখ্যা)</span>
+            </button>
+
+            <button class="ai-tool-card" onclick="setAiPrompt('গ্রামার চেক করো: I goes to school everyday.')">
+              <i class="fa-solid fa-spell-check"></i>
+              <span>Grammar Check</span>
+            </button>
+          </div>
+
+          <div class="ai-chat-box">
+            <div class="chat-messages" id="aiChatMessages">
+              <div class="chat-msg ai-msg">
+                <div class="msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="msg-body">
+                  <p>আসসালামু আলাইকুম রাহাত! আমি আপনার SashiBa AI টিউটর। পড়াশোনার যেকোনো জটিল টপিক বুঝতে বা অঙ্ক সমাধান করতে সাহায্য করতে পারি।</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-input-area">
+              <input type="text" id="aiChatInput" placeholder="এখানে আপনার প্রশ্ন লিখুন (যেমন: পর্যায় সারণির ট্রেন্ড বোঝাও)...">
+              <button id="aiSendBtn" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> পাঠান</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 11: SMART STUDY MANAGER ================= -->
+        <section class="view-panel" id="view-study-manager">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-graduation-cap text-primary"></i> 🎓 Smart Study Manager</h2>
+              <p class="section-subtitle">আপনার দৈনন্দিন পড়াশোনার টাইম ম্যানেজমেন্ট, ফোকাস মোড ও ক্যালেন্ডার সিঙ্ক</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn-outline-sm" onclick="exportStudyScheduleCalendar()"><i class="fa-solid fa-calendar-plus text-primary"></i> 📅 Google Calendar-এ সিঙ্ক করুন</button>
+              <button class="btn-primary" id="launchFocusModeBtn"><i class="fa-solid fa-expand"></i> Focus Mode</button>
+            </div>
+          </div>
+
+          <div class="study-manager-grid">
+            <div class="sm-card pomodoro-card">
+              <h3><i class="fa-solid fa-clock text-primary"></i> Pomodoro Focus Timer</h3>
+              <div class="pomodoro-timer-display" id="pomoTimer">25:00</div>
+              <div class="pomo-mode-tabs">
+                <button class="pomo-tab active" data-min="25">Focus (25m)</button>
+                <button class="pomo-tab" data-min="5">Short Break (5m)</button>
+                <button class="pomo-tab" data-min="15">Long Break (15m)</button>
+              </div>
+              
+              <div class="ambient-sound-bar">
+                <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);"><i class="fa-solid fa-headphones"></i> ব্যাকগ্রাউন্ড সাউন্ড:</span>
+                <div class="sound-btns">
+                  <button class="btn-sound-opt" onclick="toggleAmbientSound('rain', this)"><i class="fa-solid fa-cloud-rain"></i> বৃষ্টি</button>
+                  <button class="btn-sound-opt" onclick="toggleAmbientSound('lofi', this)"><i class="fa-solid fa-music"></i> Lo-Fi</button>
+                  <button class="btn-sound-opt" onclick="toggleAmbientSound('off', this)"><i class="fa-solid fa-volume-xmark"></i> বন্ধ</button>
+                </div>
+              </div>
+
+              <div class="pomo-actions" style="margin-top: 1rem;">
+                <button class="btn-primary btn-lg" id="pomoStartBtn"><i class="fa-solid fa-play"></i> শুরু করুন</button>
+                <button class="btn-outline-lg" id="pomoResetBtn"><i class="fa-solid fa-rotate-left"></i> রিসেট</button>
+              </div>
+            </div>
+
+            <div class="sm-card">
+              <h3><i class="fa-solid fa-list-check text-success"></i> Revision & Homework Tracker</h3>
+              <div class="tracker-list">
+                <div class="tr-item">
+                  <span class="tr-subj">পদার্থবিজ্ঞান</span>
+                  <div class="tr-info">
+                    <h6>অধ্যায় ৩ এর গাণিতিক সূত্র রিভিশন</h6>
+                    <span class="tr-deadline">আজ রাত ৯:০০ PM</span>
+                  </div>
+                  <button class="btn-sm btn-outline">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 12: SETTINGS ================= -->
+        <section class="view-panel" id="view-settings">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title"><i class="fa-solid fa-gear"></i> সেটিংস (Settings & Eye Comfort)</h2>
+              <p class="section-subtitle">চোখের সুরক্ষা, কালার থিম ও পার্সোনালাইজেশন কাস্টমাইজ করুন</p>
+            </div>
+          </div>
+
+          <div class="settings-card-group">
+            <div class="settings-card">
+              <h3><i class="fa-solid fa-eye text-primary"></i> চোখের সুরক্ষা ও ডিসপ্লে থিম (Eye Protection Modes)</h3>
+              
+              <div class="setting-row">
+                <div>
+                  <h5>কালার স্কিম (Color Palette Theme)</h5>
+                  <p>দীর্ঘক্ষণ পড়ার জন্য চোখের জন্য সহনীয় কালার মোড নির্বাচন করুন</p>
+                </div>
+                <div class="theme-options-radio">
+                  <button class="theme-opt-btn active" data-theme="light" title="Pearl Light Mode">
+                    <i class="fa-solid fa-sun"></i> Pearl Light
+                  </button>
+                  <button class="theme-opt-btn" data-theme="sepia" title="Warm Eye-Care Reading Mode">
+                    <i class="fa-solid fa-book-open-reader"></i> Warm Sepia
+                  </button>
+                  <button class="theme-opt-btn" data-theme="dark" title="OLED Cyber Night Mode">
+                    <i class="fa-solid fa-moon"></i> Cyber Dark
+                  </button>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <h5>ব্লু-লাইট শিলেড (Blue Light Filter Overlay)</h5>
+                  <p>স্ক্রিন থেকে ক্ষতিকর নীল আলো কমিয়ে চোখে আরাম দেয়</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="settingBlueLightToggle">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <h5>ফন্ট সাইজ (Font Scaling)</h5>
+                  <p>লেখার আকার ছোট বা বড় করুন</p>
+                </div>
+                <div class="font-size-controls">
+                  <button class="btn-outline-sm" id="fontDecBtn">A-</button>
+                  <span id="fontValDisplay">110%</span>
+                  <button class="btn-outline-sm" id="fontIncBtn">A+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN FOCUS MODE OVERLAY -->
+  <div id="focusModeOverlay" class="focus-mode-modal">
+    <button class="btn-close-focus" id="closeFocusModeBtn"><i class="fa-solid fa-xmark"></i> ফোকাস মোড বন্ধ করুন</button>
+    <div class="focus-modal-content">
+      <div class="focus-pulse-ring"><i class="fa-solid fa-brain"></i></div>
+      <h1 class="focus-title">Focus Mode সক্রিয়</h1>
+      <p class="focus-desc">সব ধরনের মনোযোগ বিচ্যুতি দূর করা হয়েছে। পড়া চালিয়ে যান!</p>
+      <div class="focus-clock" id="focusTimerDisplay">25:00</div>
+      <button class="btn-primary btn-lg" id="focusPomoToggle"><i class="fa-solid fa-pause"></i> বিরতি দিন</button>
+    </div>
+  </div>
+
+  <!-- EXAM SIMULATOR MODAL -->
+  <div id="examModal" class="modal-overlay">
+    <div class="exam-modal-container">
+      <div class="exam-modal-header">
+        <div>
+          <h3 id="examModalTitle">পদার্থবিজ্ঞান পূর্ণাঙ্গ মডেল টেস্ট</h3>
+          <span class="badge-pill" id="examModalMeta">সময়: ২৫ মিনিট | প্রশ্ন: ২০টি</span>
+        </div>
+        <div class="exam-modal-timer" id="examTimerDisplay">25:00</div>
+      </div>
+      <div class="exam-modal-body" id="examModalBody">
+        <div class="question-card">
+          <h4>প্রশ্ন ১: ৫ কেজি ভরের বস্তুর ওপর ১০ নিউটন বল প্রয়োগ করা হলে ত্বরণ কত হবে?</h4>
+          <div class="q-options" style="margin-top: 1rem;">
+            <label class="q-option"><input type="radio" name="eq1"> ক) ১ $m/s^2$</label>
+            <label class="q-option"><input type="radio" name="eq1"> খ) ২ $m/s^2$</label>
+            <label class="q-option"><input type="radio" name="eq1"> গ) ৩ $m/s^2$</label>
+          </div>
+        </div>
+      </div>
+      <div class="exam-modal-footer">
+        <button class="btn-outline" id="cancelExamBtn">বাতিল করুন</button>
+        <button class="btn-primary" id="submitExamBtn"><i class="fa-solid fa-paper-plane"></i> পরীক্ষা জমা দিন</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM RESULT REPORT MODAL -->
+  <div id="examResultModal" class="modal-overlay">
+    <div class="exam-modal-container">
+      <div class="exam-modal-header">
+        <h3><i class="fa-solid fa-square-poll-vertical text-success"></i> পরীক্ষার ফলাফল ও ভুল বিশ্লেষণ</h3>
+        <button class="btn-icon" onclick="closeModal('examResultModal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="exam-modal-body">
+        <div class="score-summary-box">
+          <div class="s-circle">
+            <span class="s-num">১৮/২০</span>
+            <span class="s-lbl">স্কোর</span>
+          </div>
+          <div class="s-details">
+            <p><strong>মেধা স্থান (Rank):</strong> ১ম (ব্যাচের মধ্যে)</p>
+            <p><strong>অতিক্রান্ত সময়:</strong> ১৭ মিনিট ৩০ সেকেন্ড</p>
+            <p><strong>সঠিক উত্তর:</strong> ১৮টি | <strong>ভুল:</strong> ২ট</p>
+          </div>
+        </div>
+      </div>
+      <div class="exam-modal-footer">
+        <button class="btn-primary btn-block" onclick="closeModal('examResultModal')">ঠিক আছে</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA & LOGIC SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

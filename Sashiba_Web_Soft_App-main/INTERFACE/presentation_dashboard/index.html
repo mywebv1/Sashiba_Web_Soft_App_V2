@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>প্রেজেন্টেশন আর্কিটেক্ট | স্মার্ট শিক্ষা বাতায়ন</title>
+    <!-- Google Fonts: Hind Siliguri -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- ==========================================
+             [১] সাইডবার ন্যাভিগেশন মেনু (Sidebar Menu)
+             ========================================== -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <div class="brand-text">
+            <strong>স্মার্ট শিক্ষা</strong><span>বাতায়ন</span>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <a
+            href="javascript:void(0)"
+            class="nav-item active"
+            onclick="showSection('builder')"
+            id="sb-dashboard"
+          >
+            <i class="fa-solid fa-desktop"></i>
+            <span id="lbl-sb-editor">স্লাইড এডিটর</span>
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="resetPresentationBuilder()"
+            id="sb-new"
+          >
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span id="lbl-sb-new">নতুন স্লাইড সেট</span>
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="showSection('library')"
+            id="sb-library"
+          >
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span id="lbl-sb-lib">পুরোনো স্লাইড লাইব্রেরি</span>
+          </a>
+          <a
+            href="./LESION PLAN_DASHBOARD/index.html"
+            class="nav-item"
+            id="sb-lesson-dash"
+          >
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span id="lbl-sb-lesson">লেসন প্ল্যান ড্যাশবোর্ড</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-user">
+          <div class="avatar">MA</div>
+          <div class="info">
+            <strong class="user-name">মাগুরিব আলী</strong>
+            <small class="user-role" id="sb-role">প্রধান শিক্ষক</small>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ==========================================
+             [২] প্রধান স্লাইড এডিটর ও মেকার সেকশন
+             ========================================== -->
+      <main class="main-content" id="mainBuilder">
+        <header class="top-bar">
+          <div class="title-area">
+            <button
+              class="btn-sidebar-toggle"
+              id="sidebarToggleBtn"
+              onclick="toggleSidebar()"
+              title="Toggle Sidebar"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="main-heading" id="hdr-title">প্রেজেন্টেশন আর্কিটেক্ট</h1>
+            <span class="badge-source" id="sourceBadge"
+              ><i class="fa-solid fa-link"></i> স্লাইড এডিটর মোড</span
+            >
+          </div>
+
+          <div
+            class="actions"
+            style="display: flex; gap: 10px; align-items: center"
+          >
+            <!-- লেসন প্ল্যান থেকে ইম্পোর্ট বাটন -->
+            <button class="btn btn-outline-primary" onclick="openImportModal()">
+              <i class="fa-solid fa-file-import"></i>
+              <span id="lbl-btn-import">লেসন প্ল্যান ইম্পোর্ট</span>
+            </button>
+
+            <!-- স্লাইডশো / ফুলস্ক্রিন বাটন -->
+            <button class="btn btn-slideshow" onclick="startPresentationMode()">
+              <i class="fa-solid fa-play"></i>
+              <span id="lbl-btn-present">স্লাইডশো (প্রেজেন্ট)</span>
+            </button>
+
+            <!-- ভাষা টগল বাটন -->
+            <button
+              class="btn btn-outline"
+              id="langToggleBtn"
+              onclick="toggleLanguage()"
+            >
+              <i class="fa-solid fa-globe"></i> <span>English</span>
+            </button>
+
+            <!-- সেভ ও এক্সপোর্ট ড্রপডাউন -->
+            <div class="dropdown-wrapper">
+              <button
+                class="btn btn-primary btn-action-main"
+                onclick="toggleExportMenu()"
+              >
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span id="lbl-btn-export">সেভ ও এক্সপোর্ট</span>
+                <i class="fa-solid fa-chevron-down arrow-icon"></i>
+              </button>
+              <div class="dropdown-menu" id="exportMenu">
+                <button class="dropdown-item" onclick="savePresentationDraft()">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <div class="item-text">
+                    <strong>ড্রাফট সেভ করুন</strong>
+                    <small>লোকাল স্টোরেজে সংরক্ষিত হবে</small>
+                  </div>
+                </button>
+                <button
+                  class="dropdown-item"
+                  onclick="exportToHTMLPresentation()"
+                >
+                  <i class="fa-solid fa-file-code"></i>
+                  <div class="item-text">
+                    <strong>HTML স্লাইড সেভ</strong>
+                    <small>ইন্টারেক্টিভ ফাইল হিসেবে ডাউনলোড</small>
+                  </div>
+                </button>
+                <button
+                  class="dropdown-item"
+                  onclick="downloadAsPowerPointPPTX()"
+                >
+                  <i
+                    class="fa-solid fa-file-powerpoint"
+                    style="color: #d24726"
+                  ></i>
+                  <div class="item-text">
+                    <strong>পাওয়ারপয়েন্ট (PPTX) ডাউনলোড</strong>
+                    <small>যেকোনো পিসি বা ল্যাপটপে চালানোর জন্য</small>
+                  </div>
+                </button>
+                <button
+                  class="dropdown-item"
+                  onclick="printPresentationSlides()"
+                >
+                  <i class="fa-solid fa-file-pdf"></i>
+                  <div class="item-text">
+                    <strong>PDF / হ্যান্ডআউট প্রিন্ট</strong>
+                    <small>স্লাইড শিট ডাউনলোড</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- ওয়ার্কস্পেস (মেনু প্যানেল এবং স্লাইড ওয়ার্কস্পেস) -->
+        <div class="workspace">
+          <!-- ==========================================
+                     ইনপুট কন্ট্রোল প্যানেল (১২টি উন্মুক্ত সচল মেনু/সাবমেনু)
+                     ========================================== -->
+          <section class="input-panel">
+            <div class="panel-header-info">
+              <h3>
+                <i class="fa-solid fa-sliders"></i> লেসন ও স্লাইড কনফিগারেশন
+              </h3>
+              <p>
+                প্রতিটি অপশন সিলেক্ট বা টিক দিন, সাথে সাথে ডানপাশে স্লাইড
+                জেনারেট ও আপডেট হবে
+              </p>
+            </div>
+
+            <!-- ১. প্রতিষ্ঠানের তথ্য -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-school"></i> ১. প্রতিষ্ঠানের তথ্য
+              </summary>
+              <div class="card-body">
+                <input
+                  type="text"
+                  id="schName"
+                  class="form-input"
+                  placeholder="প্রতিষ্ঠানের নাম"
+                  value="সশিবা মডেল স্কুল"
+                  oninput="onDataInputUpdate()"
+                />
+                <input
+                  type="text"
+                  id="schAddr"
+                  class="form-input"
+                  placeholder="ঠিকানা"
+                  value="ঢাকা, বাংলাদেশ"
+                  oninput="onDataInputUpdate()"
+                />
+                <div class="grid-2">
+                  <input
+                    type="text"
+                    id="schCode"
+                    class="form-input"
+                    placeholder="স্কুল কোড"
+                    value="10523"
+                    oninput="onDataInputUpdate()"
+                  />
+                  <input
+                    type="text"
+                    id="schYear"
+                    class="form-input"
+                    placeholder="প্রতিষ্ঠাকাল"
+                    value="1995"
+                    oninput="onDataInputUpdate()"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <!-- ২. একাডেমিক তথ্য (শ্রেণি, বিষয় ও বিভাগ নির্বাচন) -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-book"></i> ২. একাডেমিক তথ্য (শ্রেণি ও বিষয়
+                নির্বাচন)
+              </summary>
+              <div class="card-body">
+                <label class="lbl">শিক্ষা বোর্ড</label>
+                <select
+                  id="board"
+                  class="form-select"
+                  onchange="onDataInputUpdate()"
+                >
+                  <option value="NCTB">NCTB (জাতীয় শিক্ষাক্রম)</option>
+                  <option value="মাদ্রাসা">মাদ্রাসা শিক্ষা বোর্ড</option>
+                  <option value="কারিগরি">কারিগরি শিক্ষা বোর্ড</option>
+                </select>
+                <div class="grid-2">
+                  <div>
+                    <label class="lbl">শ্রেণি নির্বাচন করুন</label>
+                    <select
+                      id="class"
+                      class="form-select"
+                      onchange="handleClassChange()"
+                    >
+                      <!-- Populated dynamically -->
+                    </select>
+                  </div>
+                  <div id="group-wrapper" style="display: none">
+                    <label class="lbl">বিভাগ</label>
+                    <select
+                      id="group"
+                      class="form-select"
+                      onchange="handleClassChange()"
+                    >
+                      <option value="General">আবশ্যিক</option>
+                      <option value="Science">বিজ্ঞান</option>
+                      <option value="Arts">মানবিক</option>
+                      <option value="Commerce">ব্যবসায় শিক্ষা</option>
+                    </select>
+                  </div>
+                </div>
+                <label class="lbl"
+                  >বিষয় নির্বাচন করুন (ক্লিক করে বিষয় সিলেক্ট করুন):</label
+                >
+                <select
+                  id="subject"
+                  class="form-select"
+                  onchange="onSubjectChange()"
+                >
+                  <!-- Dynamically populated based on selected Class -->
+                </select>
+                <label class="lbl">বইয়ের নাম (অটো-ফিল):</label>
+                <input
+                  type="text"
+                  id="bookName"
+                  class="form-input"
+                  readonly
+                  placeholder="বইয়ের নাম (অটো ফিল)"
+                  value="ষষ্ঠ শ্রেণি - বাংলা (NCTB পাঠ্যবই)"
+                />
+              </div>
+            </details>
+
+            <!-- ৩. অধ্যায় ও পাঠ (ডাইনামিক রেডিও এবং টিক মার্ক অপশন) -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-list-ul"></i> ৩. অধ্যায় ও পাঠ নির্ধারণ
+                (টিক চিহ্ন)
+              </summary>
+              <div class="card-body">
+                <div class="list-box-label">
+                  <i class="fa-solid fa-book-bookmark"></i> অধ্যায় নির্বাচন
+                  করুন (রেডিও বাটন):
+                </div>
+                <div class="list-box" id="chapter-list">
+                  <!-- Dynamic Chapters list -->
+                </div>
+
+                <div class="list-box-label" style="margin-top: 10px">
+                  <i class="fa-solid fa-check-double"></i> পাঠ ও আলোচ্য বিষয়
+                  (টিক চিহ্ন দিন):
+                </div>
+                <div class="list-box" id="topic-list">
+                  <!-- Dynamic Topics checkboxes list -->
+                </div>
+
+                <div class="grid-2">
+                  <div>
+                    <label class="lbl">পাঠের নির্ধারিত সময় (মিনিট)</label>
+                    <input
+                      type="number"
+                      id="duration"
+                      class="form-input"
+                      placeholder="সময় (মিনিট)"
+                      value="45"
+                      oninput="onDataInputUpdate()"
+                    />
+                  </div>
+                  <div>
+                    <label class="lbl">পাঠ সংখ্যা</label>
+                    <input
+                      type="number"
+                      id="lessonCount"
+                      class="form-input"
+                      placeholder="পাঠ সংখ্যা"
+                      value="1"
+                      oninput="onDataInputUpdate()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <!-- ৪. প্রেজেন্টেশন ডিজাইন ও থিম -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-palette"></i> ৪. প্রেজেন্টেশন ডিজাইন ও থিম
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  স্লাইডের নান্দনিক ডিজাইন থিমে ক্লিক করুন:
+                </p>
+                <div class="theme-picker-grid" id="theme-options">
+                  <!-- Themes populated dynamically -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ৫. সাবজেক্ট থিম -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-book-open"></i> ৫. সাবজেক্ট থিম ও
+                ভিজ্যুয়াল স্টাইল
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  বিষয়ভিত্তিক প্রেজেন্টেশন ডিজাইনে ক্লিক করুন:
+                </p>
+                <div class="methods-grid" id="subject-themes-list">
+                  <!-- Dynamic Subject Themes -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ৬. ভিজ্যুয়াল কন্টেন্ট -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-photo-film"></i> ৬. ভিজ্যুয়াল কন্টেন্ট
+                উপাদান
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  স্লাইডে যেসব দৃশ্যমান উপাদান রাখবেন (টিক দিন):
+                </p>
+                <div class="methods-grid" id="visual-content-list">
+                  <!-- Visual Content Options -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ৭. স্লাইড সিকোয়েন্স ও স্ট্রাকচার -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-layer-group"></i> ৭. স্লাইড সিকোয়েন্স ও
+                স্ট্রাকচার
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  যে স্লাইডগুলো অটোমেটিক জেনারেট করতে চান টিক দিন:
+                </p>
+                <div class="methods-grid" id="slide-sequence-list">
+                  <!-- Slide sequence list -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ৮. রেডিমেড টেম্পলেট -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> ৮. রেডিমেড
+                টেম্পলেট
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  প্রস্তুতকৃত পাঠ কাঠামোর টেম্পলেট নির্বাচন করুন:
+                </p>
+                <div class="methods-grid" id="ready-templates-list">
+                  <!-- Ready templates list -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ৯. পঠন পদ্ধতি -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-chalkboard-user"></i> ৯. পঠন পদ্ধতি
+                (Teaching Methods)
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  শ্রেণিকক্ষে ব্যবহারের জন্য পদ্ধতি নির্বাচন করুন:
+                </p>
+                <div class="methods-grid" id="methods-list">
+                  <!-- Methods list -->
+                </div>
+              </div>
+            </details>
+
+            <!-- ১০. উদ্দেশ্য ও শিখনফল (AI) -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-bullseye"></i> ১০. উদ্দেশ্য ও শিখনফল (AI)
+              </summary>
+              <div class="card-body">
+                <label class="lbl">পাঠের উদ্দেশ্য লিখুন:</label>
+                <textarea
+                  id="lessonObjective"
+                  class="form-input"
+                  placeholder="আজকের পাঠের মূল উদ্দেশ্য লিখুন..."
+                  style="height: 75px; padding: 8px"
+                  oninput="onDataInputUpdate()"
+                >
+আজকের পাঠের মূল আলোচনা, বৈশিষ্ট্য অনুধাবন এবং অনুশীলনী সমাধান করা।</textarea
+                >
+                <button
+                  class="btn btn-outline-primary"
+                  style="width: 100%; font-size: 12px; margin-top: 4px"
+                  onclick="autoGenerateAIOutcomes()"
+                >
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> AI শিখনফল
+                  অটো-জেনারেট করুন
+                </button>
+              </div>
+            </details>
+
+            <!-- ১১. শিক্ষার্থী বিবরণ (গ্রুপিং) -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-users"></i> ১১. শিক্ষার্থী বিবরণ (স্মার্ট
+                গ্রুপিং)
+              </summary>
+              <div class="card-body">
+                <label class="lbl">খুব ভালো রোল (Advanced Roll):</label>
+                <input
+                  type="text"
+                  id="roll-vgood"
+                  class="form-input"
+                  placeholder="যেমন: ১, ২, ৩"
+                  value="১, ২, ৩"
+                  oninput="onDataInputUpdate()"
+                />
+                <label class="lbl">মাঝারি রোল (Average Roll):</label>
+                <input
+                  type="text"
+                  id="roll-avg"
+                  class="form-input"
+                  placeholder="যেমন: ৪, ৫, ৬"
+                  value="৪, ৫, ৬"
+                  oninput="onDataInputUpdate()"
+                />
+                <label class="lbl">বিশেষ যত্ন রোল (Support Roll):</label>
+                <input
+                  type="text"
+                  id="roll-low"
+                  class="form-input"
+                  placeholder="যেমন: ৭, ৮, ৯"
+                  value="৭, ৮, ৯"
+                  oninput="onDataInputUpdate()"
+                />
+              </div>
+            </details>
+
+            <!-- ১২. Bloom's Taxonomy -->
+            <details class="card" open>
+              <summary class="card-header">
+                <i class="fa-solid fa-brain"></i> ১২. Bloom's Taxonomy (জ্ঞানীয়
+                স্তর)
+              </summary>
+              <div class="card-body">
+                <p style="font-size: 11.5px; color: #666; margin-bottom: 8px">
+                  মূল্যায়নের জন্য Bloom's স্তর বেছে নিন:
+                </p>
+                <div class="methods-grid" id="bloom-options">
+                  <!-- Bloom's options -->
+                </div>
+              </div>
+            </details>
+
+            <!-- অটো স্লাইড জেনারেট বাটন -->
+            <button class="btn-generate" onclick="generateSlidesFromForm(true)">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span id="lbl-btn-gen">অটো স্লাইড জেনারেট করুন</span>
+            </button>
+          </section>
+
+          <!-- ==========================================
+                     স্লাইড ওয়ার্কস্পেস (আই-ফ্রেন্ডলি হোয়াইট ব্যাকগ্রাউন্ড ও বড় স্ক্রিন)
+                     ========================================== -->
+          <section class="presentation-workspace">
+            <!-- স্লাইড টুলবার -->
+            <div class="slide-toolbar">
+              <div class="toolbar-left">
+                <button class="btn-tool" onclick="addNewSlide()">
+                  <i class="fa-solid fa-plus"></i>
+                  <span id="lbl-btn-new">নতুন স্লাইড</span>
+                </button>
+                <button class="btn-tool" onclick="duplicateCurrentSlide()">
+                  <i class="fa-solid fa-copy"></i>
+                  <span id="lbl-btn-dup">ডুপ্লিকেট</span>
+                </button>
+                <button class="btn-tool danger" onclick="deleteCurrentSlide()">
+                  <i class="fa-solid fa-trash"></i>
+                  <span id="lbl-btn-del">মুছে ফেলুন</span>
+                </button>
+                <button class="btn-tool" onclick="moveSlide(-1)">
+                  <i class="fa-solid fa-arrow-up"></i>
+                  <span id="lbl-btn-up">উপরে</span>
+                </button>
+                <button class="btn-tool" onclick="moveSlide(1)">
+                  <i class="fa-solid fa-arrow-down"></i>
+                  <span id="lbl-btn-down">নিচে</span>
+                </button>
+                <button class="btn-tool" onclick="replayCanvasAnimations()" title="অ্যানিমেশন প্রিভিউ দেখুন" style="color: var(--primary);">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  <span>অ্যানিমেশন প্রিভিউ</span>
+                </button>
+              </div>
+              <div
+                class="toolbar-right"
+                style="display: flex; align-items: center; gap: 12px"
+              >
+                <span class="slide-count-badge" id="slideCountBadge"
+                  >স্লাইড ১ / ৭</span
+                >
+                <label
+                  style="
+                    font-size: 12px;
+                    color: var(--text-muted);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    margin: 0;
+                    user-select: none;
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    id="chkFullscreenOpt"
+                    checked
+                    style="cursor: pointer; width: 14px; height: 14px"
+                  />
+                  <span>ফুলস্ক্রিন</span>
+                </label>
+                <button class="btn-play-sm" onclick="startPresentationMode()">
+                  <i class="fa-solid fa-play"></i>
+                  <span id="lbl-btn-pres">প্রেজেন্টেশন চালু করুন</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- মেইন স্লাইডভিউ স্টুডিও (থাম্বনেইল লিস্ট + লার্জ ক্যানভাস + এডিটর প্যানেল) -->
+            <div class="studio-layout">
+              <!-- বামদিকের স্লাইড থাম্বনেইল তালিকা -->
+              <div class="slide-thumbnails-sidebar">
+                <div class="thumb-header">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span id="lbl-thumb-hdr">স্লাইড তালিকা</span>
+                </div>
+                <div class="thumb-list" id="slideThumbnailsContainer">
+                  <!-- Dynamic thumbnails -->
+                </div>
+              </div>
+
+              <!-- মাঝের স্লাইড প্রিভিউ ক্যানভাস (চোখের জন্য সহনীয় সাদা ব্যাকগ্রাউন্ড ও বড় ক্যানভাস) -->
+              <div class="slide-canvas-container" style="position: relative;">
+                <!-- এডিটর টগল হ্যান্ডেল -->
+                <button class="editor-toggle-btn" onclick="toggleEditorPanel()" title="এডিটর প্যানেল প্রদর্শন/লুকান" style="border: none;">
+                  <i class="fa-solid fa-chevron-right" id="editorToggleIcon"></i>
+                </button>
+                <div class="slide-frame theme-modern" id="slideCanvas">
+                  <div class="slide-inner-content" id="slideInnerContent">
+                    <!-- Active slide content rendered here -->
+                  </div>
+                </div>
+                <!-- নেভিগেশন কন্ট্রোল -->
+                <div class="canvas-nav">
+                  <button class="nav-btn" onclick="prevSlide()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span id="lbl-nav-prev">পূর্ববর্তী</span>
+                  </button>
+                  <span class="nav-info" id="canvasSlideInfo"
+                    >স্লাইড ১ এর ৭</span
+                  >
+                  <button class="nav-btn" onclick="nextSlide()">
+                    <span id="lbl-nav-next">পরবর্তী</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ডানদিকের স্লাইড কন্টেন্ট এডিটর (Slide Content Editor) -->
+              <div class="slide-editor-panel">
+                <div class="editor-title">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <span id="lbl-editor-title">স্লাইড পরিবর্তন ও সম্পাদনা</span>
+                </div>
+
+                <details class="editor-accordion" style="margin-top: 5px;" open>
+                  <summary style="font-weight: 700; cursor: pointer; color: var(--primary); display: flex; align-items: center; justify-content: space-between; user-select: none; list-style: none;">
+                    <span><i class="fa-solid fa-pen-to-square"></i> স্লাইড কন্টেন্ট ও লেআউট</span>
+                    <i class="fa-solid fa-chevron-down accordion-arrow" style="font-size: 12px; transition: transform 0.2s;"></i>
+                  </summary>
+                  <div style="margin-top: 12px;">
+                    <div class="editor-field">
+                  <label id="lbl-edit-title">স্লাইড টাইটেল (শিরোনাম):</label>
+                  <input
+                    type="text"
+                    id="editSlideTitle"
+                    class="form-input"
+                    oninput="updateActiveSlideFromEditor()"
+                    placeholder="স্লাইডের শিরোনাম লিখুন..."
+                  />
+                </div>
+
+                <div class="editor-field">
+                  <label id="lbl-edit-type">স্লাইডের ধরন / সাবটাইটেল:</label>
+                  <select
+                    id="editSlideType"
+                    class="form-select"
+                    onchange="updateActiveSlideFromEditor()"
+                  >
+                    <option value="Cover">কভার / শিরোনাম স্লাইড</option>
+                    <option value="Outcomes">শিখনফল স্লাইড</option>
+                    <option value="Content">পাঠ আলোচনা স্লাইড</option>
+                    <option value="Table">ক্লাস কাজ ও সময়তালিকা</option>
+                    <option value="Quiz">কুইজ ও প্রশ্ন স্লাইড</option>
+                    <option value="Homework">বাড়ির কাজ স্লাইড</option>
+                    <option value="Q&A">প্রশ্নোত্তর ও সমাপ্তি</option>
+                  </select>
+                </div>
+
+                <div class="editor-field">
+                  <label id="lbl-edit-layout">লেআউট / গ্রিড স্টাইল:</label>
+                  <select
+                    id="editSlideLayout"
+                    class="form-select"
+                    onchange="updateActiveSlideFromEditor()"
+                  >
+                    <option value="single">একক / সিঙ্গেল কলাম</option>
+                    <option value="split">দ্বিমুখী / টু কলাম</option>
+                    <option value="card">কার্ড লেআউট</option>
+                    <option value="visual">
+                      ইমেজ / ভিজ্যুয়াল ডায়াগ্রাম সহ
+                    </option>
+                    <option value="quiz">কুইজ ও অপশন লেআউট</option>
+                  </select>
+                </div>
+
+                <div class="editor-field">
+                  <label id="lbl-edit-bullets"
+                    >স্লাইড কনটেন্ট / পয়েন্টসমূহ (প্রতি লাইনে একটি):</label
+                  >
+                  <textarea
+                    id="editSlideBullets"
+                    class="form-input"
+                    style="height: 120px"
+                    oninput="updateActiveSlideFromEditor()"
+                    placeholder="১. প্রথম পয়েন্ট&#10;২. দ্বিতীয় পয়েন্ট..."
+                  ></textarea>
+                </div>
+
+                <div class="editor-field">
+                  <label id="lbl-edit-notes"
+                    >শিক্ষক নির্দেশনাবলী / লেকচার নোট:</label
+                  >
+                  <textarea
+                    id="editTeacherNotes"
+                    class="form-input"
+                    style="height: 60px"
+                    oninput="updateActiveSlideFromEditor()"
+                    placeholder="ক্লাস নেওয়ার সময় শিক্ষকের জন্য টিপস..."
+                  ></textarea>
+                </div>
+
+                <div class="grid-2">
+                  <div class="editor-field">
+                    <label id="lbl-edit-icon">স্লাইড আইকন:</label>
+                    <select
+                      id="editSlideIcon"
+                      class="form-select"
+                      onchange="updateActiveSlideFromEditor()"
+                    >
+                      <option value="fa-graduation-cap">🎓 টুপি</option>
+                      <option value="fa-book-open">📖 বই</option>
+                      <option value="fa-lightbulb">💡 ধারণা</option>
+                      <option value="fa-bullseye">🎯 লক্ষ্য</option>
+                      <option value="fa-list-check">📋 তালিকা</option>
+                      <option value="fa-users">👥 দলগত কাজ</option>
+                      <option value="fa-circle-question">❓ প্রশ্ন</option>
+                      <option value="fa-house-laptop">🏠 বাড়ির কাজ</option>
+                      <option value="fa-atom">⚛️ বিজ্ঞান</option>
+                      <option value="fa-calculator">🧮 গণিত</option>
+                    </select>
+                  </div>
+                  <div class="editor-field">
+                    <label id="lbl-edit-bg">স্লাইড ব্যাকগ্রাউন্ড:</label>
+                    <select
+                      id="editSlideBg"
+                      class="form-select"
+                      onchange="updateActiveSlideFromEditor()"
+                    >
+                      <option value="default">ডিফল্ট থিম</option>
+                      <option value="bg-blue">রয়েল ব্লু</option>
+                      <option value="bg-emerald">এমারেল্ড গ্রিন</option>
+                      <option value="bg-dark">ডার্ক নাইট</option>
+                      <option value="bg-amber">ওয়ার্ম এম্বার</option>
+                      <option value="bg-purple">ভিভিড পার্পল</option>
+                      <option value="bg-white">ক্লিন হোয়াইট</option>
+                      <option value="bg-cosmic">🌌 অরোরা কসমিক</option>
+                      <option value="bg-sunset">🌅 সানসেট ব্রিজ</option>
+                      <option value="bg-ocean">🌊 ওশেন ওয়েভ</option>
+                      <option value="bg-neon">⚡ সাইবার নিয়ন</option>
+                      <option value="bg-nordic">❄️ নর্ডিক ফ্রস্ট</option>
+                      <option value="bg-matte">🖤 ম্যাট চারকোল</option>
+                    </select>
+                  </div>
+                </div>
+                  </div>
+                </details>
+
+                <!-- অ্যানিমেশন সেটিংস -->
+                <details class="editor-accordion" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px;" open>
+                  <summary style="font-weight: 700; cursor: pointer; color: var(--primary); display: flex; align-items: center; justify-content: space-between; user-select: none; list-style: none;">
+                    <span><i class="fa-solid fa-wand-magic-sparkles"></i> অ্যানিমেশন এবং প্রবেশদ্বার ইফেক্ট</span>
+                    <i class="fa-solid fa-chevron-down accordion-arrow" style="font-size: 12px; transition: transform 0.2s;"></i>
+                  </summary>
+                  
+                  <div style="margin-top: 12px;">
+                    <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 12px;">
+                      স্লাইড প্লে করার সময় উপাদানগুলো কীভাবে স্ক্রিনে প্রবেশ করবে তা নির্ধারণ করুন:
+                    </p>
+
+                    <div class="animation-settings-card" style="background: rgba(79, 70, 229, 0.04); padding: 12px; border-radius: 10px; border: 1px solid rgba(79, 70, 229, 0.12); display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px;">
+                      
+                      <!-- Title Animation -->
+                      <div class="anim-control-row" style="display: flex; flex-direction: column; gap: 4px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <i class="fa-solid fa-heading" style="color: var(--primary); font-size: 13px; width: 16px;"></i>
+                          <strong style="font-size: 12.5px; color: var(--text-dark);">স্লাইড শিরোনাম (Title Effect)</strong>
+                        </div>
+                        <select id="editTitleAnim" class="form-select" style="width: 100%; font-size: 12.5px; font-weight: 600; padding: 6px 12px; height: 36px; border-radius: 8px;" onchange="updateActiveSlideFromEditor()">
+                          <option value="none">❌ কোনো ইফেক্ট নেই (None)</option>
+                          <option value="fade-in">✨ ফেড ইন (Fade In - ধীরে প্রকাশ)</option>
+                          <option value="slide-up">⬆️ স্লাইড আপ (Slide Up - নিচ থেকে)</option>
+                          <option value="slide-left">➡️ স্লাইড রাইট (Slide Right - বাম থেকে)</option>
+                          <option value="zoom-in">🔍 জুম ইন (Zoom In - ছোট থেকে বড়)</option>
+                          <option value="bounce">🏀 বাউন্স (Bounce - স্প্রিং ইফেক্ট)</option>
+                        </select>
+                      </div>
+
+                      <!-- Content Animation -->
+                      <div class="anim-control-row" style="display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed rgba(79, 70, 229, 0.15); padding-top: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <i class="fa-solid fa-list-ul" style="color: var(--primary); font-size: 13px; width: 16px;"></i>
+                          <strong style="font-size: 12.5px; color: var(--text-dark);">পয়েন্ট / বক্সসমূহ (Points Effect)</strong>
+                        </div>
+                        <select id="editContentAnim" class="form-select" style="width: 100%; font-size: 12.5px; font-weight: 600; padding: 6px 12px; height: 36px; border-radius: 8px;" onchange="updateActiveSlideFromEditor()">
+                          <option value="none">❌ কোনো ইফেক্ট নেই (None)</option>
+                          <option value="fade-in">✨ ফেড ইন (Fade In - ধীরে প্রকাশ)</option>
+                          <option value="slide-up">⬆️ স্লাইড আপ (Slide Up - নিচ থেকে)</option>
+                          <option value="slide-left">➡️ স্লাইড রাইট (Slide Right - বাম থেকে)</option>
+                          <option value="zoom-in">🔍 জুম ইন (Zoom In - ছোট থেকে বড়)</option>
+                          <option value="bounce">🏀 বাউন্স (Bounce - স্প্রিং ইফেক্ট)</option>
+                        </select>
+                      </div>
+
+                      <!-- Image Animation -->
+                      <div class="anim-control-row" style="display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed rgba(79, 70, 229, 0.15); padding-top: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <i class="fa-regular fa-image" style="color: var(--primary); font-size: 13px; width: 16px;"></i>
+                          <strong style="font-size: 12.5px; color: var(--text-dark);">ছবি ও হোয়াইটবোর্ড (Media Effect)</strong>
+                        </div>
+                        <select id="editImageAnim" class="form-select" style="width: 100%; font-size: 12.5px; font-weight: 600; padding: 6px 12px; height: 36px; border-radius: 8px;" onchange="updateActiveSlideFromEditor()">
+                          <option value="none">❌ কোনো ইফেক্ট নেই (None)</option>
+                          <option value="fade-in">✨ ফেড ইন (Fade In - ধীরে প্রকাশ)</option>
+                          <option value="slide-up">⬆️ স্লাইড আপ (Slide Up - নিচ থেকে)</option>
+                          <option value="slide-left">➡️ স্লাইড রাইট (Slide Right - বাম থেকে)</option>
+                          <option value="zoom-in">🔍 জুম ইন (Zoom In - ছোট থেকে বড়)</option>
+                          <option value="bounce">🏀 বাউন্স (Bounce - স্প্রিং ইফেক্ট)</option>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+                </details>
+<!-- স্লাইড ইমেজ সেটিংস (Collapsible) -->
+                <details class="editor-accordion" style="margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px;">
+                  <summary style="font-weight: 700; cursor: pointer; color: var(--primary); display: flex; align-items: center; justify-content: space-between; user-select: none; list-style: none;">
+                    <span><i class="fa-solid fa-image"></i> স্লাইড ছবি (Custom Image & Media)</span>
+                    <i class="fa-solid fa-chevron-down accordion-arrow" style="font-size: 12px; transition: transform 0.2s;"></i>
+                  </summary>
+                  <div style="margin-top: 12px;">
+                    <div class="editor-field" style="margin-bottom: 8px;">
+                      <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;">
+                        <input type="checkbox" id="editShowImage" onchange="updateActiveSlideFromEditor()" style="width: 15px; height: 15px; cursor: pointer;">
+                        <span style="font-weight: 500;">স্লাইডে ছবি প্রদর্শন করুন</span>
+                      </label>
+                    </div>
+                    <div class="editor-field">
+                      <label>কম্পিউটার থেকে ছবি আপলোড করুন:</label>
+                      <input type="file" id="editImageFile" class="form-input" accept="image/*" onchange="handleImageUpload(event)" style="padding: 4px;" />
+                    </div>
+                    <div class="editor-field">
+                      <label>অথবা ছবির ইউআরএল (URL) দিন:</label>
+                      <input type="text" id="editImageUrl" class="form-input" placeholder="https://example.com/image.jpg" oninput="updateActiveSlideFromEditor()" />
+                    </div>
+                    <div class="editor-field">
+                      <label>অথবা ডেমো ছবি নির্বাচন করুন:</label>
+                      <select id="editPresetImage" class="form-select" onchange="applyPresetImage()">
+                        <option value="">-- ডেমো ছবি নির্বাচন করুন --</option>
+                        <option value="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop">🏫 বিদ্যালয় / ক্লাসরুম</option>
+                        <option value="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop">⚛️ বিজ্ঞান ও মহাকাশ</option>
+                        <option value="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=600&auto=format&fit=crop">🧮 গণিত ও ক্যালকুলেশন</option>
+                        <option value="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=600&auto=format&fit=crop">📖 বাংলা ও সাহিত্য পাঠ</option>
+                        <option value="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=600&auto=format&fit=crop">💻 আইসিটি ও কোডিং</option>
+                        <option value="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=600&auto=format&fit=crop">📚 সাধারণ জ্ঞান ও বই</option>
+                      </select>
+                    </div>
+                    <div id="imagePreviewArea" style="margin-top: 10px; display: none; text-align: center; border: 1px dashed var(--border); padding: 8px; border-radius: 8px; background: #fafafa;">
+                      <img id="editImagePreview" src="" style="max-height: 100px; max-width: 100%; border-radius: 4px; object-fit: contain;" />
+                      <div style="margin-top: 6px;">
+                        <button class="btn btn-outline" style="padding: 2px 8px; font-size: 11px; color: var(--danger); border-color: var(--danger);" onclick="removeSlideImage()">ছবি মুছে ফেলুন</button>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- ==========================================
+             [৩] সংরক্ষিত প্রেজেন্টেশন লাইব্রেরি
+             ========================================== -->
+      <main class="main-content" id="librarySection" style="display: none">
+        <header class="top-bar">
+          <h1 class="main-heading">আমার প্রেজেন্টেশন লাইব্রেরি</h1>
+          <button class="btn btn-outline" onclick="showSection('builder')">
+            <i class="fa-solid fa-arrow-left"></i> ব্যাক টু এডিটর
+          </button>
+        </header>
+        <div class="library-container">
+          <div class="library-grid" id="presentationLibraryGrid">
+            <!-- Dynamic saved presentations -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==========================================
+         [৪] ফুলস্ক্রিন প্রেজেন্টেশন মোডাল (Fullscreen Presenter Mode)
+         ========================================== -->
+    <div
+      class="fullscreen-presentation-overlay"
+      id="fullscreenOverlay"
+      style="display: none"
+    >
+      <div class="presenter-topbar">
+        <div class="pres-title" id="presModeTitle">
+          স্মার্ট ক্লাস প্রেজেন্টেশন
+        </div>
+        <div class="pres-timer">
+          <i class="fa-solid fa-stopwatch"></i> সময়:
+          <span id="presTimer">00:00</span>
+        </div>
+        <button class="btn-exit-pres" onclick="exitPresentationMode()">
+          <i class="fa-solid fa-xmark"></i> বন্ধ করুন (ESC)
+        </button>
+      </div>
+
+      <div class="presenter-slide-viewport">
+        <div
+          class="presenter-slide-frame theme-modern"
+          id="presenterSlideFrame"
+        >
+          <div id="presenterSlideContent"></div>
+        </div>
+      </div>
+
+      <div class="presenter-bottombar">
+        <button class="pres-nav-btn" onclick="prevSlide()">
+          <i class="fa-solid fa-arrow-left"></i> আগের স্লাইড
+        </button>
+        <span class="pres-counter" id="presenterCounter">স্লাইড ১ / ৭</span>
+        <button class="pres-nav-btn" onclick="nextSlide()">
+          পরের স্লাইড <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        
+        <!-- Auto Play Controls -->
+        <div style="display: flex; align-items: center; gap: 10px; margin-left: 20px; border-left: 1px solid #334155; padding-left: 20px;">
+          <button class="pres-nav-btn" id="btnAutoplay" onclick="toggleAutoplay()" style="background: #0f766e; border-color: #115e59;" title="স্লাইড অটো প্লে চালু/বন্ধ করুন">
+            <i class="fa-solid fa-play"></i> অটো প্লে
+          </button>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #94a3b8;">
+            <span>বিরতি:</span>
+            <select id="autoplayInterval" class="pres-select" style="background: #1e293b; color: white; border: 1px solid #334155; padding: 6px 12px; border-radius: 20px; outline: none; cursor: pointer; font-weight: bold;" onchange="updateAutoplayInterval()">
+              <option value="3000">৩ সেকেন্ড</option>
+              <option value="5000" selected>৫ সেকেন্ড</option>
+              <option value="10000">১০ সেকেন্ড</option>
+              <option value="15000">১৫ সেকেন্ড</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         [৫] লেসন প্ল্যান ইম্পোর্ট মোডাল
+         ========================================== -->
+    <div class="import-modal-overlay" id="importModal" style="display: none">
+      <div class="import-modal-content">
+        <div class="import-modal-header">
+          <h3>
+            <i class="fa-solid fa-file-import"></i> সেভ হওয়া লেসন প্ল্যান
+            ইম্পোর্ট করুন
+          </h3>
+          <button class="close-btn" onclick="closeImportModal()">
+            &times;
+          </button>
+        </div>
+        <div class="import-modal-body" id="importLessonsList">
+          <!-- Dynamically populated list of lesson plans -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PPTX Generation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+    <!-- Main JS Application -->
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

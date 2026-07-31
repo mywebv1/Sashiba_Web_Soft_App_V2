@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>রেজিস্ট্রেশন | স্মার্ট শিক্ষা বাতায়ন</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- বাম পাশ: ব্র্যান্ডিং -->
+      <div class="brand-section">
+        <div class="brand-content">
+          <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>স্মার্ট শিক্ষা বাতায়ন</h1>
+          </div>
+          <p class="tagline">
+            শিক্ষার ডিজিটাল বাতায়নে আপনাকে স্বাগতম। আধুনিক প্রযুক্তিতে সাজান
+            আপনার শিক্ষাদান পদ্ধতি।
+          </p>
+          <ul class="points">
+            <li><i class="fas fa-microchip"></i> এআই ভিত্তিক অটোমেশন</li>
+            <li><i class="fas fa-cloud-arrow-up"></i> পেপারলেস ম্যানেজমেন্ট</li>
+            <li>
+              <i class="fas fa-shield-halved"></i> নিরাপদ ও আধুনিক ডাটাবেজ
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ডান পাশ: ডায়নামিক ফরম -->
+      <div class="form-section">
+        <div class="form-card">
+          <div class="progress-bar">
+            <div class="bar" id="p-bar"></div>
+          </div>
+
+          <form id="smartRegForm">
+            <!-- ধাপ ১: পরিচয় ও প্রতিষ্ঠানের তথ্য -->
+            <div class="step active" id="step1">
+              <h2 class="form-title">পরিচয় ও প্রতিষ্ঠানের তথ্য</h2>
+              <div class="field">
+                <label>অ্যাকাউন্টের ধরন</label>
+                <select
+                  id="acc_type"
+                  onchange="toggleInstFields()"
+                  class="smart-select"
+                >
+                  <option value="ব্যক্তিগত">ব্যক্তিগত</option>
+                  <option value="প্রতিষ্ঠান">প্রতিষ্ঠান</option>
+                </select>
+              </div>
+
+              <div id="inst-area" class="hidden">
+                <div class="field">
+                  <label>প্রতিষ্ঠানের নাম</label>
+                  <input type="text" id="inst_name" placeholder="নাম লিখুন" />
+                </div>
+                <div class="field">
+                  <label>প্রতিষ্ঠানের পূর্ণ ঠিকানা</label>
+                  <input
+                    type="text"
+                    id="inst_addr"
+                    placeholder="ঠিকানা লিখুন"
+                  />
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label>কোড (ঐচ্ছিক)</label>
+                    <input type="text" id="inst_code" placeholder="কোড" />
+                  </div>
+                  <div class="field">
+                    <label>প্রতিষ্ঠা সাল (ঐচ্ছিক)</label>
+                    <input type="number" id="est_year" placeholder="সাল" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>বোর্ড নির্বাচন</label>
+                  <select
+                    id="board"
+                    class="smart-select"
+                    onchange="toggleNctb()"
+                  >
+                    <option value="">বোর্ড বাছাই করুন</option>
+                    <option value="nctb">এন.সি.টি.বি.</option>
+                    <option value="m">মাদ্রাসা</option>
+                    <option value="t">কারিগরি</option>
+                  </select>
+                </div>
+                <div id="nctb-box" class="hidden">
+                  <div class="field">
+                    <label>এনসিটিবি অঞ্চল</label>
+                    <select id="nctb_region" class="smart-select">
+                      <option value="">অঞ্চল বাছাই করুন</option>
+                      <option>ঢাকা</option>
+                      <option>রাজশাহী</option>
+                      <option>কুমিল্লা</option>
+                      <option>যশোর</option>
+                      <option>চট্টগ্রাম</option>
+                      <option>বরিশাল</option>
+                      <option>সিলেট</option>
+                      <option>দিনাজপুর</option>
+                      <option>ময়মনসিংহ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>প্রতিষ্ঠানের স্তর</label>
+                  <select id="level" class="smart-select">
+                    <option value="">স্তর বাছাই করুন</option>
+                    <option>প্রি-স্কুল</option>
+                    <option>প্রাথমিক</option>
+                    <option>মাধ্যমিক</option>
+                    <option>কলেজ</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>প্রতিষ্ঠান প্রধানের নাম</label>
+                  <input
+                    type="text"
+                    id="head_name"
+                    placeholder="প্রধানের নাম"
+                  />
+                </div>
+              </div>
+              <button type="button" class="btn-main" onclick="next(2)">
+                পরবর্তী ধাপ <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- ধাপ ২: ব্যক্তিগত ও প্যাকেজ -->
+            <div class="step" id="step2">
+              <h2 class="form-title">ব্যক্তিগত তথ্য ও সাবস্ক্রিপশন</h2>
+              <div class="field">
+                <label>পূর্ণ নাম</label>
+                <input
+                  type="text"
+                  id="full_name"
+                  placeholder="আপনার নাম"
+                  required
+                />
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label>মোবাইল নম্বর (লগইন)</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder="০১৭xxxxxxxx"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label>ই-মেইল (ঐচ্ছিক)</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="example@mail.com"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label>প্যাকেজ নির্বাচন করুন (মাল্টিপল)</label>
+                <div class="pkg-container">
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="200"
+                      data-n="লেসন প্লান"
+                    />
+                    <span>লেসন প্লান (৳২০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="200"
+                      data-n="নোট/লেকচার শীট"
+                    />
+                    <span>নোট/শীট (৳২০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="প্রশ্ন ও উত্তর পত্র"
+                    />
+                    <span>প্রশ্ন ও উত্তর (৳৫০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="1000"
+                      data-n="উত্তর ব্যাখ্যা"
+                    />
+                    <span>উত্তর ব্যাখ্যা (৳১০০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="প্রশ্ন ব্যাংক"
+                    />
+                    <span>প্রশ্ন ব্যাংক (৳৫০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="বৃত্তি প্রস্তুতি"
+                    />
+                    <span>বৃত্তি প্রস্তুতি (৳৫০০)</span></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="অ্যাডমিশন"
+                    />
+                    <span>অ্যাডমিশন (৳৫০০)</span></label
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label>প্যাকেজের সময়</label>
+                <select id="duration" class="smart-select" onchange="calc()">
+                  <option value="1">মাসিক</option>
+                  <option value="6">৬ মাস (৫% ছাড়)</option>
+                  <option value="12">১ বছর (২০% ছাড়)</option>
+                </select>
+              </div>
+
+              <div class="total-card">
+                <div class="tr">মোট: <span id="s-total">৳০</span></div>
+                <div class="tr disc">ছাড়: <span id="s-disc">৳০</span></div>
+                <div class="tr final">
+                  সর্বমোট: <span id="s-final">৳০</span>
+                </div>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn-back" onclick="next(1)">
+                  পেছনে
+                </button>
+                <button type="button" class="btn-main" onclick="next(3)">
+                  পরবর্তী
+                </button>
+              </div>
+            </div>
+
+            <!-- ধাপ ৩: সম্পন্ন -->
+            <div class="step" id="step3">
+              <h2 class="form-title">সম্পন্ন করুন</h2>
+              <div class="field">
+                <label>রেফারেল কোড (ঐচ্ছিক)</label>
+                <input type="text" id="ref" placeholder="কোড" />
+              </div>
+              <div class="agree">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">আমি শর্তাবলী মেনে নিচ্ছি।</label>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn-back" onclick="next(2)">
+                  পেছনে
+                </button>
+                <button type="submit" class="btn-finish">
+                  সাবস্ক্রিপশন সম্পন্ন করুন <i class="fas fa-check-double"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- কনফার্মেশন ভাউচার পপআপ -->
+    <div id="voucher" class="v-overlay hidden">
+      <div class="v-card">
+        <div class="v-header">
+          <i class="fas fa-file-invoice"></i>
+          <h2>রেজিস্ট্রেশন কনফার্মেশন</h2>
+          <p>স্মার্ট শিক্ষা বাতায়ন</p>
+        </div>
+        <div class="v-body" id="v-data">
+          <!-- Data will be injected here -->
+        </div>
+        <div class="v-footer">
+          <button onclick="window.print()">প্রিন্ট করুন</button>
+          <button onclick="location.reload()" class="close-btn">
+            বন্ধ করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>প্রিমিয়াম ইউআই | স্মার্ট শিক্ষা বাতায়ন</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- বাম পাশ: ইনপুট সেকশন (লাল বক্সের এরিয়া) -->
+      <section class="control-panel">
+        <div class="panel-content">
+          <!-- এই ডিভটি কন্টেন্টকে সেন্টারে রাখবে -->
+          <div class="brand-box">
+            <div class="icon-sq"><i class="fas fa-layer-group"></i></div>
+            <div>
+              <h1>স্মার্ট শিক্ষা বাতায়ন</h1>
+              <p>ডিজিটাল এডুকেশন ইকোসিস্টেম</p>
+            </div>
+          </div>
+
+          <div class="step-indicator" id="step-nav">
+            <div class="step-node active" data-s="1">০১</div>
+            <div class="step-node" data-s="2">০২</div>
+            <div class="step-node" data-s="3">০৩</div>
+          </div>
+
+          <form id="main-reg-form">
+            <!-- ধাপ ১: প্রোফাইল -->
+            <div class="form-view active" id="view-1">
+              <h2 class="view-title">প্রতিষ্ঠান পরিচিতি</h2>
+              <div class="input-wrap">
+                <label>অ্যাকাউন্ট ক্যাটাগরি</label>
+                <select name="acc_type" id="acc_type" class="p-input">
+                  <option value="ব্যক্তিগত">ব্যক্তিগত প্রোফাইল</option>
+                  <option value="প্রতিষ্ঠান">প্রাতিষ্ঠানিক প্রোফাইল</option>
+                </select>
+              </div>
+
+              <div id="inst-fields" class="sub-fields hidden">
+                <div class="input-wrap">
+                  <label>প্রতিষ্ঠানের নাম</label>
+                  <input
+                    type="text"
+                    name="inst_name"
+                    placeholder="প্রতিষ্ঠানের নাম লিখুন"
+                  />
+                </div>
+                <div class="input-row">
+                  <div class="input-wrap">
+                    <label>বোর্ড</label>
+                    <select name="board" class="p-input">
+                      <option value="">বাছাই করুন</option>
+                      <option>NCTB</option>
+                      <option>মাদ্রাসা</option>
+                      <option>কারিগরি</option>
+                    </select>
+                  </div>
+                  <div class="input-wrap">
+                    <label>স্তর</label>
+                    <select name="level" class="p-input">
+                      <option value="">বাছাই করুন</option>
+                      <option>প্রাথমিক</option>
+                      <option>মাধ্যমিক</option>
+                      <option>কলেজ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="input-wrap">
+                    <label>EIIN</label
+                    ><input type="text" name="eiin" placeholder="কোড" />
+                  </div>
+                  <div class="input-wrap">
+                    <label>সাল</label
+                    ><input type="number" name="est" placeholder="২০২৪" />
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-primary" onclick="changeStep(2)">
+                পরবর্তী ধাপে যান <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- ধাপ ২: সাবস্ক্রিপশন -->
+            <div class="form-view" id="view-2">
+              <h2 class="view-title">ইউজার ও প্যাকেজ</h2>
+              <div class="input-wrap">
+                <label>আবেদনকারীর নাম</label>
+                <input type="text" name="u_name" placeholder="আপনার নাম" />
+              </div>
+              <div class="input-row">
+                <div class="input-wrap">
+                  <label>মোবাইল</label
+                  ><input type="tel" name="phone" placeholder="০১৭xxxxxxxx" />
+                </div>
+                <div class="input-wrap">
+                  <label>ই-মেইল</label
+                  ><input
+                    type="email"
+                    name="email"
+                    placeholder="mail@example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="pkg-selector">
+                <label class="l-small">সার্ভিস মডিউল নির্বাচন করুন</label>
+                <div class="pkg-flex">
+                  <label class="pkg-chip"
+                    ><input
+                      type="checkbox"
+                      value="200"
+                      data-name="লেসন প্লান"
+                    />
+                    <span>লেসন প্লান (৳২০০)</span></label
+                  >
+                  <label class="pkg-chip"
+                    ><input
+                      type="checkbox"
+                      value="500"
+                      data-name="প্রশ্ন ব্যাংক"
+                    />
+                    <span>প্রশ্ন ব্যাংক (৳৫০০)</span></label
+                  >
+                  <label class="pkg-chip"
+                    ><input
+                      type="checkbox"
+                      value="500"
+                      data-name="ব্যাখ্যা মডিউল"
+                    />
+                    <span>ব্যাখ্যা (৳৫০০)</span></label
+                  >
+                  <label class="pkg-chip"
+                    ><input
+                      type="checkbox"
+                      value="1000"
+                      data-name="লেকচার শীট"
+                    />
+                    <span>শীট (৳১০০০)</span></label
+                  >
+                </div>
+              </div>
+
+              <div class="input-wrap">
+                <label>মেয়াদ</label>
+                <select name="duration" id="duration" class="p-input">
+                  <option value="1">১ মাস</option>
+                  <option value="6">৬ মাস (৫% ছাড়)</option>
+                  <option value="12">১ বছর (২০% ছাড়)</option>
+                </select>
+              </div>
+              <div class="btn-flex">
+                <button type="button" class="btn-back" onclick="changeStep(1)">
+                  পেছনে
+                </button>
+                <button
+                  type="button"
+                  class="btn-primary"
+                  onclick="changeStep(3)"
+                >
+                  পরবর্তী
+                </button>
+              </div>
+            </div>
+
+            <!-- ধাপ ৩: ভেরিফিকেশন -->
+            <div class="form-view" id="view-3">
+              <h2 class="view-title">চূড়ান্তকরণ</h2>
+              <div class="input-wrap">
+                <label>রেফারেল কোড</label
+                ><input type="text" name="ref" placeholder="ঐচ্ছিক" />
+              </div>
+              <div class="agree-check">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">আমি সকল শর্তাবলী মেনে নিচ্ছি।</label>
+              </div>
+              <div class="btn-flex">
+                <button type="button" class="btn-back" onclick="changeStep(2)">
+                  পেছনে
+                </button>
+                <button type="submit" class="btn-success">
+                  সাবস্ক্রিপশন সম্পন্ন করুন <i class="fas fa-rocket"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ডান পাশ: প্রিভিউ এরিয়া (লাল বক্সের এরিয়া) -->
+      <main class="display-panel">
+        <div id="v-status" class="v-badge">Draft Mode</div>
+
+        <div class="doc-canvas" id="invoice-pdf">
+          <div class="doc-header">
+            <div class="doc-brand">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <h3>SMART SHIKHYA BATAYON</h3>
+                <small>স্মার্ট শিক্ষা বাতায়ন - ভাউচার কপি</small>
+              </div>
+            </div>
+            <div class="doc-tag" id="doc-status">DRAFT</div>
+          </div>
+
+          <div class="doc-body">
+            <div class="user-info">
+              <div>
+                <small>গ্রাহকের তথ্য</small>
+                <h4 id="out-u-name">---</h4>
+                <p id="out-phone">---</p>
+                <p id="out-email">---</p>
+              </div>
+              <div class="text-right">
+                <small>অ্যাকাউন্ট টাইপ</small>
+                <p id="out-type">ব্যক্তিগত</p>
+                <small>রেফারেল</small>
+                <p id="out-ref">---</p>
+              </div>
+            </div>
+
+            <div id="out-inst-box" class="inst-data hidden">
+              <small>প্রতিষ্ঠানের তথ্য</small>
+              <div class="inst-grid">
+                <span>নাম: <b id="out-inst-name">---</b></span>
+                <span>EIIN: <b id="out-eiin">---</b></span>
+                <span>বোর্ড: <b id="out-board">---</b></span>
+                <span>স্তর: <b id="out-level">---</b></span>
+              </div>
+            </div>
+
+            <div class="service-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>মডিউল নাম</th>
+                    <th class="text-right">মূল্য</th>
+                  </tr>
+                </thead>
+                <tbody id="out-items">
+                  <tr>
+                    <td colspan="2" class="empty">কোনো প্যাকেজ নেই</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="calc-area">
+              <div class="row">
+                <span>সাব-টোটাল (মেয়াদসহ)</span> <span id="out-sub">৳০</span>
+              </div>
+              <div class="row disc">
+                <span>ডিসকাউন্ট ছাড়</span> <span id="out-disc">-৳০</span>
+              </div>
+              <div class="row total">
+                <span>সর্বমোট প্রদেয়</span> <span id="out-total">৳০</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-footer">
+            <div>
+              <small>ইস্যু তারিখ:</small>
+              <p id="out-date">---</p>
+            </div>
+            <div class="text-right">
+              <small>মেয়াদ শেষ হবে:</small>
+              <p id="out-expiry">---</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="final-actions" class="post-actions hidden">
+          <button class="btn-pdf" onclick="generatePDF()">
+            <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
+          </button>
+          <button class="btn-print" onclick="window.print()">
+            <i class="fas fa-print"></i> প্রিন্ট করুন
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

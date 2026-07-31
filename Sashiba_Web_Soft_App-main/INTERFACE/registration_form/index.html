@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>রেজিস্ট্রেশন | স্মার্ট শিক্ষা বাতায়ন</title>
+
+    <!-- ফন্ট লিঙ্ক: Hind Siliguri (বাংলা) এবং Inter (সংখ্যার জন্য) -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- বাম পাশ: ব্র্যান্ডিং সেকশন -->
+      <div class="brand-section">
+        <div class="brand-content">
+          <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>স্মার্ট শিক্ষা বাতায়ন</h1>
+          </div>
+          <p class="tagline">
+            শিক্ষার ডিজিটাল বাতায়নে আপনাকে স্বাগতম। আধুনিক প্রযুক্তিতে সাজান
+            আপনার শিক্ষাদান পদ্ধতি।
+          </p>
+          <ul class="points">
+            <li><i class="fas fa-check-circle"></i> এআই ভিত্তিক অটোমেশন</li>
+            <li><i class="fas fa-check-circle"></i> পেপারলেস ম্যানেজমেন্ট</li>
+            <li><i class="fas fa-check-circle"></i> নিরাপদ ও আধুনিক ডাটাবেজ</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ডান পাশ: ফরম সেকশন -->
+      <div class="form-section">
+        <div class="form-card">
+          <div class="progress-wrapper">
+            <div class="progress-bar">
+              <div class="bar" id="p-bar"></div>
+            </div>
+            <div class="step-indicator">
+              ধাপ <span id="current-step-num" class="font-num">1</span> অফ
+              <span class="font-num">3</span>
+            </div>
+          </div>
+
+          <form id="smartRegForm">
+            <!-- ধাপ ১: প্রতিষ্ঠানের তথ্য -->
+            <div class="step active" id="step1">
+              <h2 class="form-title">পরিচয় ও প্রতিষ্ঠানের তথ্য</h2>
+
+              <div class="field">
+                <label>অ্যাকাউন্টের ধরন</label>
+                <select
+                  id="acc_type"
+                  onchange="toggleInstFields()"
+                  class="smart-select"
+                >
+                  <option value="ব্যক্তিগত">ব্যক্তিগত অ্যাকাউন্ট</option>
+                  <option value="প্রতিষ্ঠান">শিক্ষা প্রতিষ্ঠান</option>
+                </select>
+              </div>
+
+              <div id="inst-area" class="hidden">
+                <div class="field">
+                  <label>প্রতিষ্ঠানের নাম</label
+                  ><input
+                    type="text"
+                    id="inst_name"
+                    placeholder="প্রতিষ্ঠানের পূর্ণ নাম লিখুন"
+                  />
+                </div>
+                <div class="field">
+                  <label>প্রতিষ্ঠানের পূর্ণ ঠিকানা</label
+                  ><input
+                    type="text"
+                    id="inst_addr"
+                    placeholder="ঠিকানা লিখুন"
+                  />
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label>EIIN কোড</label
+                    ><input
+                      type="text"
+                      id="inst_code"
+                      placeholder="কোড"
+                      class="font-num"
+                    />
+                  </div>
+                  <div class="field">
+                    <label>প্রতিষ্ঠা সাল</label
+                    ><input
+                      type="number"
+                      id="est_year"
+                      placeholder="সাল"
+                      class="font-num"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>শিক্ষাবোর্ড নির্বাচন</label>
+                  <select
+                    id="board"
+                    class="smart-select"
+                    onchange="toggleNctb()"
+                  >
+                    <option value="">বোর্ড বাছাই করুন</option>
+                    <option value="nctb">সাধারণ শিক্ষাবোর্ড (NCTB)</option>
+                    <option value="m">মাদ্রাসা শিক্ষাবোর্ড</option>
+                    <option value="t">কারিগরি শিক্ষাবোর্ড</option>
+                  </select>
+                </div>
+                <div id="nctb-box" class="hidden">
+                  <div class="field">
+                    <label>অঞ্চল/বোর্ড</label>
+                    <select id="nctb_region" class="smart-select">
+                      <option value="">অঞ্চল বাছাই করুন</option>
+                      <option>ঢাকা</option>
+                      <option>রাজশাহী</option>
+                      <option>চট্টগ্রাম</option>
+                      <option>কুমিল্লা</option>
+                      <option>যশোর</option>
+                      <option>বরিশাল</option>
+                      <option>সিলেট</option>
+                      <option>দিনাজপুর</option>
+                      <option>ময়মনসিংহ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>প্রতিষ্ঠানের স্তর</label>
+                  <select id="level" class="smart-select">
+                    <option value="">স্তর বাছাই করুন</option>
+                    <option>প্রাথমিক</option>
+                    <option>মাধ্যমিক</option>
+                    <option>কলেজ</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="button" class="btn-main" onclick="next(2)">
+                পরবর্তী ধাপ <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- ধাপ ২: প্যাকেজ -->
+            <div class="step" id="step2">
+              <h2 class="form-title">ব্যক্তিগত তথ্য ও প্যাকেজ</h2>
+              <div class="field">
+                <label>আপনার নাম</label
+                ><input
+                  type="text"
+                  id="full_name"
+                  placeholder="নাম লিখুন"
+                  required
+                />
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label>মোবাইল নম্বর</label
+                  ><input
+                    type="tel"
+                    id="phone"
+                    placeholder="017xxxxxxxx"
+                    class="font-num"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label>ই-মেইল (ঐচ্ছিক)</label
+                  ><input
+                    type="email"
+                    id="email"
+                    placeholder="mail@example.com"
+                    class="font-num"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label>প্যাকেজ নির্বাচন করুন</label>
+                <div class="pkg-container">
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="200"
+                      data-n="লেসন প্লান"
+                    />
+                    <span
+                      >লেসন প্লান (৳<span class="font-num">200</span>)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="200"
+                      data-n="নোট/শীট"
+                    />
+                    <span
+                      >নোট/শীট (৳<span class="font-num">200</span>)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="প্রশ্ন ও উত্তর"
+                    />
+                    <span
+                      >প্রশ্ন ও উত্তর (৳<span class="font-num">500</span>)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="1000"
+                      data-n="উত্তর ব্যাখ্যা"
+                    />
+                    <span
+                      >উত্তর ব্যাখ্যা (৳<span class="font-num">1000</span
+                      >)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="প্রশ্ন ব্যাংক"
+                    />
+                    <span
+                      >প্রশ্ন ব্যাংক (৳<span class="font-num">500</span>)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="বৃত্তি প্রস্তুতি"
+                    />
+                    <span
+                      >বৃত্তি প্রস্তুতি (৳<span class="font-num">500</span
+                      >)</span
+                    ></label
+                  >
+                  <label class="pkg-item"
+                    ><input
+                      type="checkbox"
+                      class="pkg-cb"
+                      data-p="500"
+                      data-n="অ্যাডমিশন"
+                    />
+                    <span
+                      >অ্যাডমিশন (৳<span class="font-num">500</span>)</span
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label>প্যাকেজের মেয়াদ</label>
+                <select id="duration" class="smart-select" onchange="calc()">
+                  <option value="1">১ মাস (ছাড় নেই)</option>
+                  <option value="6">৬ মাস (১০% ছাড়)</option>
+                  <option value="12">১ বছর (২০% ছাড়)</option>
+                </select>
+              </div>
+
+              <div class="total-card">
+                <div class="tr">
+                  <span>মোট:</span>
+                  <span class="font-num">৳<span id="s-total">0</span></span>
+                </div>
+                <div class="tr final">
+                  <span>সর্বমোট:</span>
+                  <span class="font-num">৳<span id="s-final">0</span></span>
+                </div>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn-back" onclick="next(1)">
+                  পেছনে
+                </button>
+                <button type="button" class="btn-main" onclick="next(3)">
+                  পরবর্তী ধাপ
+                </button>
+              </div>
+            </div>
+
+            <!-- ধাপ ৩: পেমেন্ট -->
+            <div class="step" id="step3">
+              <h2 class="form-title">পেমেন্ট মেথড</h2>
+              <div class="payment-grid">
+                <label class="pay-card">
+                  <input type="radio" name="pay_method" value="bKash" checked />
+                  <div class="pay-content">
+                    <div class="pay-icon bkash-bg">৳</div>
+                    <span>বিকাশ</span>
+                  </div>
+                </label>
+                <label class="pay-card">
+                  <input type="radio" name="pay_method" value="Nagad" />
+                  <div class="pay-content">
+                    <div class="pay-icon nagad-bg">ন</div>
+                    <span>নগদ</span>
+                  </div>
+                </label>
+                <label class="pay-card">
+                  <input type="radio" name="pay_method" value="Bank" />
+                  <div class="pay-content">
+                    <div class="pay-icon bank-bg">
+                      <i class="fas fa-university"></i>
+                    </div>
+                    <span>ব্যাংক</span>
+                  </div>
+                </label>
+              </div>
+
+              <label class="modern-agree" for="terms">
+                <input type="checkbox" id="terms" required />
+                <div class="tick-box"><i class="fas fa-check"></i></div>
+                <span class="agree-text">সকল শর্ত মেনে নিলাম</span>
+              </label>
+
+              <div class="btn-group">
+                <button type="button" class="btn-back" onclick="next(2)">
+                  পেছনে
+                </button>
+                <button type="submit" class="btn-finish" id="pay-btn">
+                  সাবস্ক্রিপশন সম্পন্ন করুন <i class="fas fa-magic"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ভাউচার স্লিপ ওভারলে -->
+    <div id="voucher" class="v-overlay hidden">
+      <div class="v-card">
+        <div id="v-print-area">
+          <div class="v-header">
+            <div class="v-logo"><i class="fas fa-graduation-cap"></i></div>
+            <h2>স্মার্ট শিক্ষা বাতায়ন</h2>
+            <p>অফিসিয়াল ডিজিটাল মানি রিসিট</p>
+          </div>
+          <div class="v-body">
+            <div id="v-data-content"></div>
+          </div>
+          <div class="v-footer-info">
+            <p>আমাদের সাথে থাকার জন্য ধন্যবাদ।</p>
+            <div class="stamp">PAID</div>
+          </div>
+        </div>
+        <div class="v-action-btns">
+          <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> প্রিন্ট স্লিপ
+          </button>
+          <button onclick="location.reload()" class="close-btn">
+            বন্ধ করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

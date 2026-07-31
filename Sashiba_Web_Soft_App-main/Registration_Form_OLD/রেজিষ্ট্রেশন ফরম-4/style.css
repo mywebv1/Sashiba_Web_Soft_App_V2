@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap");
+
+:root {
+  --primary: #2563eb;
+  --bg: #eaeff2;
+  --card-bg: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Hind Siliguri", sans-serif;
+  background: var(--bg);
+}
+
+/* সেন্টারিং লজিক */
+.main-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.form-card {
+  background: var(--card-bg);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.brand-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.brand-header i {
+  font-size: 40px;
+  color: var(--primary);
+}
+.brand-header h1 {
+  font-size: 22px;
+  margin: 10px 0 5px;
+}
+.brand-header p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  width: 33%;
+  background: var(--primary);
+  transition: 0.5s;
+}
+
+.form-title {
+  font-size: 18px;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.field {
+  margin-bottom: 15px;
+}
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input,
+.smart-select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+}
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.pkg-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+.pkg-item {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.total-card {
+  background: #1e293b;
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-main,
+.btn-finish {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.btn-back {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 14px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* পপআপ স্টাইল ও হিডেন লজিক */
+.hidden {
+  display: none !important;
+}
+
+.v-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.v-card {
+  background: #fff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  animation: popUp 0.3s ease-out;
+}
+.v-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+}
+.v-body {
+  padding: 25px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+.v-footer {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+.v-footer button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-btn {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.step {
+  display: none;
+}
+.step.active {
+  display: block;
+  animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

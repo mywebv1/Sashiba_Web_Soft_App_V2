@@ -1,0 +1,350 @@
+:root {
+  --primary: #4f46e5;
+  --primary-light: #f5f3ff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Hind Siliguri", sans-serif;
+  background: var(--white);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* সাইডবার */
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.logo-icon {
+  width: 35px;
+  height: 35px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+.brand-name {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--primary);
+}
+
+.nav-menu {
+  flex: 1;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
+}
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 10px;
+}
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+/* মেইন এরিয়া */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.top-bar {
+  height: 70px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+.top-bar h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.v-badge {
+  font-size: 10px;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+}
+
+/* বাটন */
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-outline {
+  background: white;
+  border: 1px solid var(--border);
+}
+
+/* ওয়ার্কস্পেস */
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ইনপুট প্যানেল (ফন্ট ফিক্স) */
+.input-panel {
+  width: 450px;
+  min-width: 450px;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f9fafb;
+  border-right: 1px solid var(--border);
+}
+.input-card-dropdown {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.card-header {
+  padding: 12px 15px;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.card-body {
+  padding: 15px;
+  border-top: 1px solid var(--border);
+}
+
+/* ফন্ট ঠিক করার জন্য ইনপুট হাইট এবং প্যাডিং ফিক্স */
+.form-input,
+.form-select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 15px;
+  line-height: 40px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.list-container {
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  min-height: 60px;
+  max-height: 160px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.list-item input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.btn-generate {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* প্রিভিউ প্যানেল */
+.preview-panel {
+  flex: 1;
+  background: var(--white);
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  padding: 20mm;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.doc-header {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+}
+.doc-meta {
+  display: flex;
+  justify-content: space-around;
+  background: #f9fafb;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.doc-title {
+  font-size: 18px;
+  color: var(--primary);
+  margin: 20px 0 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+.ai-box {
+  background: #f5f7ff;
+  border-left: 5px solid var(--primary);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+.preview-table th,
+.preview-table td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+.preview-table th {
+  background: #f3f4f6;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.group-card {
+  border: 1px dashed var(--primary);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: white;
+}
+
+@media print {
+  .sidebar,
+  .input-panel,
+  .top-bar {
+    display: none !important;
+  }
+  .workspace {
+    display: block;
+  }
+  .preview-panel {
+    padding: 0;
+    background: white;
+  }
+  .a4-page {
+    border: none;
+    box-shadow: none;
+    width: 100%;
+  }
+}

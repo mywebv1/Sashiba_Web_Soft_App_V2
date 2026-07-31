@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* global layout setup */
+* {
+  box-sizing: border-box;
+  font-family: "Hind Siliguri", "Inter", sans-serif;
+}
+
+/* HIGH-CONTRAST TYPOGRAPHY SYSTEMS WITH PREMIUM GRADIENT BACKGROUNDS */
+.theme-dark {
+  /* ডার্ক গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+  --bg-primary: linear-gradient(135deg, #0c1424 0%, #050914 100%);
+  /* অর্ধ-স্বচ্ছ ব্যাকগ্রাউন্ড ভেরিয়েবলসমূহ যাতে গ্রেডিয়েন্ট এবং প্রতীকগুলো ঢাকা না পড়ে */
+  --bg-secondary: rgba(13, 23, 42, 0.65);
+  --bg-card: rgba(19, 31, 55, 0.8);
+  --bg-hover: rgba(30, 46, 78, 0.9);
+
+  /* পড়াশোনার জন্য চোখের আরামদায়ক ও স্পষ্ট ফন্ট কালার */
+  --text-primary: #f8fafc; /* চোখের জন্য মৃদু ও অত্যন্ত রিডাবল অফ-হোয়াইট */
+  --text-muted: #cbd5e1; /* বিবরণীর জন্য মার্জিত ও উজ্জ্বল গ্রে কালার */
+  --text-inactive: #64748b;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(10, 16, 29, 0.85);
+  --footer-bg: #030712;
+
+  /* ডায়নামিক ব্যাকগ্রাউন্ড সিম্বল কালার (অত্যন্ত সূক্ষ্ম যাতে পড়াশোনায় ব্যাঘাত না ঘটে) */
+  --symbol-color: rgba(6, 182, 212, 0.04);
+}
+
+.theme-light {
+  /* লাইট গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+  --bg-primary: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+  --bg-secondary: rgba(241, 245, 249, 0.75);
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-hover: rgba(226, 232, 240, 0.9);
+
+  /* লাইট মুডের জন্য শান্ত ও গভীর ডার্ক টেক্সট */
+  --text-primary: #0f172a; /* অত্যন্ত স্পষ্ট অফ-ব্ল্যাক টেক্সট */
+  --text-muted: #334155; /* মন শান্ত করার মতো গভীর স্লেট গ্রে */
+  --text-inactive: #64748b;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --nav-bg: rgba(248, 250, 252, 0.85);
+  --footer-bg: #cbd5e1;
+
+  /* ডায়নামিক ব্যাকগ্রাউন্ড সিম্বল কালার (লাইট থিম) */
+  --symbol-color: rgba(15, 23, 42, 0.035);
+}
+
+/* বডির ব্যাকগ্রাউন্ড নির্ধারণ */
+body {
+  background-image: var(--bg-primary) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+/* কাঁচের মতো মসৃণ আবছা এফেক্ট (Glassmorphism) এর মাধ্যমে গ্রেডিয়েন্ট ভিজ্যুয়াল উন্নত করা */
+.nav-bg {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dropdown-bg {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bg-theme {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bg-theme-secondary {
+  background-color: var(--bg-secondary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.bg-theme-hover {
+  background-color: var(--bg-hover);
+}
+
+.text-theme {
+  color: var(--text-primary);
+}
+
+.text-theme-muted {
+  color: var(--text-muted);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+.footer-bg {
+  background-color: var(--footer-bg);
+}
+
+/* লাইন হাইট বাংলা ফন্টের ওভারল্যাপিং রোধ করে এবং পড়ার সাবলীলতা বাড়ায় */
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+a {
+  line-height: 1.8 !important;
+}
+
+/* Custom Webkit Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #040811;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* PEACEFUL WAVE HOVER EFFECT ANIMATION */
+.peace-wave {
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.peace-wave:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.4) !important;
+}
+
+/* Wave pulsating visual hint */
+.peace-wave::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.05) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.peace-wave:hover::after {
+  opacity: 1;
+}
+
+/* Dynamic visual separation helper classes for kids/adults */
+.badge-kids {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+}
+
+.badge-upper {
+  background-color: rgba(139, 92, 246, 0.12);
+  color: #a78bfa;
+}
+
+/* Printable Paper Layout setup */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-paper-modal,
+  #print-paper-modal * {
+    visibility: visible;
+  }
+  #print-paper-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+   DYNAMIC BACKGROUND FLOATING SYMBOLS
+   ========================================== */
+.floating-symbol {
+  position: absolute;
+  color: var(--symbol-color);
+  font-family: "Inter", "Hind Siliguri", sans-serif;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  animation: floatAndSway linear infinite;
+  z-index: -1; /* প্রতীকগুলো কন্টেন্টের একদম পেছনে থাকবে */
+}
+
+@keyframes floatAndSway {
+  0% {
+    transform: translateY(105vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(120px) rotate(360deg);
+    opacity: 0;
+  }
+}

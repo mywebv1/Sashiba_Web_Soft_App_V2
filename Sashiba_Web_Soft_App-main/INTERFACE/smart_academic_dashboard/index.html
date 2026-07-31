@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>স্মার্ট একাডেমিক ড্যাশবোর্ড | সশিবা শিক্ষা বাতায়ন</title>
+  
+  <!-- Google Fonts: Hind Siliguri + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- ==========================================
+         [১] সাইডবার ন্যাভিগেশন মেনু (Sidebar Menu)
+         ========================================== -->
+    <aside class="sidebar" id="sidebar">
+      <!-- ব্র্যান্ড লোগো এবং টাইটেল -->
+      <div class="brand">
+        <div class="logo"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="brand-text">
+          <strong>সশিবা স্মার্ট</strong><span>একাডেমিক হাব</span>
+        </div>
+      </div>
+
+      <!-- ন্যাভিগেশন মেনুসমূহ -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">মূল মেনু</div>
+        
+        <a href="javascript:void(0)" class="nav-item active" onclick="showSection('overview')" id="nav-overview">
+          <i class="fa-solid fa-gauge-high"></i><span>ওভারভিউ</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('syllabus')" id="nav-syllabus">
+          <i class="fa-solid fa-book-open-reader"></i><span>স্মার্ট সিলেবাস</span>
+          <span class="nav-badge">লাইভ</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('routine')" id="nav-routine">
+          <i class="fa-solid fa-calendar-week"></i><span>স্মার্ট রুটিন</span>
+          <span class="nav-badge ai-badge">AI</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('attendance')" id="nav-attendance">
+          <i class="fa-solid fa-user-check"></i><span>উপস্থিতি ও অংশগ্রহণ</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('exam')" id="nav-exam">
+          <i class="fa-solid fa-file-pen"></i><span>পরীক্ষার রুটিন</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('liveclass')" id="nav-liveclass">
+          <i class="fa-solid fa-headset"></i><span>স্মার্ট লাইভ ক্লাস</span>
+          <span class="nav-badge live-badge">🔴 LIVE</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('history')" id="nav-history">
+          <i class="fa-solid fa-box-archive"></i><span>পূর্বের তথ্য</span>
+        </a>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('progress')" id="nav-progress">
+          <i class="fa-solid fa-chart-pie"></i><span>স্মার্ট প্রোগ্রেস</span>
+          <span class="nav-badge ai-badge">AI</span>
+        </a>
+
+        <div class="nav-section-label" style="margin-top: 14px;">কনফিগারেশন</div>
+
+        <a href="javascript:void(0)" class="nav-item" onclick="showSection('settings')" id="nav-settings">
+          <i class="fa-solid fa-sliders"></i><span>সেটিংস</span>
+        </a>
+
+        <a href="../index.html" class="nav-item nav-home-link">
+          <i class="fa-solid fa-house"></i><span>সশিবা পোর্টাল হোম</span>
+        </a>
+      </nav>
+
+      <!-- ইউজার প্রোফাইল কার্ড -->
+      <div class="sidebar-footer">
+        <div class="user-avatar">MA</div>
+        <div class="user-info">
+          <div class="user-name">মাগুরিব আলী</div>
+          <div class="user-role" id="user-role-label">প্রধান শিক্ষক</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         [২] মূল ওয়ার্কস্পেস কন্টেন্ট (Main Content)
+         ========================================== -->
+    <div class="main-content" id="main-content">
+
+      <!-- টপ বার (Top Bar) -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="btn-icon" onclick="toggleSidebar()" id="sidebar-toggle-btn" title="সাইডবার টগল করুন">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="top-title">
+            <h1 id="page-main-title">স্মার্ট একাডেমিক ড্যাশবোর্ড</h1>
+            <span class="section-subtitle" id="page-sub-title">সশিবা কারিকুলাম ও শিডিউল লার্নিং সিস্টেম</span>
+          </div>
+        </div>
+
+        <div class="top-bar-right">
+          <!-- নোটিফিকেশন বেল -->
+          <button class="btn-icon notif-btn" onclick="toggleNotifModal()" title="নোটিফিকেশন">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-badge">৩</span>
+          </button>
+
+          <!-- রোল সুইচার -->
+          <div class="role-switcher-wrapper">
+            <i class="fa-solid fa-user-gear role-icon"></i>
+            <select id="roleSelect" onchange="changeRole(this.value)" class="role-select">
+              <option value="teacher">👨‍🏫 শিক্ষক (Teacher)</option>
+              <option value="student">👨‍🎓 শিক্ষার্থী (Student)</option>
+              <option value="admin">🛡️ অ্যাডমিন (Admin)</option>
+              <option value="parent">👨‍👩‍👧 অভিভাবক (Parent)</option>
+            </select>
+          </div>
+
+          <!-- থিম টগল -->
+          <button class="btn-icon" onclick="toggleDarkMode()" id="dark-mode-btn" title="ডার্ক/লাইট মোড">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <!-- দ্রুত প্রিন্ট -->
+          <button class="btn-outline" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> <span>প্রিন্ট (A4)</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ===================================================================
+           সেকশন ১: ওভারভিউ (Overview)
+           =================================================================== -->
+      <section class="content-section" id="section-overview">
+        <!-- AI Welcome Banner -->
+        <div class="welcome-banner glass-card">
+          <div class="welcome-text">
+            <h2>শুভ সকাল, মাগুরিব স্যার! 👋</h2>
+            <p>আজ আপনার মোট <strong>৪টি পিরিয়ড</strong> রয়েছে। ১ম পিরিয়ড (পদার্থবিজ্ঞান) সকাল ১০:০০ টায় শুরু হচ্ছে।</p>
+            <div class="ai-banner-msg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> <strong>AI বার্তা:</strong> নবম শ্রেণির পদার্থবিজ্ঞান অধ্যায় ৩-এর রিভিশন টেস্টের প্রশ্নপত্র প্রস্তুত রয়েছে।
+            </div>
+          </div>
+          <div class="welcome-quick-actions">
+            <button class="btn-primary" onclick="showSection('routine')">
+              <i class="fa-solid fa-play"></i> রুটিন ও ক্লাস শুরু
+            </button>
+            <button class="btn-green" onclick="showSection('syllabus')">
+              <i class="fa-solid fa-book"></i> সিলেবাস আপডেট
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">সিলেবাস অগ্রগতি</span>
+              <h3 class="stat-value">৬৮.৫%</h3>
+              <small class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +৫% এই মাসে</small>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">আজকের ক্লাস</span>
+              <h3 class="stat-value">৪টি</h3>
+              <small class="stat-sub">২টি সম্পন্ন, ২টি বাকি</small>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-users-check"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">গড় উপস্থিতি</span>
+              <h3 class="stat-value">৯৪.২%</h3>
+              <small class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +২% এই সপ্তাহে</small>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">পরীক্ষার কাউন্টডাউন</span>
+              <h3 class="stat-value">১৮ দিন</h3>
+              <small class="stat-sub">অর্ধবার্ষিকী পরীক্ষা ২০২৬</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today Routine & Syllabus Highlights -->
+        <div class="dashboard-two-col">
+          <!-- Left: Today's Routine Snapshot -->
+          <div class="glass-card panel-box">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-clock"></i> আজকের ক্লাস রুটিন</h3>
+              <button class="btn-sm btn-outline" onclick="showSection('routine')">সব দেখুন</button>
+            </div>
+            <div class="mini-routine-list">
+              <div class="mini-routine-item ongoing">
+                <span class="badge-status ongoing">🔴 চলমান (NOW)</span>
+                <div class="mri-time">১০:০০ - ১০:৪৫ (পিরিয়ড ১)</div>
+                <div class="mri-subject">পদার্থবিজ্ঞান - অধ্যায় ৩: বল ও গতি</div>
+                <div class="mri-meta">রুম ৩০২ | শিক্ষক: মাগুরিব আলী</div>
+                <div class="mri-actions">
+                  <a href="../lession_dashboard/index.html" class="btn-mini btn-primary"><i class="fa-solid fa-book-open"></i> লেসন প্ল্যান</a>
+                  <a href="../presentation_dashboard/index.html" class="btn-mini btn-green"><i class="fa-solid fa-display"></i> প্রেজেন্টেশন</a>
+                  <a href="../evaluation_dashboard/index.html" class="btn-mini btn-purple"><i class="fa-solid fa-user-check"></i> উপস্থিতি</a>
+                </div>
+              </div>
+
+              <div class="mini-routine-item upcoming">
+                <span class="badge-status upcoming">🔵 পরবর্তী (NEXT)</span>
+                <div class="mri-time">১০:৫০ - ১১:৩৫ (পিরিয়ড ২)</div>
+                <div class="mri-subject">উচ্চতর গণিত - অধ্যায় ৫: সমীকরণ</div>
+                <div class="mri-meta">রুম ৩০৪ | শিক্ষক: রফিকুল ইসলাম</div>
+                <div class="mri-actions">
+                  <a href="../lession_dashboard/index.html" class="btn-mini btn-outline"><i class="fa-solid fa-eye"></i> বিস্তারিত</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Syllabus Quick Tracker -->
+          <div class="glass-card panel-box">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-list-check"></i> সিলেবাস অগ্রগতির সারাংশ</h3>
+              <button class="btn-sm btn-outline" onclick="showSection('syllabus')">সিলেবাস ম্যানেজার</button>
+            </div>
+            <div class="syllabus-summary-progress">
+              <div class="subject-progress-item">
+                <div class="spi-info">
+                  <span>পদার্থবিজ্ঞান (নবম শ্রেণি)</span>
+                  <strong>৭৫%</strong>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 75%; background: var(--primary-blue);"></div>
+                </div>
+              </div>
+
+              <div class="subject-progress-item">
+                <div class="spi-info">
+                  <span>রসায়ন (নবম শ্রেণি)</span>
+                  <strong>৬০%</strong>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 60%; background: var(--success-green);"></div>
+                </div>
+              </div>
+
+              <div class="subject-progress-item">
+                <div class="spi-info">
+                  <span>উচ্চতর গণিত (নবম শ্রেণি)</span>
+                  <strong>৭০%</strong>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 70%; background: #8b5cf6;"></div>
+                </div>
+              </div>
+
+              <div class="subject-progress-item">
+                <div class="spi-info">
+                  <span>জীববিজ্ঞান (নবম শ্রেণি)</span>
+                  <strong>৮৫%</strong>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 85%; background: #f59e0b;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ২: স্মার্ট সিলেবাস (Smart Syllabus)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-syllabus">
+        <!-- ১. হেডার (Syllabus Header) -->
+        <div class="syllabus-header-card glass-card">
+          <div class="syll-header-top">
+            <div class="syll-meta-selector">
+              <div class="meta-box">
+                <label><i class="fa-solid fa-calendar-days"></i> শিক্ষাবর্ষ:</label>
+                <select class="custom-select">
+                  <option>২০২৬-২০২৭</option>
+                  <option>২০২৫-২০২৬</option>
+                </select>
+              </div>
+              <div class="meta-box">
+                <label><i class="fa-solid fa-graduation-cap"></i> শ্রেণি ও বিষয়:</label>
+                <select class="custom-select">
+                  <option>নবম শ্রেণি - পদার্থবিজ্ঞান</option>
+                  <option>নবম শ্রেণি - উচ্চতর গণিত</option>
+                  <option>দশম শ্রেণি - রসায়ন</option>
+                </select>
+              </div>
+              <div class="meta-box">
+                <label><i class="fa-solid fa-award"></i> টার্ম নির্বাচন:</label>
+                <div class="term-toggle-group">
+                  <button class="term-btn active" onclick="setTerm('half', this)">অর্ধবার্ষিক</button>
+                  <button class="term-btn" onclick="setTerm('annual', this)">বার্ষিক</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="syll-countdown-box">
+              <span class="cd-title"><i class="fa-solid fa-stopwatch"></i> পরীক্ষা শুরু হতে বাকি</span>
+              <div class="cd-timer" id="syllabusCountdown">১৮ দিন : ১৪ ঘণ্টা : ৩০ মিনিট</div>
+            </div>
+          </div>
+
+          <!-- Progress Bar Header -->
+          <div class="syll-overall-progress">
+            <div class="progress-label-row">
+              <span>সিলেবাস সর্বমোট অগ্রগতি:</span>
+              <strong id="syllOverallText">৬৮% সম্পন্ন</strong>
+            </div>
+            <div class="progress-bar-container lg">
+              <div class="progress-bar-fill animated-gradient" id="syllOverallBar" style="width: 68%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ২. নেভিগেশন (Timeline & Search Filters) -->
+        <div class="syllabus-nav-bar glass-card">
+          <!-- ১২ মাসের টাইমলাইন -->
+          <div class="month-timeline">
+            <button class="month-chip active" onclick="filterMonth('all', this)">সব মাস</button>
+            <button class="month-chip" onclick="filterMonth('jan', this)">জানুয়ারি</button>
+            <button class="month-chip" onclick="filterMonth('feb', this)">ফেব্রুয়ারি</button>
+            <button class="month-chip" onclick="filterMonth('mar', this)">মার্চ</button>
+            <button class="month-chip" onclick="filterMonth('apr', this)">এপ্রিল</button>
+            <button class="month-chip" onclick="filterMonth('may', this)">মে</button>
+            <button class="month-chip" onclick="filterMonth('jun', this)">জুন</button>
+            <button class="month-chip" onclick="filterMonth('jul', this)">জুলাই</button>
+            <button class="month-chip" onclick="filterMonth('aug', this)">আগস্ট</button>
+            <button class="month-chip" onclick="filterMonth('sep', this)">সেপ্টেম্বর</button>
+            <button class="month-chip" onclick="filterMonth('oct', this)">অক্টোবর</button>
+            <button class="month-chip" onclick="filterMonth('nov', this)">নভেম্বর</button>
+            <button class="month-chip" onclick="filterMonth('dec', this)">ডিসেম্বর</button>
+          </div>
+
+          <div class="filter-controls-row">
+            <div class="search-input-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="syllSearchInput" placeholder="অধ্যায় বা টপিক খুঁজুন..." onkeyup="filterChapters()" />
+            </div>
+
+            <div class="filter-selects">
+              <select id="syllStatusFilter" onchange="filterChapters()" class="custom-select-sm">
+                <option value="all">সব অবস্থা</option>
+                <option value="completed">সম্পন্ন ✅</option>
+                <option value="ongoing">চলছে 🟢</option>
+                <option value="notstarted">শুরু হয়নি ⚪</option>
+                <option value="revision">রিভিশন বাকি 🟠</option>
+              </select>
+
+              <select id="syllSortFilter" onchange="sortChapters()" class="custom-select-sm">
+                <option value="priority">সাজান: গুরুত্ব (Priority)</option>
+                <option value="progress">সাজান: অগ্রগতি (Progress)</option>
+                <option value="difficulty">সাজান: কঠিনতা (Difficulty)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ৩. অধ্যায়ভিত্তিক স্মার্ট কার্ড (Chapter Cards Grid) -->
+        <div class="chapter-cards-list" id="chapterCardsContainer">
+          
+          <!-- Chapter Card 1 -->
+          <div class="chapter-card glass-card" data-status="ongoing" data-priority="high">
+            <div class="chap-card-header">
+              <div class="chap-title-meta">
+                <span class="chap-num">অধ্যায় ১</span>
+                <h3>ভৌত রাশি ও পরিমাপ (Physical Quantities & Measurement)</h3>
+              </div>
+              <div class="chap-badges">
+                <span class="status-badge ongoing"><i class="fa-solid fa-spinner fa-spin"></i> চলছে</span>
+                <span class="priority-badge high"><i class="fa-solid fa-fire"></i> High Priority</span>
+                <span class="pi-badge"><i class="fa-solid fa-shapes"></i> PI: 🟢 চতুর্ভুজ (Level 3)</span>
+              </div>
+            </div>
+
+            <div class="chap-outcomes">
+              <strong><i class="fa-solid fa-bullseye"></i> শিখনফল (Learning Outcome):</strong>
+              <p>শিক্ষার্থীরা ভৌত রাশির সঠিক পরিমাপ পদ্ধতি, স্লাইড ক্যালিকেলস ব্যবহারের নিয়ম এবং পরিমাপে ত্রুটি ও সূক্ষ্মতা ব্যাখ্যা করতে পারবে।</p>
+            </div>
+
+            <!-- Chapter Stats Bar -->
+            <div class="chap-stats-row">
+              <div class="cstat-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>প্রয়োজনীয় ক্লাস: <strong>৬টি</strong></span>
+              </div>
+              <div class="cstat-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>মোট ঘণ্টা: <strong>৪.৫ ঘণ্টা</strong></span>
+              </div>
+              <div class="cstat-item flex-1">
+                <span>অগ্রগতি: <strong>৮০%</strong></span>
+                <div class="progress-bar-container sm">
+                  <div class="progress-bar-fill" style="width: 80%; background: var(--primary-blue);"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Topic Checklist -->
+            <div class="topic-checklist-box">
+              <div class="checklist-title">
+                <span><i class="fa-solid fa-list-check"></i> টপিকভিত্তিক চেকলিস্ট</span>
+                <small>টিক চিহ্ন দিলে Confetti এনিমেশন দেখা যাবে</small>
+              </div>
+              <div class="checklist-items">
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>১.১ ভৌত রাশি এবং এর আন্তর্জাতিক একক (SI Units)</span>
+                </label>
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>১.২ পরিমাপের যন্ত্রপাতি: স্লাইড ক্যালিকেলস ও স্ক্রুগজ</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" onchange="toggleTopicCheck(this)" />
+                  <span>১.৩ পরিমাপে ত্রুটি ও পরিমাপের সূক্ষ্মতা</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Resource Buttons & Actions -->
+            <div class="chap-actions-row">
+              <div class="resource-btns">
+                <button class="btn-res" onclick="openResourceModal('video', 'ভৌত রাশি ও পরিমাপ')"><i class="fa-solid fa-video"></i> ভিডিও (৩)</button>
+                <button class="btn-res" onclick="openResourceModal('note', 'ভৌত রাশি ও পরিমাপ')"><i class="fa-solid fa-file-lines"></i> নোট (২)</button>
+                <button class="btn-res" onclick="openResourceModal('quiz', 'ভৌত রাশি ও পরিমাপ')"><i class="fa-solid fa-circle-question"></i> কুইজ (১০)</button>
+                <button class="btn-res btn-syll-link" onclick="openSyllabusLinkModal('অধ্যায় ১: ভৌত রাশি ও পরিমাপ')"><i class="fa-solid fa-link"></i> সিলেবাস লিঙ্ক</button>
+              </div>
+
+              <!-- Exam Hub Collapsible Button -->
+              <button class="btn-outline btn-sm" onclick="toggleExamHub(this)">
+                <i class="fa-solid fa-graduation-cap"></i> পরীক্ষা প্রস্তুতি (Exam Hub) <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <!-- Exam Hub Accordion Body -->
+            <div class="exam-hub-panel hidden">
+              <div class="eh-grid">
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-chart-pie"></i> মান বণ্টন</h4>
+                  <p>CQ (সৃজনশীল): ২০ নম্বর | MCQ (বহুনির্বাচনী): ১০ নম্বর</p>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-clock-rotate-left"></i> বিগত বছরের প্রশ্ন (PYQ)</h4>
+                  <ul>
+                    <li>ঢাকা বোর্ড ২৫ - স্লাইড ক্যালিকেলস গাণিতিক সমস্যা</li>
+                    <li>রাজশাহী বোর্ড ২৪ - আপেক্ষিক ত্রুটি নির্ণয়</li>
+                  </ul>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-note-sticky"></i> শিক্ষকের বিশেষ নোট</h4>
+                  <p>স্ক্রুগজের লঘিষ্ঠ গণন ও পিচ নির্ণয়ের অংকগুলো বেশি অনুশীলন করতে হবে।</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chapter Card 2 -->
+          <div class="chapter-card glass-card" data-status="completed" data-priority="high">
+            <div class="chap-card-header">
+              <div class="chap-title-meta">
+                <span class="chap-num">অধ্যায় ২</span>
+                <h3>গতি (Motion)</h3>
+              </div>
+              <div class="chap-badges">
+                <span class="status-badge completed"><i class="fa-solid fa-circle-check"></i> সম্পন্ন</span>
+                <span class="priority-badge high"><i class="fa-solid fa-fire"></i> High Priority</span>
+                <span class="pi-badge"><i class="fa-solid fa-shapes"></i> PI: 🔷 বৃত্ত (Level 4)</span>
+              </div>
+            </div>
+
+            <div class="chap-outcomes">
+              <strong><i class="fa-solid fa-bullseye"></i> শিখনফল (Learning Outcome):</strong>
+              <p>গতির সমীকরণসমূহ প্রমাণ করতে পারবে, ঢাল ও গ্রাফ চিত্র বিশ্লেষণ করতে পারবে এবং পড়ন্ত বস্তুর সূত্র প্রয়োগ করতে পারবে।</p>
+            </div>
+
+            <div class="chap-stats-row">
+              <div class="cstat-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>প্রয়োজনীয় ক্লাস: <strong>৮টি</strong></span>
+              </div>
+              <div class="cstat-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>মোট ঘণ্টা: <strong>৬ ঘণ্টা</strong></span>
+              </div>
+              <div class="cstat-item flex-1">
+                <span>অগ্রগতি: <strong>১০০%</strong></span>
+                <div class="progress-bar-container sm">
+                  <div class="progress-bar-fill" style="width: 100%; background: var(--success-green);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="topic-checklist-box">
+              <div class="checklist-title">
+                <span><i class="fa-solid fa-list-check"></i> টপিকভিত্তিক চেকলিস্ট</span>
+              </div>
+              <div class="checklist-items">
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>২.১ দূরত্ব, সরণ, বেগ ও ত্বরণ</span>
+                </label>
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>২.২ গতির সমীকরণসমূহ (v=u+at, s=ut+1/2at²)</span>
+                </label>
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>২.৩ লেখচিত্র ও গ্যালিলিওর পড়ন্ত বস্তুর সূত্র</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="chap-actions-row">
+              <div class="resource-btns">
+                <button class="btn-res" onclick="openResourceModal('video', 'গতি')"><i class="fa-solid fa-video"></i> ভিডিও (৪)</button>
+                <button class="btn-res" onclick="openResourceModal('note', 'গতি')"><i class="fa-solid fa-file-lines"></i> নোট (৩)</button>
+                <button class="btn-res" onclick="openResourceModal('quiz', 'গতি')"><i class="fa-solid fa-circle-question"></i> কুইজ (১৫)</button>
+                <button class="btn-res btn-syll-link" onclick="openSyllabusLinkModal('অধ্যায় ২: গতি')"><i class="fa-solid fa-link"></i> সিলেবাস লিঙ্ক</button>
+              </div>
+
+              <button class="btn-outline btn-sm" onclick="toggleExamHub(this)">
+                <i class="fa-solid fa-graduation-cap"></i> পরীক্ষা প্রস্তুতি (Exam Hub) <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="exam-hub-panel hidden">
+              <div class="eh-grid">
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-chart-pie"></i> মান বণ্টন</h4>
+                  <p>CQ: ২৫ নম্বর | MCQ: ১৫ নম্বর</p>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-clock-rotate-left"></i> বিগত বছরের প্রশ্ন (PYQ)</h4>
+                  <ul>
+                    <li>কুমিল্লা বোর্ড ২৫ - বেগ-সময় লেখচিত্রের ক্ষেত্রফল</li>
+                    <li>চট্টগ্রাম বোর্ড ২৪ - নিক্ষিপ্ত বস্তুর সর্বোচ্চ উচ্চতা</li>
+                  </ul>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-note-sticky"></i> শিক্ষকের নোট</h4>
+                  <p>লেখচিত্র থেকে ত্বরণ ও অতিক্রান্ত দূরত্ব নির্ণয়ের অংক গুরুত্বপূর্ণ।</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chapter Card 3 -->
+          <div class="chapter-card glass-card" data-status="revision" data-priority="medium">
+            <div class="chap-card-header">
+              <div class="chap-title-meta">
+                <span class="chap-num">অধ্যায় ৩</span>
+                <h3>বল (Force)</h3>
+              </div>
+              <div class="chap-badges">
+                <span class="status-badge revision"><i class="fa-solid fa-rotate-right"></i> রিভিশন বাকি</span>
+                <span class="priority-badge medium"><i class="fa-solid fa-bolt"></i> Medium Priority</span>
+                <span class="pi-badge"><i class="fa-solid fa-shapes"></i> PI: 🔺 ত্রিভুজ (Level 5)</span>
+              </div>
+            </div>
+
+            <div class="chap-outcomes">
+              <strong><i class="fa-solid fa-bullseye"></i> শিখনফল (Learning Outcome):</strong>
+              <p>নিউটন এর গতির তিনটি সূত্র, ভরবেগের সংরক্ষণ সূত্র এবং ঘর্ষণ বলের প্রভাব বিশ্লেষণ করতে পারবে।</p>
+            </div>
+
+            <div class="chap-stats-row">
+              <div class="cstat-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>প্রয়োজনীয় ক্লাস: <strong>৭টি</strong></span>
+              </div>
+              <div class="cstat-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>মোট ঘণ্টা: <strong>৫.৫ ঘণ্টা</strong></span>
+              </div>
+              <div class="cstat-item flex-1">
+                <span>অগ্রগতি: <strong>৫০%</strong></span>
+                <div class="progress-bar-container sm">
+                  <div class="progress-bar-fill" style="width: 50%; background: #f59e0b;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="topic-checklist-box">
+              <div class="checklist-title">
+                <span><i class="fa-solid fa-list-check"></i> টপিকভিত্তিক চেকলিস্ট</span>
+              </div>
+              <div class="checklist-items">
+                <label class="check-item checked">
+                  <input type="checkbox" checked onchange="toggleTopicCheck(this)" />
+                  <span>৩.১ জড়তা ও নিউটনের গতির প্রথম ও দ্বিতীয় সূত্র (F=ma)</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" onchange="toggleTopicCheck(this)" />
+                  <span>৩.২ ভরবেগের সংরক্ষণ সূত্র ও সংঘর্ষের অংক</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" onchange="toggleTopicCheck(this)" />
+                  <span>৩.৩ ঘর্ষণ বল ও এর বিভিন্ন প্রকারভেদ</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="chap-actions-row">
+              <div class="resource-btns">
+                <button class="btn-res" onclick="openResourceModal('video', 'বল')"><i class="fa-solid fa-video"></i> ভিডিও (৫)</button>
+                <button class="btn-res" onclick="openResourceModal('note', 'বল')"><i class="fa-solid fa-file-lines"></i> নোট (২)</button>
+                <button class="btn-res" onclick="openResourceModal('quiz', 'বল')"><i class="fa-solid fa-circle-question"></i> কুইজ (১২)</button>
+                <button class="btn-res btn-syll-link" onclick="openSyllabusLinkModal('অধ্যায় ৩: বল')"><i class="fa-solid fa-link"></i> সিলেবাস লিঙ্ক</button>
+              </div>
+
+              <button class="btn-outline btn-sm" onclick="toggleExamHub(this)">
+                <i class="fa-solid fa-graduation-cap"></i> পরীক্ষা প্রস্তুতি (Exam Hub) <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="exam-hub-panel hidden">
+              <div class="eh-grid">
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-chart-pie"></i> মান বণ্টন</h4>
+                  <p>CQ: ২০ নম্বর | MCQ: ১০ নম্বর</p>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-clock-rotate-left"></i> বিগত বছরের প্রশ্ন (PYQ)</h4>
+                  <ul>
+                    <li>দিনাজপুর বোর্ড ২৫ - বন্দুকের পশ্চাৎ বেগ নির্ণয়</li>
+                    <li>যশোর বোর্ড ২৪ - ঘর্ষণ বলের প্রভাব</li>
+                  </ul>
+                </div>
+                <div class="eh-box">
+                  <h4><i class="fa-solid fa-note-sticky"></i> শিক্ষকের নোট</h4>
+                  <p>ভরবেগের সংরক্ষণ সূত্রে m1u1 + m2u2 = m1v1 + m2v2 এর চিহ্নের বিষয়ে সতর্ক থাকতে হবে।</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ৪. সারসংক্ষেপ ও অ্যানালিটিক্স (Summary & Analytics) -->
+        <div class="syllabus-analytics-box glass-card">
+          <h3><i class="fa-solid fa-chart-line"></i> সিলেবাস সারসংক্ষেপ ও সমাপনী পূর্বাভাস (Completion Forecast)</h3>
+          <div class="syll-analytics-grid">
+            <div class="sab-item">
+              <span class="sab-val" id="abTotalPercent">৬৮.৫%</span>
+              <span class="sab-lbl">মোট সিলেবাস সম্পন্ন</span>
+            </div>
+            <div class="sab-item">
+              <span class="sab-val" id="abCompletedChaps">২টি / ৫টি</span>
+              <span class="sab-lbl">সম্পন্ন অধ্যায়</span>
+            </div>
+            <div class="sab-item">
+              <span class="sab-val" id="abRemainingChaps">৩টি</span>
+              <span class="sab-lbl">অধ্যায় বাকি</span>
+            </div>
+            <div class="sab-item">
+              <span class="sab-val" id="abRemainingClasses">১৪টি</span>
+              <span class="sab-lbl">বাকি ক্লাস প্রয়োজন</span>
+            </div>
+            <div class="sab-item forecast-box">
+              <span class="sab-val positive"><i class="fa-solid fa-circle-check"></i> সময়মতো শেষ হবে</span>
+              <span class="sab-lbl">পূর্বাভাস: ১৫ মে ২০২৬ এর মধ্যে সমাপ্ত</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ৫. ফুটার (Footer) -->
+        <div class="syll-footer glass-card">
+          <div class="sf-info">
+            <span><i class="fa-solid fa-code-branch"></i> সিলেবাস সংস্করণ: <strong>v2.4 (২০২৬ কারিকুলাম)</strong></span>
+            <span><i class="fa-solid fa-clock"></i> সর্বশেষ আপডেট: <strong>২৪ জুলাই ২০২৬</strong></span>
+          </div>
+          <div class="sf-actions">
+            <button class="btn-outline btn-sm" onclick="exportPDF('Smart_Syllabus')"><i class="fa-solid fa-file-pdf"></i> PDF Export</button>
+            <button class="btn-primary btn-sm" onclick="window.print()"><i class="fa-solid fa-print"></i> প্রিন্ট সিলেবাস</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৩: স্মার্ট রুটিন (Smart Routine)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-routine">
+        
+        <!-- ১. স্মার্ট হেডার (The Context Layer) -->
+        <div class="routine-context-header glass-card">
+          <div class="rch-row">
+            <div class="rch-card now">
+              <span class="rch-tag">🔴 বর্তমান ক্লাস (NOW)</span>
+              <h3>১০:০০ - ১০:৪৫ | পিরিয়ড ১</h3>
+              <strong>পদার্থবিজ্ঞান - অধ্যায় ৩: বল</strong>
+              <small>রুম ৩০২ | শিক্ষক: মাগুরিব আলী</small>
+            </div>
+
+            <div class="rch-card next">
+              <span class="rch-tag">🔵 পরবর্তী ক্লাস (NEXT)</span>
+              <h3>১০:৫০ - ১১:৩৫ | পিরিয়ড ২</h3>
+              <strong>উচ্চতর গণিত - অধ্যায় ৫</strong>
+              <small>রুম ৩০৪ | শিক্ষক: রফিকুল ইসলাম</small>
+            </div>
+
+            <div class="rch-card tracker">
+              <span class="rch-tag">🎯 দৈনিক লক্ষ্য ট্র্যাকার</span>
+              <div class="dt-info">
+                <h3>৩ / ৫ পিরিয়ড</h3>
+                <div class="progress-bar-container sm">
+                  <div class="progress-bar-fill" style="width: 60%; background: var(--success-green);"></div>
+                </div>
+                <small>লক্ষ্যমাত্রা ৬০% অর্জিত</small>
+              </div>
+            </div>
+
+            <div class="rch-card ai-msg">
+              <span class="rch-tag"><i class="fa-solid fa-robot"></i> AI বার্তা</span>
+              <p>"আজকের পদার্থবিজ্ঞান ক্লাসের জন্য প্রেজেন্টেশন ও কুইজ মডিউল সিঙ্ক করা আছে। ক্লাস শুরু বোতামে ক্লিক করুন।"</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ২. অ্যাডাপ্টিভ টাইমলাইন (Vertical Timeline Layout) -->
+        <div class="routine-layout-container">
+          
+          <div class="vertical-timeline-wrapper">
+            <h3><i class="fa-solid fa-timeline"></i> দৈনিক অ্যাডাপ্টিভ সময়সূচি (Vertical Timeline)</h3>
+
+            <div class="vertical-timeline">
+
+              <!-- Special Schedule: Assembly -->
+              <div class="timeline-card special-break">
+                <div class="tl-time-badge">০৯:৩০ - ১০:০০</div>
+                <div class="tl-content glass-card">
+                  <h4><i class="fa-solid fa-flag"></i> প্রাত্যহিক সমাবেশ ও প্রার্থনা (Morning Assembly)</h4>
+                  <p>স্থান: প্রধান খেলার মাঠ | দায়িত্বপ্রাপ্ত শিক্ষক: মোঃ আনোয়ার হোসেন</p>
+                </div>
+              </div>
+
+              <!-- Period 1 Smart Card -->
+              <div class="timeline-card period-card active">
+                <div class="tl-time-badge">১০:০০ - ১০:৪৫ (পিরিয়ড ১)</div>
+                <div class="tl-content glass-card">
+                  <div class="tl-header">
+                    <div class="tl-sub-title">
+                      <span class="period-num">পিরিয়ড ১</span>
+                      <h4>পদার্থবিজ্ঞান (Physics) — অধ্যায় ৩: বল</h4>
+                    </div>
+                    <span class="room-tag"><i class="fa-solid fa-door-open"></i> রুম ৩০২</span>
+                  </div>
+
+                  <div class="tl-teacher-info">
+                    <span>👨‍🏫 শিক্ষক: <strong>মাগুরিব আলী</strong></span>
+                    <span class="sub-indicator"><i class="fa-solid fa-user-check"></i> মূল শিক্ষক উপস্থিত</span>
+                  </div>
+
+                  <!-- 🔴 ১. ক্লাস অ্যাকশন (Class Actions Required) -->
+                  <div class="class-actions-box">
+                    <span class="ca-title">🚀 ক্লাস অ্যাকশন (Direct Launch):</span>
+                    <div class="ca-buttons">
+                      <button class="btn-ca btn-start" onclick="startClassLive('Physics-Ch3')"><i class="fa-solid fa-circle-play"></i> ▶️ ক্লাস শুরু করুন</button>
+                      <a href="../lession_dashboard/index.html" class="btn-ca btn-lesson"><i class="fa-solid fa-book-open"></i> 📖 লেসন প্ল্যান</a>
+                      <a href="../presentation_dashboard/index.html" class="btn-ca btn-pres"><i class="fa-solid fa-desktop"></i> 🖥️ প্রেজেন্টেশন</a>
+                      <a href="../evaluation_dashboard/index.html" class="btn-ca btn-att"><i class="fa-solid fa-user-pen"></i> 📝 উপস্থিতি</a>
+                    </div>
+                  </div>
+
+                  <!-- রিসোর্সসমূহ -->
+                  <div class="tl-resources-box">
+                    <span class="ca-title">📂 রিসোর্স লিংক:</span>
+                    <div class="res-chips">
+                      <button class="res-chip" onclick="openResourceModal('video', 'বল')">🎥 ভিডিও</button>
+                      <button class="res-chip" onclick="openResourceModal('note', 'বল')">📄 নোট</button>
+                      <button class="res-chip" onclick="openResourceModal('quiz', 'বল')">📝 কুইজ</button>
+                      <button class="res-chip btn-syll-link" onclick="openSyllabusLinkModal('অধ্যায় ৩: বল')">🔗 সিলেবাস লিঙ্ক</button>
+                      <button class="res-chip" onclick="openResourceModal('pyq', 'বল')">📊 PYQ</button>
+                    </div>
+                  </div>
+
+                  <!-- AI ইনসাইট -->
+                  <div class="tl-ai-insight">
+                    <div class="ai-ins-item"><i class="fa-solid fa-lightbulb"></i> 💡 রিভিশন রিমাইন্ডার: গত সপ্তাহে নিউটনের ২য় সূত্রের কুইজে ১৫% ভুল হয়েছিল।</div>
+                    <div class="ai-ins-item"><i class="fa-solid fa-bullseye"></i> 🎯 দুর্বলতা ভিত্তিক কুইজ: ৩টি স্পেশাল গাণিতিক কুইজ রেডি আছে।</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Special Schedule: Break / Tiffin -->
+              <div class="timeline-card special-break">
+                <div class="tl-time-badge">১১:৩৫ - ১২:০৫</div>
+                <div class="tl-content glass-card">
+                  <h4><i class="fa-solid fa-utensils"></i> টিফিন ও বিশ্রাম (Tiffin & Break)</h4>
+                  <p>ক্যান্টিন ও কমন রুম খোলা থাকবে।</p>
+                </div>
+              </div>
+
+              <!-- Period 2 Smart Card -->
+              <div class="timeline-card period-card">
+                <div class="tl-time-badge">১২:০৫ - ১২:৫০ (পিরিয়ড ২)</div>
+                <div class="tl-content glass-card">
+                  <div class="tl-header">
+                    <div class="tl-sub-title">
+                      <span class="period-num">পিরিয়ড ২</span>
+                      <h4>উচ্চতর গণিত (Higher Math) — অধ্যায় ৫</h4>
+                    </div>
+                    <span class="room-tag"><i class="fa-solid fa-door-open"></i> রুম ৩০৪</span>
+                  </div>
+
+                  <div class="tl-teacher-info">
+                    <span>👨‍🏫 শিক্ষক: <strong>রফিকুল ইসলাম</strong></span>
+                    <span class="sub-indicator substitute"><i class="fa-solid fa-user-slash"></i> সাবস্টিটিউট (বিকল্প শিক্ষক: সজীব আহমেদ)</span>
+                  </div>
+
+                  <div class="class-actions-box">
+                    <span class="ca-title">🚀 ক্লাস অ্যাকশন:</span>
+                    <div class="ca-buttons">
+                      <button class="btn-ca btn-start" onclick="startClassLive('HMath-Ch5')"><i class="fa-solid fa-circle-play"></i> ▶️ ক্লাস শুরু করুন</button>
+                      <a href="../lession_dashboard/index.html" class="btn-ca btn-lesson"><i class="fa-solid fa-book-open"></i> 📖 লেসন প্ল্যান</a>
+                      <a href="../presentation_dashboard/index.html" class="btn-ca btn-pres"><i class="fa-solid fa-desktop"></i> 🖥️ প্রেজেন্টেশন</a>
+                      <a href="../evaluation_dashboard/index.html" class="btn-ca btn-att"><i class="fa-solid fa-user-pen"></i> 📝 উপস্থিতি</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Special Schedule: Prayer Break -->
+              <div class="timeline-card special-break">
+                <div class="tl-time-badge">০১:১৫ - ০২:০০</div>
+                <div class="tl-content glass-card">
+                  <h4><i class="fa-solid fa-mosque"></i> জোহরের নামাজ ও দুপুরের খাবার</h4>
+                  <p>স্কুল মসজিদ ও ক্যাফেটেরিয়া।</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Sidebar: AI Assistant & Daily Summary -->
+          <div class="routine-side-panels">
+            
+            <!-- ৪. AI সহায়ক (AI Assistant Panel) -->
+            <div class="glass-card panel-box">
+              <h3><i class="fa-solid fa-robot"></i> AI সহায়ক (AI Assistant Panel)</h3>
+              <div class="ai-assistant-features">
+                <div class="aif-item">
+                  <i class="fa-solid fa-user-gear"></i>
+                  <div>
+                    <strong>স্বয়ংক্রিয় বিকল্প শিক্ষক সাজেশন</strong>
+                    <p>রফিকুল স্যার অনুপস্থিত থাকায় সজীব আহমেদ স্যারকে অটো-অ্যাসাইন করা হয়েছে।</p>
+                  </div>
+                </div>
+
+                <div class="aif-item">
+                  <i class="fa-solid fa-brain"></i>
+                  <div>
+                    <strong>পার্সোনালাইজড কুইজ (Spaced Repetition)</strong>
+                    <p>দুর্বল শিক্ষার্থীদের জন্য ৩ দিনের ব্যবধানে রিভিশন রিমাইন্ডার সেট করা আছে।</p>
+                  </div>
+                </div>
+
+                <div class="aif-item">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <div>
+                    <strong>প্রেডিক্টিভ অ্যানালিটিক্স</strong>
+                    <p>বর্তমান গতিতে আগামী সপ্তাহে সিলেবাস ৯% বৃদ্ধি পাবে।</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ৫. দৈনিক সারসংক্ষেপ (Daily Summary) -->
+            <div class="glass-card panel-box">
+              <h3><i class="fa-solid fa-square-poll-vertical"></i> দৈনিক সারসংক্ষেপ (Daily Summary)</h3>
+              <div class="daily-summary-list">
+                <div class="ds-row"><span>মোট ক্লাস:</span> <strong>৬টি</strong></div>
+                <div class="ds-row"><span>সম্পন্ন ক্লাস:</span> <strong>৪টি</strong></div>
+                <div class="ds-row"><span>বাকি ক্লাস:</span> <strong>২টি</strong></div>
+                <div class="ds-row"><span>মোট শিক্ষণ সময়:</span> <strong>৪ ঘণ্টা ২০ মিনিট</strong></div>
+                <div class="ds-row"><span>উপস্থিতির হার:</span> <strong>৯২%</strong></div>
+                <div class="ds-row highlight"><span>আজকের অর্জন:</span> <strong>৩টি ব্যাজ 🏆</strong></div>
+                <div class="ds-row danger"><span>পেন্ডিং কাজ:</span> <strong>২টি অ্যাসাইনমেন্ট</strong></div>
+              </div>
+            </div>
+
+            <!-- ৬. কমিউনিকেশন ও অ্যাসেসমেন্ট হাব -->
+            <div class="glass-card panel-box">
+              <h3><i class="fa-solid fa-comments"></i> কমিউনিকেশন ও অ্যাসেসমেন্ট হাব</h3>
+              <div class="comm-hub-links">
+                <button class="btn-outline btn-sm w-100" onclick="alert('গ্রুপ চ্যাট ও বার্তা মডিউল চালু হচ্ছে...')"><i class="fa-solid fa-message"></i> গ্রুপ চ্যাট & প্রাইভেট মেসেজ</button>
+                <button class="btn-outline btn-sm w-100" onclick="alert('অ্যাসাইনমেন্ট পোর্টাল খুলছে...')"><i class="fa-solid fa-file-arrow-up"></i> অ্যাসাইনমেন্ট জমা ও গ্রেডবুক</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ৭. ফুটার (Routine Footer) -->
+        <div class="routine-footer glass-card">
+          <div class="rf-sync">
+            <span><i class="fa-solid fa-wifi"></i> 📡 অফলাইন সিঙ্ক: <strong>অনলাইন (সর্বশেষ সিঙ্ক ১০:১৫ AM)</strong></span>
+          </div>
+          <div class="rf-actions">
+            <button class="btn-outline btn-sm" onclick="exportPDF('Smart_Routine')"><i class="fa-solid fa-file-pdf"></i> PDF Export</button>
+            <button class="btn-primary btn-sm" onclick="window.print()"><i class="fa-solid fa-print"></i> রুটিন প্রিন্ট করুন</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৪: উপস্থিতি ও অংশগ্রহণ (Attendance & Participation)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-attendance">
+        <div class="glass-card panel-box">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-user-check"></i> দৈনিক বিষয়ভিত্তিক উপস্থিতি ও পার্টিসিপেশন ট্র্যাকার</h3>
+            <div class="hdr-actions">
+              <button class="btn-primary btn-sm" onclick="openAddSubjectModal()"><i class="fa-solid fa-folder-plus"></i> + বিষয় কলাম যোগ করুন</button>
+              <button class="btn-outline btn-sm text-danger" onclick="openDeleteSubjectModal()"><i class="fa-solid fa-folder-minus"></i> - বিষয় বাদ দিন</button>
+              <button class="btn-green btn-sm" onclick="openAddStudentModal()"><i class="fa-solid fa-user-plus"></i> + নতুন শিক্ষার্থী যোগ করুন</button>
+            </div>
+          </div>
+
+          <!-- Filter & Control Toolbar -->
+          <div class="att-filter-toolbar">
+            <div class="att-filter-group">
+              <label>বিভাগ:</label>
+              <select class="custom-select-sm" id="attDeptFilter" onchange="filterAttendanceTable()">
+                <option value="all">সব বিভাগ</option>
+                <option value="science">বিজ্ঞান</option>
+                <option value="arts">মানবিক</option>
+                <option value="commerce">ব্যবসায় শিক্ষা</option>
+              </select>
+            </div>
+
+            <div class="att-filter-group">
+              <label>শ্রেণি:</label>
+              <select class="custom-select-sm" id="attClassFilter" onchange="filterAttendanceTable()">
+                <option value="1">১ম শ্রেণি</option>
+                <option value="2">২য় শ্রেণি</option>
+                <option value="3">৩য় শ্রেণি</option>
+                <option value="4">৪র্থ শ্রেণি</option>
+                <option value="5">৫ম শ্রেণি</option>
+                <option value="6">৬ষ্ঠ শ্রেণি</option>
+                <option value="7">৭ম শ্রেণি</option>
+                <option value="8">৮ম শ্রেণি</option>
+                <option value="9" selected>নবম শ্রেণি</option>
+                <option value="10">দশম শ্রেণি</option>
+                <option value="11">একাদশ শ্রেণি</option>
+                <option value="12">দ্বাদশ শ্রেণি</option>
+              </select>
+            </div>
+
+            <div class="att-filter-group">
+              <label>শাখা:</label>
+              <select class="custom-select-sm" id="attSectionFilter" onchange="filterAttendanceTable()">
+                <option value="A">শাখা 'ক'</option>
+                <option value="B">শাখা 'খ'</option>
+                <option value="C">শাখা 'গ'</option>
+                <option value="D">শাখা 'ঘ'</option>
+                <option value="E">শাখা 'ঙ'</option>
+              </select>
+            </div>
+
+            <div class="att-filter-group">
+              <label>তারিখ:</label>
+              <input type="date" class="custom-input-sm" value="2026-07-24" onchange="filterAttendanceTable()" />
+            </div>
+
+            <!-- Logo Upload & Controls -->
+            <div class="logo-upload-box no-print">
+              <input type="file" id="logoFileInput" accept="image/*" style="display:none;" onchange="handleLogoUpload(event)" />
+              <button class="btn-outline btn-sm" onclick="document.getElementById('logoFileInput').click()"><i class="fa-solid fa-image"></i> লোগো আপলোড</button>
+            </div>
+
+            <button class="btn-green btn-sm" onclick="markAllPresent()"><i class="fa-solid fa-check-double"></i> সবাইকে উপস্থিত মার্ক</button>
+            <button class="btn-primary btn-sm" onclick="window.print()"><i class="fa-solid fa-print"></i> A4 রিপোর্ট কার্ড প্রিন্ট</button>
+          </div>
+
+          <!-- Printable Academic Report Card View -->
+          <div class="printable-area">
+            
+            <!-- Official Report Card Header for Printing -->
+            <div class="report-card-header hidden-screen">
+              <div class="rch-brand">
+                <img id="schoolReportLogo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230067b7'/><path d='M50 20 L80 40 L50 60 L20 40 Z' fill='white'/><path d='M35 52 L35 70 Q50 80 65 70 L65 52' stroke='white' stroke-width='4' fill='none'/></svg>" alt="School Logo" class="report-logo" />
+                <div class="rch-text">
+                  <h2>সশিবা স্মার্ট হাই স্কুল অ্যান্ড কলেজ</h2>
+                  <p>স্মার্ট শিক্ষা বাতায়ন | বার্ষিক বিষয়ভিত্তিক উপস্থিতি ও পারফরম্যান্স রিপোর্ট কার্ড</p>
+                  <small>শিক্ষা বিভাগ ও কারিকুলাম ট্র্যাকার ২০২৬</small>
+                </div>
+              </div>
+              <div class="rch-meta">
+                <div><strong>শ্রেণি:</strong> নবম | <strong>শাখা:</strong> ক (বিজ্ঞান)</div>
+                <div><strong>তারিখ:</strong> ২৪ জুলাই ২০২৬</div>
+              </div>
+              <hr class="report-divider" />
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table neat-table" id="attendanceTable">
+                <thead>
+                  <tr>
+                    <th>রোল</th>
+                    <th>ছবি ও নাম</th>
+                    <th>শ্রেণি/শাখা</th>
+                    <th class="subj-col col-physics">
+                      <span>⚛️ পদার্থবিজ্ঞান</span>
+                      <span class="col-del-btn no-print" onclick="deleteSubjectColumn(this)" title="কলাম বাদ দিন">✕</span>
+                    </th>
+                    <th class="subj-col col-math">
+                      <span>📐 উচ্চতর গণিত</span>
+                      <span class="col-del-btn no-print" onclick="deleteSubjectColumn(this)" title="কলাম বাদ দিন">✕</span>
+                    </th>
+                    <th class="subj-col col-chem">
+                      <span>🧪 রসায়ন</span>
+                      <span class="col-del-btn no-print" onclick="deleteSubjectColumn(this)" title="কলাম বাদ দিন">✕</span>
+                    </th>
+                    <th class="subj-col col-bio">
+                      <span>🧬 জীববিজ্ঞান</span>
+                      <span class="col-del-btn no-print" onclick="deleteSubjectColumn(this)" title="কলাম বাদ দিন">✕</span>
+                    </th>
+                    <th>মোট %</th>
+                    <th>পার্টিসিপেশন</th>
+                    <th>মনোযোগ (স্টার)</th>
+                    <th>মন্তব্য</th>
+                    <th class="no-print">অ্যাকশন</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>১০১</strong></td>
+                    <td>
+                      <div class="student-avatar-cell">
+                        <div class="stu-img-avatar">MA</div>
+                        <span>আব্দুল্লাহ আল মামুন</span>
+                      </div>
+                    </td>
+                    <td>নবম (ক)</td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td><span class="status-pill present"><i class="fa-solid fa-circle-check"></i> ১০০%</span></td>
+                    <td><span class="score-badge">৯ / ১০</span></td>
+                    <td><span class="att-level high">উচ্চ ⭐</span></td>
+                    <td>সক্রিয়ভাবে প্রশ্ন করেছে</td>
+                    <td class="no-print">
+                      <div class="action-btn-group">
+                        <button class="btn-icon btn-sm" onclick="openEditAttendanceModal(this)" title="সম্পাদনা করুন"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-icon btn-sm text-danger" onclick="deleteAttendanceRow(this)" title="মুছে ফেলুন"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>১০২</strong></td>
+                    <td>
+                      <div class="student-avatar-cell">
+                        <div class="stu-img-avatar bg-purple">FS</div>
+                        <span>ফারহানা আক্তার সাথী</span>
+                      </div>
+                    </td>
+                    <td>নবম (ক)</td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td><span class="status-pill present"><i class="fa-solid fa-circle-check"></i> ১০০%</span></td>
+                    <td><span class="score-badge">১০ / ১০</span></td>
+                    <td><span class="att-level high">উচ্চ ⭐</span></td>
+                    <td>অসাধারণ পারফরম্যান্স</td>
+                    <td class="no-print">
+                      <div class="action-btn-group">
+                        <button class="btn-icon btn-sm" onclick="openEditAttendanceModal(this)" title="সম্পাদনা করুন"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-icon btn-sm text-danger" onclick="deleteAttendanceRow(this)" title="মুছে ফেলুন"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>১০৩</strong></td>
+                    <td>
+                      <div class="student-avatar-cell">
+                        <div class="stu-img-avatar bg-orange">TA</div>
+                        <span>তানজিল আহমেদ</span>
+                      </div>
+                    </td>
+                    <td>নবম (ক)</td>
+                    <td class="text-center"><span class="sub-chip absent animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-xmark"></i> অনুপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip absent animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-xmark"></i> অনুপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip late animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-clock"></i> বিলম্ব</span></td>
+                    <td><span class="status-pill absent"><i class="fa-solid fa-circle-xmark"></i> ২৫%</span></td>
+                    <td><span class="score-badge zero">০ / ১০</span></td>
+                    <td><span class="att-level low">কম ⚠️</span></td>
+                    <td>অভিভাবককে অবহিত করা হয়েছে</td>
+                    <td class="no-print">
+                      <div class="action-btn-group">
+                        <button class="btn-icon btn-sm" onclick="openEditAttendanceModal(this)" title="সম্পাদনা করুন"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-icon btn-sm text-danger" onclick="deleteAttendanceRow(this)" title="মুছে ফেলুন"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>১০৪</strong></td>
+                    <td>
+                      <div class="student-avatar-cell">
+                        <div class="stu-img-avatar bg-green">RH</div>
+                        <span>রাশেদুল হাসান</span>
+                      </div>
+                    </td>
+                    <td>নবম (ক)</td>
+                    <td class="text-center"><span class="sub-chip late animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-clock"></i> বিলম্ব</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip present animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span></td>
+                    <td class="text-center"><span class="sub-chip leave animated-pop" onclick="toggleSubChip(this)"><i class="fa-solid fa-file-signature"></i> ছুটি</span></td>
+                    <td><span class="status-pill late"><i class="fa-solid fa-clock"></i> ৭৫%</span></td>
+                    <td><span class="score-badge">৭ / ১০</span></td>
+                    <td><span class="att-level medium">মাঝারি</span></td>
+                    <td>১০ মিনিট বিলম্বে আগমন</td>
+                    <td class="no-print">
+                      <div class="action-btn-group">
+                        <button class="btn-icon btn-sm" onclick="openEditAttendanceModal(this)" title="সম্পাদনা করুন"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-icon btn-sm text-danger" onclick="deleteAttendanceRow(this)" title="মুছে ফেলুন"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Report Card Printable Signatures Footer -->
+            <div class="report-signatures-footer hidden-screen">
+              <div class="sig-col">
+                <div class="sig-line">শ্রেণি শিক্ষকের স্বাক্ষর</div>
+              </div>
+              <div class="sig-col">
+                <div class="sig-line">অভিভাবকের স্বাক্ষর</div>
+              </div>
+              <div class="sig-col">
+                <div class="sig-line">প্রধান শিক্ষকের অনুমোদন ও সিল</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৫: পরীক্ষার রুটিন (Exam Routine)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-exam">
+        <div class="glass-card panel-box">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-file-pen"></i> পরীক্ষার রুটিন ও সময়সূচি সূচক</h3>
+            <div class="hdr-actions">
+              <button class="btn-primary btn-sm" onclick="openAddExamModal()"><i class="fa-solid fa-plus"></i> নতুন পরীক্ষা যোগ করুন</button>
+              <button class="btn-outline btn-sm" onclick="window.print()"><i class="fa-solid fa-print"></i> A4 পেপারে রুটিন প্রিন্ট</button>
+            </div>
+          </div>
+
+          <div class="exam-table-wrapper printable-area">
+            <div class="print-header hidden-screen">
+              <h2>সশিবা স্মার্ট লার্নিং ইন্সটিটিউট</h2>
+              <h3>অর্ধবার্ষিকী ও মডেল টেস্ট পরীক্ষা রুটিন ২০২৬</h3>
+            </div>
+
+            <table class="custom-table" id="examTable">
+              <thead>
+                <tr>
+                  <th>তারিখ ও বার</th>
+                  <th>পরীক্ষার ধরন</th>
+                  <th>বিষয়</th>
+                  <th>শ্রেণি ও শাখা</th>
+                  <th>পরীক্ষার সময়</th>
+                  <th>রুম নম্বর</th>
+                  <th>দায়িত্বপ্রাপ্ত শিক্ষক</th>
+                  <th>মোট নম্বর</th>
+                  <th class="no-print">এডিট/ডিলিট</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>১৫ মে ২০২৬ (রবিবার)</strong></td>
+                  <td><span class="badge-exam annual">অর্ধবার্ষিকী</span></td>
+                  <td>পদার্থবিজ্ঞান</td>
+                  <td>নবম (বিজ্ঞান - ক)</td>
+                  <td>সকাল ১০:০০ - ১:০০</td>
+                  <td>রুম ৩০২</td>
+                  <td>মাগুরিব আলী</td>
+                  <td>১০০</td>
+                  <td class="no-print">
+                    <button class="btn-icon btn-sm" onclick="editExamRow(this)"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-icon btn-sm text-danger" onclick="deleteExamRow(this)"><i class="fa-solid fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>১৭ মে ২০২৬ (মঙ্গলবার)</strong></td>
+                  <td><span class="badge-exam annual">অর্ধবার্ষিকী</span></td>
+                  <td>উচ্চতর গণিত</td>
+                  <td>নবম (বিজ্ঞান - ক)</td>
+                  <td>সকাল ১০:০০ - ১:০০</td>
+                  <td>রুম ৩০৪</td>
+                  <td>রফিকুল ইসলাম</td>
+                  <td>১০০</td>
+                  <td class="no-print">
+                    <button class="btn-icon btn-sm" onclick="editExamRow(this)"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-icon btn-sm text-danger" onclick="deleteExamRow(this)"><i class="fa-solid fa-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>২০ মে ২০২৬ (শুক্রবার)</strong></td>
+                  <td><span class="badge-exam weekly">সাপ্তাহিক টেস্ট</span></td>
+                  <td>রসায়ন</td>
+                  <td>নবম (বিজ্ঞান - ক)</td>
+                  <td>সকাল ১০:০০ - ১১:৩০</td>
+                  <td>রুম ৩০১</td>
+                  <td>ড. কামরুল হাসান</td>
+                  <td>৫০</td>
+                  <td class="no-print">
+                    <button class="btn-icon btn-sm" onclick="editExamRow(this)"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-icon btn-sm text-danger" onclick="deleteExamRow(this)"><i class="fa-solid fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৬: স্মার্ট লাইভ ক্লাস (Smart Live Class)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-liveclass">
+        <div class="liveclass-banner glass-card">
+          <div class="live-status-header">
+            <span class="live-pulse">🔴 সরাসরি সম্প্রচারিত ক্লাস</span>
+            <h2>সশিবা স্মার্ট ভার্চুয়াল ক্লাসরুম</h2>
+            <div class="live-timer-box">
+              <span>সময় অতিবাহিত: <strong>২৫:৪০ মি.</strong></span>
+            </div>
+          </div>
+
+          <div class="live-details-grid">
+            <div class="ld-box">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <div>
+                <strong>শিক্ষক:</strong> মাগুরিব আলী
+              </div>
+            </div>
+            <div class="ld-box">
+              <i class="fa-solid fa-book"></i>
+              <div>
+                <strong>বিষয়:</strong> পদার্থবিজ্ঞান (অধ্যায় ৩)
+              </div>
+            </div>
+            <div class="ld-box">
+              <i class="fa-solid fa-users"></i>
+              <div>
+                <strong>অনলাইন উপস্থিতি:</strong> ৪৫/৪৮ শিক্ষার্থী (৯৩%)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-two-col margin-top">
+          <!-- Live Interactive Student Queue -->
+          <div class="glass-card panel-box">
+            <h3><i class="fa-solid fa-hand"></i> হাত তোলা ও উত্তরদাতা শিক্ষার্থী তালিকা</h3>
+            <div class="student-queue-list">
+              <div class="sq-item">
+                <div class="sq-avatar">MA</div>
+                <div class="sq-info">
+                  <strong>আব্দুল্লাহ আল মামুন (রোল ১০১)</strong>
+                  <small>প্রশ্ন: "নিউটনের ৩য় সূত্রে প্রতিক্রিয়া বলের দিক কেন বিপরীত?"</small>
+                </div>
+                <button class="btn-primary btn-sm" onclick="allowStudentAnswer('আব্দুল্লাহ আল মামুন')"><i class="fa-solid fa-microphone"></i> সুযোগ দিন</button>
+              </div>
+
+              <div class="sq-item">
+                <div class="sq-avatar">FS</div>
+                <div class="sq-info">
+                  <strong>ফারহানা আক্তার সাথী (রোল ১০২)</strong>
+                  <small>উত্তর দেওয়ার জন্য প্রস্তুত</small>
+                </div>
+                <button class="btn-green btn-sm" onclick="allowStudentAnswer('ফারহানা আক্তার সাথী')"><i class="fa-solid fa-check"></i> গ্রহণ করুন</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Class Tools & Controls -->
+          <div class="glass-card panel-box">
+            <h3><i class="fa-solid fa-sliders"></i> লাইভ ক্লাস কন্ট্রোল প্যানেল</h3>
+            <div class="live-controls-grid">
+              <button class="btn-outline" onclick="alert('সশিবা কুইজ পোল স্টার্ট করা হয়েছে!')"><i class="fa-solid fa-circle-question"></i> তাৎক্ষণিক কুইজ পোল</button>
+              <button class="btn-outline" onclick="alert('স্মার্ট হোয়াইটবোর্ড চালু হচ্ছে...')"><i class="fa-solid fa-chalkboard"></i> ডিজিটায়ার্ড হোয়াইটবোর্ড</button>
+              <button class="btn-outline" onclick="triggerConfetti()"><i class="fa-solid fa-wand-magic-sparkles"></i> বাহবা / Confetti সাউন্ড</button>
+              <button class="btn-danger" onclick="alert('লাইভ ক্লাস সমাপ্ত ঘোষণা করা হয়েছে।')"><i class="fa-solid fa-stop"></i> ক্লাস শেষ করুন</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৭: পূর্বের তথ্য (History & Archives)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-history">
+        <div class="glass-card panel-box">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-box-archive"></i> সংরক্ষিত পুরোনো তথ্য ও আর্কাইভস</h3>
+            <small>যেকোনো রেকর্ডে ক্লিক করলে সুন্দর **A4 সাইজ মডালে** প্রিভিউ হবে। `Esc` চাপলে বন্ধ হবে।</small>
+          </div>
+
+          <!-- Search & Filter Bar for History -->
+          <div class="history-filter-bar">
+            <input type="text" id="histSearch" class="custom-input" placeholder="তারিখ, বিষয়, শিক্ষক বা শ্রেণি দিয়ে খুঁজুন..." onkeyup="filterHistoryGrid()" />
+            <select id="histDept" class="custom-select-sm" onchange="filterHistoryGrid()">
+              <option value="all">সব বিভাগ</option>
+              <option value="science">বিজ্ঞান</option>
+              <option value="arts">মানবিক</option>
+            </select>
+            <select id="histClass" class="custom-select-sm" onchange="filterHistoryGrid()">
+              <option value="all">সব শ্রেণি</option>
+              <option value="9">নবম শ্রেণি</option>
+              <option value="10">দশম শ্রেণি</option>
+            </select>
+          </div>
+
+          <!-- History Grid Cards -->
+          <div class="history-grid" id="historyGridContainer">
+            
+            <div class="history-card glass-card" onclick="openA4HistoryModal('অধ্যায় ১ লেসন প্ল্যান ও রেকর্ড', '২০২৬-০৫-১০', 'পদার্থবিজ্ঞান', 'নবম (ক)', 'মাগুরিব আলী')">
+              <div class="hc-icon"><i class="fa-solid fa-file-lines"></i></div>
+              <div class="hc-details">
+                <h4>অধ্যায় ১: ভৌত রাশি ও পরিমাপ (লেসন প্ল্যান)</h4>
+                <span>তারিখ: ১০ মে ২০২৬ | শ্রেণি: নবম (ক)</span>
+                <small>শিক্ষক: মাগুরিব আলী | স্ট্যাটাস: সংরক্ষিত ✅</small>
+              </div>
+              <button class="btn-sm btn-outline"><i class="fa-solid fa-eye"></i> A4 ভিউ</button>
+            </div>
+
+            <div class="history-card glass-card" onclick="openA4HistoryModal('অর্ধবার্ষিকী কুইজ ও পারফরম্যান্স রিপোর্ট', '২০২৬-০৪-২২', 'উচ্চতর গণিত', 'নবম (খ)', 'রফিকুল ইসলাম')">
+              <div class="hc-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+              <div class="hc-details">
+                <h4>অর্ধবার্ষিকী মডেল টেস্ট রেজাল্ট ও এটেনডেন্স</h4>
+                <span>তারিখ: ২২ এপ্রিল ২০২৬ | শ্রেণি: নবম (খ)</span>
+                <small>শিক্ষক: রফিকুল ইসলাম | স্ট্যাটাস: সংরক্ষিত ✅</small>
+              </div>
+              <button class="btn-sm btn-outline"><i class="fa-solid fa-eye"></i> A4 ভিউ</button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৮: স্মার্ট প্রোগ্রেস (Smart Progress & Analytics)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-progress">
+        <div class="glass-card panel-box">
+          <div class="panel-header">
+            <h3><i class="fa-solid fa-chart-pie"></i> স্মার্ট একাডেমিক প্রোগ্রেস ও অ্যানালিটিক্স</h3>
+            <div class="term-toggle-group">
+              <button class="term-btn active" onclick="switchProgressTab('daily', this)">দৈনিক</button>
+              <button class="term-btn" onclick="switchProgressTab('weekly', this)">সাপ্তাহিক</button>
+              <button class="term-btn" onclick="switchProgressTab('monthly', this)">মাসিক</button>
+              <button class="term-btn" onclick="switchProgressTab('annual', this)">বার্ষিক</button>
+            </div>
+          </div>
+
+          <!-- Subject Progress Bars & Analytics -->
+          <div class="progress-analytics-grid">
+            <div class="chart-box glass-card">
+              <h4>বিষয়ের অগ্রগতি বিশ্লেষণ (Subject Progress Bar)</h4>
+              <div class="subject-chart-list">
+                <div class="scl-item">
+                  <div class="scl-label"><span>পদার্থবিজ্ঞান</span> <strong>৮২%</strong></div>
+                  <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 82%; background: #0067b7;"></div></div>
+                </div>
+
+                <div class="scl-item">
+                  <div class="scl-label"><span>উচ্চতর গণিত</span> <strong>৭৫%</strong></div>
+                  <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 75%; background: #10b981;"></div></div>
+                </div>
+
+                <div class="scl-item">
+                  <div class="scl-label"><span>রসায়ন</span> <strong>৬৮%</strong></div>
+                  <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 68%; background: #8b5cf6;"></div></div>
+                </div>
+
+                <div class="scl-item">
+                  <div class="scl-label"><span>জীববিজ্ঞান</span> <strong>৯০%</strong></div>
+                  <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 90%; background: #f59e0b;"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Feedback & Praise Box -->
+            <div class="ai-feedback-box glass-card">
+              <h4><i class="fa-solid fa-wand-magic-sparkles"></i> AI শিক্ষক ফিডব্যাক ও মূল্যায়ন মন্তব্য</h4>
+              
+              <div class="feedback-card praise">
+                <i class="fa-solid fa-trophy"></i>
+                <div>
+                  <strong>উচ্চ পারফরম্যান্সের প্রশংসাপত্র (Top Performers):</strong>
+                  <p>আব্দুল্লাহ আল মামুন এবং ফারহানা সাথী পদার্থবিজ্ঞান ও গণিতে ধারাবাহিক ১০০% নম্বর অর্জন করেছে। 🌟</p>
+                </div>
+              </div>
+
+              <div class="feedback-card warning">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                  <strong>AI উন্নয়ন পরামর্শ (Improvement Guide):</strong>
+                  <p>তানজিল আহমেদ বল ও গতির অংকগুলোতে খানিকটা পিছিয়ে পড়েছে। তার জন্য ৩টি সমাধানসহ ওয়ার্কশীট সাজেস্ট করা হচ্ছে।</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           সেকশন ৯: সেটিংস (Settings)
+           =================================================================== -->
+      <section class="content-section hidden" id="section-settings">
+        <div class="glass-card panel-box">
+          <h3><i class="fa-solid fa-sliders"></i> সিস্টেম সেটিংস ও কনফিগারেশন প্যানেল</h3>
+          
+          <div class="settings-grid">
+            <div class="set-card glass-card">
+              <h4>সাধারণ ড্যাশবোর্ড সেটিংস</h4>
+              <label class="set-toggle">
+                <input type="checkbox" checked />
+                <span>পুশ নোটিফিকেশন চালু রাখুন (ক্লাস শুরু হওয়ার ১০ মিনিট আগে)</span>
+              </label>
+              <label class="set-toggle">
+                <input type="checkbox" checked />
+                <span>অভিভাবকদের ইমেইল ও SMS অ্যালার্ট স্বয়ংক্রিয়ভাবে পাঠান</span>
+              </label>
+            </div>
+
+            <div class="set-card glass-card">
+              <h4>একাডেমিক সেশন ও টার্ম কাস্টমাইজেশন</h4>
+              <div class="form-group">
+                <label>চলমান শিক্ষাবর্ষ:</label>
+                <input type="text" class="custom-input" value="২০২৬-২০২৭" />
+              </div>
+              <button class="btn-primary btn-sm margin-top"><i class="fa-solid fa-floppy-disk"></i> সেটিংস সেভ করুন</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       [৩] মডাল পপআপ সিস্টেম (A4 History Modal & Resources)
+       ========================================== -->
+
+  <!-- A4 Paper History Preview Modal -->
+  <div class="modal-overlay hidden" id="a4HistoryModal">
+    <div class="a4-modal-content">
+      <div class="a4-modal-header no-print">
+        <h3><i class="fa-solid fa-print"></i> A4 সংরক্ষিত তথ্য প্রিভিউ</h3>
+        <small class="kbd-hint">(`Esc` কি চাপলে বন্ধ হবে)</small>
+        <button class="btn-icon" onclick="closeA4HistoryModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Printable A4 Document Body -->
+      <div class="a4-paper-page" id="a4PaperPrintBody">
+        <div class="a4-school-header">
+          <h2>সশিবা স্মার্ট মডেল ইন্সটিটিউট</h2>
+          <p>শিক্ষা বিভাগ ও কারিকুলাম আর্কাইভ | সশিবা শিক্ষা বাতায়ন</p>
+          <hr />
+        </div>
+
+        <div class="a4-doc-details">
+          <h3 id="a4DocTitle">অধ্যায় ১ লেসন প্ল্যান ও রেকর্ড</h3>
+          <div class="a4-meta-grid">
+            <div><strong>তারিখ:</strong> <span id="a4DocDate">২০২৬-০৫-১০</span></div>
+            <div><strong>বিষয়:</strong> <span id="a4DocSubject">পদার্থবিজ্ঞান</span></div>
+            <div><strong>শ্রেণি/শাখা:</strong> <span id="a4DocClass">নবম (ক)</span></div>
+            <div><strong>শিক্ষক:</strong> <span id="a4DocTeacher">মাগুরিব আলী</span></div>
+          </div>
+
+          <div class="a4-doc-text">
+            <h4>বিবরণ ও কার্যবিবরণী:</h4>
+            <p>উক্ত ক্লাসে স্লাইড ক্যালিকেলস এবং পরিমাপের ত্রুটি সম্পর্কিত তত্ত্ব বিস্তারিত আলোচনা করা হয়েছে। শিক্ষার্থীরা হাতে-কলমে যন্ত্রের সাহায্যে ভার্নিয়ার সমপাতন নির্ণয় করতে সক্ষম হয়েছে।</p>
+            
+            <h4>মূল্যায়ন ফলাফল:</h4>
+            <p>মোট ৪২ জন শিক্ষার্থী অংশগ্রহণ করেছে। ক্লাসের গড় পারফরম্যান্স স্কোর: ৮.৫/১০।</p>
+          </div>
+        </div>
+
+        <div class="a4-signature-row">
+          <div class="sig-box">শিক্ষকের স্বাক্ষর</div>
+          <div class="sig-box">প্রধান শিক্ষকের অনুমোদন</div>
+        </div>
+      </div>
+
+      <div class="a4-modal-footer no-print">
+        <button class="btn-outline" onclick="closeA4HistoryModal()"><i class="fa-solid fa-xmark"></i> বন্ধ করুন (Esc)</button>
+        <button class="btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> A4 প্রিন্ট ডাউনলোড</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resource Details Modal (Videos, Notes, Quiz) -->
+  <div class="modal-overlay hidden" id="resourceModal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 id="resModalTitle"><i class="fa-solid fa-folder-open"></i> রিসোর্স সামগ্রী</h3>
+        <button class="btn-icon" onclick="closeResourceModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="resModalBody">
+        <!-- Dynamic resource items will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Syllabus Link Comprehensive Overlay Modal -->
+  <div class="modal-overlay hidden" id="syllLinkModal">
+    <div class="modal-card glass-card lg">
+      <div class="modal-header">
+        <h3 id="syllLinkTitle"><i class="fa-solid fa-link"></i> সিলেবাস বিস্তারিত ও পারদর্শিতার ইনসাইট</h3>
+        <button class="btn-icon" onclick="closeSyllabusLinkModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="sl-grid">
+          <div class="sl-box">
+            <h4><i class="fa-solid fa-chart-line"></i> প্রোগ্রেস বার</h4>
+            <div class="progress-bar-container lg">
+              <div class="progress-bar-fill" style="width: 80%; background: var(--primary-blue);"></div>
+            </div>
+            <p style="margin-top:6px;">অধ্যায়ের ৮০% সম্পন্ন হয়েছে</p>
+          </div>
+
+          <div class="sl-box">
+            <h4><i class="fa-solid fa-shapes"></i> পারদর্শিতার সূচক (PI Indicator)</h4>
+            <p><span class="pi-badge"><i class="fa-solid fa-shapes"></i> PI: 🟢 চতুর্ভুজ (উচ্চ দক্ষতা অর্জন)</span></p>
+          </div>
+
+          <div class="sl-box">
+            <h4><i class="fa-solid fa-clock-rotate-left"></i> বিগত বছরের প্রশ্ন (PYQ)</h4>
+            <ul>
+              <li>ঢাকা বোর্ড ২৫ - সৃজনশীল প্রশ্ন ১ (ভার্নিয়ার সমপাতন)</li>
+              <li>চট্টগ্রাম বোর্ড ২৪ - প্রশ্ন ৪ (স্লাইড ক্যালিকেলস)</li>
+            </ul>
+          </div>
+
+          <div class="sl-box">
+            <h4><i class="fa-solid fa-robot"></i> AI রিকমেন্ডেশন</h4>
+            <p>শিক্ষার্থীদের আপেক্ষিক ত্রুটি নির্ণয়ের অংকে আরও ২ টি অতিরিক্ত ক্লাস নেওয়ার পরামর্শ দেওয়া হচ্ছে।</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Modal -->
+  <div class="modal-overlay hidden" id="notifModal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bell"></i> নোটিফিকেশন ও সতর্কতা হাব</h3>
+        <button class="btn-icon" onclick="toggleNotifModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="notif-list">
+          <div class="notif-item alert">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <strong>ক্লাস শুরু হওয়ার সতর্কতা (১০ মিনিট বাকি)</strong>
+              <p>সকাল ১০:০০ টায় নবম শ্রেণির পদার্থবিজ্ঞান ক্লাস শুরু হবে।</p>
+            </div>
+          </div>
+          <div class="notif-item danger">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <strong>উপস্থিতি সতর্কতা (<৭৫%)</strong>
+              <p>তানজিল আহমেদের উপস্থিতি ৭২% এ নেমে এসেছে। অভিভাবককে বার্তা পাঠানো হয়েছে।</p>
+            </div>
+          </div>
+          <div class="notif-item ai">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <div>
+              <strong>AI রিভিশন রিমাইন্ডার</strong>
+              <p>অধ্যায় ২ (গতি) এর ৩ দিনের Spaced Repetition কুইজ তৈরি করা হয়েছে।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Student Attendance & Performance Modal (Redesigned Modern Look) -->
+  <div class="modal-overlay hidden" id="editAttendanceModal">
+    <div class="modal-card glass-card lg">
+      <div class="modal-header">
+        <div class="modal-title-with-avatar">
+          <div class="stu-edit-avatar" id="editAttAvatarPreview">MA</div>
+          <div>
+            <h3 id="editModalHeaderTitle">শিক্ষার্থী তথ্য ও বিষয়ভিত্তিক উপস্থিতি সম্পাদনা</h3>
+            <span class="section-subtitle">সশিবা পারফরম্যান্স ও এটেনডেন্স মডিউল</span>
+          </div>
+        </div>
+        <button class="btn-icon" onclick="closeEditAttendanceModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="modal-body">
+        <form id="editAttForm" onsubmit="saveAttendanceEdit(event)">
+          <div class="edit-modal-grid">
+            
+            <!-- Left Panel: Basic Student Info & Score -->
+            <div class="em-panel glass-card-sm">
+              <h4 class="em-section-title"><i class="fa-solid fa-id-card"></i> শিক্ষার্থী পরিচিতি</h4>
+              
+              <div class="form-group margin-bottom">
+                <label><i class="fa-solid fa-hashtag"></i> রোল নম্বর:</label>
+                <input type="text" id="editAttRoll" class="custom-input w-100" required />
+              </div>
+
+              <div class="form-group margin-bottom">
+                <label><i class="fa-solid fa-user"></i> শিক্ষার্থীর নাম:</label>
+                <input type="text" id="editAttName" class="custom-input w-100" required />
+              </div>
+
+              <div class="form-group margin-bottom">
+                <label><i class="fa-solid fa-school"></i> শ্রেণি ও শাখা:</label>
+                <input type="text" id="editAttClass" class="custom-input w-100" value="নবম (ক)" required />
+              </div>
+
+              <div class="form-group margin-bottom">
+                <label><i class="fa-solid fa-star"></i> পার্টিসিপেশন নম্বর (১-১০):</label>
+                <input type="number" id="editAttScore" min="0" max="10" class="custom-input w-100" required />
+              </div>
+
+              <div class="form-group margin-bottom">
+                <label><i class="fa-solid fa-brain"></i> মনোযোগের মান:</label>
+                <select id="editAttAttention" class="custom-select w-100">
+                  <option value="high">উচ্চ ⭐ (High)</option>
+                  <option value="medium">মাঝারি (Medium)</option>
+                  <option value="low">কম ⚠️ (Low)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Right Panel: Subject-Wise Attendance Toggles -->
+            <div class="em-panel glass-card-sm">
+              <h4 class="em-section-title"><i class="fa-solid fa-book-open"></i> বিষয়ভিত্তিক উপস্থিতি ট্র্যাকার</h4>
+              <p class="em-hint">প্রতিটি বিষয়ে ক্লিক করে উপস্থিতি পরিবর্তন করুন:</p>
+
+              <div class="subject-toggle-grid">
+                <div class="st-item">
+                  <span>⚛️ পদার্থবিজ্ঞান</span>
+                  <span class="sub-chip present clickable-status" id="editSubPhysics" onclick="toggleModalSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span>
+                </div>
+
+                <div class="st-item">
+                  <span>📐 উচ্চতর গণিত</span>
+                  <span class="sub-chip present clickable-status" id="editSubMath" onclick="toggleModalSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span>
+                </div>
+
+                <div class="st-item">
+                  <span>🧪 রসায়ন</span>
+                  <span class="sub-chip present clickable-status" id="editSubChem" onclick="toggleModalSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span>
+                </div>
+
+                <div class="st-item">
+                  <span>🧬 জীববিজ্ঞান</span>
+                  <span class="sub-chip present clickable-status" id="editSubBio" onclick="toggleModalSubChip(this)"><i class="fa-solid fa-check"></i> উপস্থিত</span>
+                </div>
+              </div>
+
+              <div class="form-group margin-top">
+                <label><i class="fa-solid fa-comment-dots"></i> শিক্ষকের বিশেষ মন্তব্য:</label>
+                <textarea id="editAttComment" class="custom-input w-100" rows="3" placeholder="শিক্ষার্থীর পারফরম্যান্স বা উপস্থিতি নিয়ে মন্তব্য লিখুন..."></textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-actions-footer">
+            <button type="button" class="btn-outline" onclick="closeEditAttendanceModal()"><i class="fa-solid fa-xmark"></i> বাতিল</button>
+            <button type="submit" class="btn-primary"><i class="fa-solid fa-floppy-disk"></i> পরিবর্তন সংরক্ষণ করুন</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Subject Column Modal -->
+  <div class="modal-overlay hidden" id="addSubjectModal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-folder-plus"></i> নতুন বিষয় কলাম যুক্ত করুন</h3>
+        <button class="btn-icon" onclick="closeAddSubjectModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="addNewSubjectColumn(event)">
+          <div class="form-group margin-bottom">
+            <label>বিষয়ের নাম (e.g. 📖 বাংলা, 🗣️ ইংরেজি, 💻 ICT, 🕋 ইসলাম শিক্ষা):</label>
+            <input type="text" id="newSubjectTitleInput" class="custom-input w-100" placeholder="e.g. 📖 বাংলা ১ম পত্র" required />
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+            <button type="button" class="btn-outline" onclick="closeAddSubjectModal()">বাতিল</button>
+            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> কলাম যুক্ত করুন</button>
+          </div>
+  <!-- Delete Subject Column Modal -->
+  <div class="modal-overlay hidden" id="deleteSubjectModal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-folder-minus"></i> বিষয় কলাম বাদ দিন</h3>
+        <button class="btn-icon" onclick="closeDeleteSubjectModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="confirmDeleteSubjectFromModal(event)">
+          <div class="form-group margin-bottom">
+            <label>যে বিষয় কলামটি বাদ দিতে চান নির্বাচন করুন:</label>
+            <select id="deleteSubjectSelect" class="custom-select w-100"></select>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+            <button type="button" class="btn-outline" onclick="closeDeleteSubjectModal()">বাতিল</button>
+            <button type="submit" class="btn-danger"><i class="fa-solid fa-trash"></i> বিষয় কলাম মুছুন</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Student Row Modal -->
+  <div class="modal-overlay hidden" id="addStudentModal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-plus"></i> নতুন শিক্ষার্থী রো যুক্ত করুন</h3>
+        <button class="btn-icon" onclick="closeAddStudentModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="saveNewStudentRow(event)">
+          <div class="form-group margin-bottom">
+            <label><i class="fa-solid fa-hashtag"></i> রোল নম্বর:</label>
+            <input type="text" id="newStuRoll" class="custom-input w-100" placeholder="e.g. ১০৫" required />
+          </div>
+
+          <div class="form-group margin-bottom">
+            <label><i class="fa-solid fa-user"></i> শিক্ষার্থীর নাম:</label>
+            <input type="text" id="newStuName" class="custom-input w-100" placeholder="e.g. তানভির হোসেন" required />
+          </div>
+
+          <div class="form-group margin-bottom">
+            <label><i class="fa-solid fa-school"></i> শ্রেণি ও শাখা:</label>
+            <input type="text" id="newStuClass" class="custom-input w-100" value="নবম (ক)" required />
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+            <button type="button" class="btn-outline" onclick="closeAddStudentModal()">বাতিল</button>
+            <button type="submit" class="btn-green"><i class="fa-solid fa-plus"></i> শিক্ষার্থী যুক্ত করুন</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Script -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --dark: #0f172a;
+  --text-gray: #64748b;
+  --success: #10b981;
+  --bg-form: #ffffff;
+  --bg-side: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Hind Siliguri", sans-serif;
+  background: var(--bg-side);
+  color: var(--dark);
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* বাম পাশ: ফর্ম */
+.form-side {
+  width: 45%;
+  background: var(--bg-form);
+  padding: 40px;
+  overflow-y: auto;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.02);
+  z-index: 10;
+}
+.form-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 40px;
+}
+
+/* প্রগ্রেস বার */
+.progress-container {
+  margin-bottom: 35px;
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: var(--text-gray);
+}
+.progress-labels span.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+.progress-bar-bg {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+.progress-fill {
+  height: 100%;
+  width: 33%;
+  background: var(--primary);
+  border-radius: 10px;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ইনপুট স্টাইল */
+.step-title {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: var(--dark);
+}
+.field {
+  margin-bottom: 18px;
+}
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #475569;
+}
+input,
+select,
+.smart-input {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: 0.3s;
+}
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* প্যাকেজ কার্ড */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pkg-card {
+  border: 1.5px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.pkg-card:hover {
+  background: #f8fafc;
+}
+.pkg-card input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+/* বাটন */
+.actions {
+  margin-top: 30px;
+}
+.btn-next,
+.btn-finish {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+.btn-finish {
+  background: var(--success);
+}
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+.btn-back {
+  background: #f1f5f9;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ডান পাশ: প্রিভিউ */
+.preview-side {
+  width: 55%;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+}
+.preview-wrapper {
+  width: 100%;
+  max-width: 500px;
+  z-index: 5;
+}
+
+/* ইনভয়েস কার্ড */
+.invoice-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.inv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+.inv-logo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.inv-logo i {
+  font-size: 30px;
+  color: var(--primary);
+}
+.inv-logo h4 {
+  margin: 0;
+  font-size: 18px;
+}
+.status-tag {
+  font-size: 12px;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.inv-info-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+}
+.info-group label,
+.inst-details label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-gray);
+  display: block;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.info-group p,
+.inst-details p {
+  margin: 3px 0;
+  font-size: 13px;
+}
+
+.inst-details {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.pkg-table {
+  margin: 25px 0;
+}
+.table-head {
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+#pv-pkgs {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+#pv-pkgs li {
+  font-size: 13px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f8fafc;
+  color: #475569;
+}
+.empty-msg {
+  font-style: italic;
+  color: #cbd5e1 !important;
+}
+
+.billing-summary {
+  background: #1e293b;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+}
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+.bill-row.grand {
+  opacity: 1;
+  font-size: 18px;
+  font-weight: bold;
+  border-top: 1px solid #334155;
+  padding-top: 10px;
+  margin-top: 10px;
+  color: var(--success);
+}
+
+.inv-footer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--text-gray);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* সাকসেস সেকশন */
+.success-msg {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+  animation: scaleIn 0.5s ease;
+}
+.confetti-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.action-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+.p-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 13px;
+}
+.p-btn.download {
+  background: var(--primary);
+  color: #fff;
+}
+.p-btn.print {
+  background: #fff;
+  color: var(--dark);
+}
+.p-btn.reset {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+.hidden-step {
+  display: none;
+}
+.step {
+  display: none;
+}
+.step.active {
+  display: block;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media print {
+  .form-side,
+  .action-btns,
+  .success-msg {
+    display: none !important;
+  }
+  .preview-side {
+    background: #fff;
+    padding: 0;
+    width: 100%;
+  }
+  .invoice-box {
+    box-shadow: none;
+    border: 1px solid #eee;
+  }
+  .billing-summary {
+    background: #eee !important;
+    color: #000 !important;
+  }
+}

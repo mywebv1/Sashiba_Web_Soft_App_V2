@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="bn">
+  <!-- =========================================================================
+                      সশিবা স্মার্ট শিক্ষা বাতায়ন - প্রশ্নপত্র আর্কিটেক্ট হেডার
+       ========================================================================= -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>প্রশ্নপত্র আর্কিটেক্ট | স্মার্ট শিক্ষা বাতায়ন</title>
+    <!-- Hind Siliguri বাংলা ফন্ট -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ফন্ট অসম আইকন লাইব্রেরি -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- মেইন কন্টেইনার (লেআউট গ্রিড) -->
+    <div class="app-container">
+      <!-- ==========================================
+           [১] সাইডবার ন্যাভিগেশন মেনু (Sidebar Menu)
+           ========================================== -->
+      <aside class="sidebar">
+        <!-- ব্র্যান্ড লোগো এবং টাইটেল -->
+        <!-- ব্র্যান্ড লোগো এবং টাইটেল -->
+        <div class="brand" onclick="showSection('builder')">
+          <div class="logo"><i class="fa-solid fa-file-pen"></i></div>
+          <div class="brand-text">
+            <strong id="brand-main">স্মার্ট শিক্ষা</strong>
+            <span id="brand-sub">বাতায়ন</span>
+          </div>
+        </div>
+        <!-- ন্যাভিগেশন অপশনসমূহ -->
+        <nav class="nav-menu">
+          <a
+            href="javascript:void(0)"
+            class="nav-item active"
+            onclick="showSection('builder')"
+            id="sb-dashboard"
+          >
+            <i class="fa-solid fa-house"></i>
+            <span id="nav-dashboard-txt">ড্যাশবোর্ড</span>
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="newQuestion()"
+            id="sb-new"
+          >
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span id="nav-new-txt">নতুন প্রশ্নপত্র</span>
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="showSection('library')"
+            id="sb-library"
+          >
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span id="nav-library-txt">পুরোনো প্রশ্নপত্র</span>
+          </a>
+        </nav>
+
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <div class="sidebar-user">
+          <div class="avatar">MA</div>
+          <div class="info">
+            <strong class="user-name">মাগুরিব আলী</strong>
+            <small class="user-role" id="sb-role">প্রধান শিক্ষক</small>
+          </div>
+        </div>
+      </aside>
+      <!-- ==================== সাইডবার শেষ ==================== -->
+
+      <!-- ==========================================
+           [২] বিল্ডার সেকশন (প্রশ্নপত্র তৈরি করার জায়গা)
+           ========================================== -->
+      <main class="main-content" id="mainBuilder">
+        <!-- টপ বার ও এক্সপোর্ট ড্রপডাউন -->
+        <header class="top-bar">
+          <h1 class="main-heading" id="hdr-title">প্রশ্নপত্র আর্কিটেক্ট</h1>
+          <div class="actions" style="display: flex; gap: 10px">
+            <!-- ইংরেজি ও বাংলা ভাষা টগল বাটন -->
+            <button
+              class="btn btn-outline"
+              id="langToggleBtn"
+              onclick="toggleLanguage()"
+            >
+              <i class="fa-solid fa-globe"></i>
+              <span>English</span>
+            </button>
+
+            <div class="dropdown-wrapper">
+              <button
+                class="btn btn-primary btn-action-main"
+                onclick="toggleExportMenu()"
+                id="btn-save-text"
+              >
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span>সেভ ও এক্সপোর্ট</span>
+                <i class="fa-solid fa-chevron-down arrow-icon"></i>
+              </button>
+
+              <!-- এক্সপোর্ট ড্রপডাউন মেনু -->
+              <div
+                class="export-dropdown"
+                id="exportMenu"
+                style="display: none"
+              >
+                <button onclick="saveToLibrary()">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <span id="exp-save">লাইব্রেরিতে সেভ</span>
+                </button>
+                <button onclick="window.print()">
+                  <i class="fa-solid fa-print"></i>
+                  <span id="exp-print">প্রিন্ট / PDF</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- ==========================================
+             [২.১] বিল্ডার ওয়ার্কস্পেস (এডিটর + প্রিভিউ)
+             ========================================== -->
+        <div class="workspace">
+          <!-- ==================== বাম প্যানেল: ফর্ম এডিটর শুরু ==================== -->
+          <section class="editor-panel">
+            <div class="editor-scroll">
+              <!-- ==================== ১. প্রতিষ্ঠানের তথ্য শুরু ==================== -->
+              <details class="card" open>
+                <summary class="card-head">
+                  <i class="fa-solid fa-school"></i>
+                  <span id="card-inst-title">১. প্রতিষ্ঠানের তথ্য</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="lbl" id="lbl-instname"
+                      >প্রতিষ্ঠানের নাম</label
+                    >
+                    <input
+                      type="text"
+                      id="instName"
+                      placeholder="নাম লিখুন..."
+                      oninput="sync()"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="lbl" id="lbl-instaddr"
+                      >প্রতিষ্ঠানের ঠিকানা</label
+                    >
+                    <input
+                      type="text"
+                      id="instAddr"
+                      placeholder="ঠিকানা লিখুন..."
+                      oninput="sync()"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="lbl" id="lbl-regcode"
+                        >রেজিস্ট্রেশন কোড</label
+                      >
+                      <input
+                        type="text"
+                        id="regCode"
+                        placeholder="কোড লিখুন..."
+                        oninput="sync()"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="lbl" id="lbl-estyear">প্রতিষ্ঠাকাল</label>
+                      <input
+                        type="text"
+                        id="estYear"
+                        placeholder="সাল লিখুন..."
+                        oninput="sync()"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <!-- ==================== ১. প্রতিষ্ঠানের তথ্য শেষ ==================== -->
+
+              <!-- ==================== ২. একাডেমিক তথ্য শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span id="card-acad-title">২. একাডেমিক তথ্য</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <label class="lbl-section" id="lbl-board">শিক্ষা বোর্ড</label>
+                  <div class="radio-group">
+                    <label class="sq-check"
+                      ><input type="radio" name="board" checked /><span></span>
+                      NCTB</label
+                    >
+                    <label class="sq-check"
+                      ><input type="radio" name="board" /><span></span>
+                      <span id="board-madrasha">মাদ্রাসা</span></label
+                    >
+                    <label class="sq-check"
+                      ><input type="radio" name="board" /><span></span>
+                      <span id="board-tech">কারিগরি</span></label
+                    >
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="lbl" id="lbl-class">শ্রেণি নির্বাচন</label>
+                      <select
+                        id="classSelect"
+                        onchange="loadSubjects()"
+                      ></select>
+                    </div>
+                    <div class="form-group">
+                      <label class="lbl" id="lbl-subject">বিষয় নির্বাচন</label>
+                      <select
+                        id="subjectSelect"
+                        onchange="
+                          loadChapters();
+                          sync();
+                        "
+                      ></select>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <!-- ==================== ২. একাডেমিক তথ্য শেষ ==================== -->
+
+              <!-- ==================== ৩. অধ্যায় ও পাঠ শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-book-open"></i>
+                  <span id="card-chapter-title">৩. অধ্যায় ও পাঠ</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <label class="lbl-section" id="lbl-select-chapter"
+                    >অধ্যায় নির্বাচন করুন:</label
+                  >
+                  <div class="chapter-list" id="chapterContainer">
+                    <!-- JS থেকে আসবে -->
+                  </div>
+                  <div id="topicContainer" class="topic-section">
+                    <!-- অধ্যায় সিলেক্ট করলে টপিক আসবে -->
+                  </div>
+                  <div class="form-group" style="margin-top: 12px">
+                    <label class="lbl" id="lbl-examtime"
+                      >পরীক্ষার সময় (মিনিট)</label
+                    >
+                    <input
+                      type="number"
+                      id="examTime"
+                      value="40"
+                      oninput="sync()"
+                    />
+                  </div>
+                </div>
+              </details>
+              <!-- ==================== ৩. অধ্যায় ও পাঠ শেষ ==================== -->
+
+              <!-- ==================== ৪. প্রশ্নের সংখ্যা ও মান শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-list-check"></i>
+                  <span id="card-qtype-title">৪. প্রশ্নের সংখ্যা ও মান</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <div class="q-grid-header">
+                    <span id="qh-type">প্রশ্নের ধরন</span>
+                    <span id="qh-count">সংখ্যা</span>
+                    <span id="qh-mark">মান</span>
+                  </div>
+                  <div id="qConfigList"></div>
+                </div>
+              </details>
+              <!-- ==================== ৪. প্রশ্নের সংখ্যা ও মান শেষ ==================== -->
+
+              <!-- ==================== ৫. কঠিনতার স্তর শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-brain"></i>
+                  <span id="card-diff-title">৫. কঠিনতার স্তর</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <div class="difficulty-container">
+                    <div class="diff-card easy">
+                      <span class="diff-label" id="diff-easy">সহজ</span>
+                      <div class="diff-val">
+                        <input type="number" value="30" /> %
+                      </div>
+                    </div>
+                    <div class="diff-card medium">
+                      <span class="diff-label" id="diff-medium">মাঝারি</span>
+                      <div class="diff-val">
+                        <input type="number" value="50" /> %
+                      </div>
+                    </div>
+                    <div class="diff-card hard">
+                      <span class="diff-label" id="diff-hard">কঠিন</span>
+                      <div class="diff-val">
+                        <input type="number" value="20" /> %
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <!-- ==================== ৫. কঠিনতার স্তর শেষ ==================== -->
+
+              <!-- ==================== ৬. আউটপুট সেট শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-shuffle"></i>
+                  <span id="card-set-title">৬. আউটপুট সেট (সাফল)</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <div class="set-grid">
+                    <label class="sq-check"
+                      ><input type="checkbox" checked /><span></span> Set
+                      A</label
+                    >
+                    <label class="sq-check"
+                      ><input type="checkbox" /><span></span> Set B</label
+                    >
+                    <label class="sq-check"
+                      ><input type="checkbox" /><span></span> Set C</label
+                    >
+                    <label class="sq-check"
+                      ><input type="checkbox" /><span></span> Set D</label
+                    >
+                  </div>
+                  <div class="shuffle-details">
+                    <label class="lbl" id="lbl-shuffle">সাফল অপশন:</label>
+                    <label class="sq-check small"
+                      ><input type="checkbox" checked /><span></span>
+                      <span id="sh-mcq">নৈর্ব্যক্তিক</span></label
+                    >
+                    <label class="sq-check small"
+                      ><input type="checkbox" checked /><span></span>
+                      <span id="sh-one">এক কথায় উত্তর</span></label
+                    >
+                    <label class="sq-check small"
+                      ><input type="checkbox" checked /><span></span>
+                      <span id="sh-short">অতি সংক্ষিপ্ত</span></label
+                    >
+                    <label class="sq-check small"
+                      ><input type="checkbox" checked /><span></span>
+                      <span id="sh-brief">সংক্ষিপ্ত</span></label
+                    >
+                  </div>
+                </div>
+              </details>
+              <!-- ==================== ৬. আউটপুট সেট শেষ ==================== -->
+
+              <!-- ==================== ৭. উত্তর ও ব্যাখ্যা শুরু ==================== -->
+              <details class="card">
+                <summary class="card-head">
+                  <i class="fa-solid fa-check-double"></i>
+                  <span id="card-ans-title">৭. উত্তর ও ব্যাখ্যা</span>
+                  <i class="fa-solid fa-chevron-down arrow-sm"></i>
+                </summary>
+                <div class="card-body">
+                  <label class="toggle-switch">
+                    <input
+                      type="checkbox"
+                      id="ansSheet"
+                      onchange="sync()"
+                      checked
+                    />
+                    <span class="slider"></span>
+                    <span class="toggle-txt" id="lbl-anssheet"
+                      >উত্তরপত্র তৈরি করুন</span
+                    >
+                  </label>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="ansExpl" checked />
+                    <span class="slider"></span>
+                    <span class="toggle-txt" id="lbl-ansexpl"
+                      >AI ব্যাখ্যাসহ (আবশ্যিক)</span
+                    >
+                  </label>
+                </div>
+              </details>
+              <!-- ==================== ৭. উত্তর ও ব্যাখ্যা শেষ ==================== -->
+
+              <!-- ==================== জেনারেট বাটন শুরু ==================== -->
+              <button class="btn-generate" onclick="generate()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span id="btn-generate-txt">প্রশ্নপত্র জেনারেট করুন</span>
+              </button>
+              <!-- ==================== জেনারেট বাটন শেষ ==================== -->
+            </div>
+          </section>
+          <!-- ==================== বাম প্যানেল শেষ ==================== -->
+
+          <!-- ==================== ডান প্যানেল: A4 প্রিভিউ শুরু ==================== -->
+          <section class="preview-panel">
+            <div class="preview-topbar">
+              <span class="preview-label" id="preview-label-txt">
+                <i class="fa-solid fa-eye"></i> লাইভ প্রিভিউ
+              </span>
+            </div>
+            <div class="canvas" id="printArea">
+              <!-- ==================== প্রথম পেজ (প্রশ্নপত্র) শুরু ==================== -->
+              <div class="a4-page">
+                <div class="paper-header-box">
+                  <h1 id="v-name">প্রতিষ্ঠানের নাম</h1>
+                  <p id="v-addr">ঠিকানা এখানে প্রদর্শিত হবে</p>
+                  <div class="exam-info-grid">
+                    <div class="info-item">
+                      <span id="vi-class">শ্রেণি:</span> <b id="v-class">-</b>
+                    </div>
+                    <div class="info-item">
+                      <span id="vi-sub">বিষয়:</span> <b id="v-sub">-</b>
+                    </div>
+                    <div class="info-item">
+                      <span id="vi-time">সময়:</span>
+                      <b id="v-time">৪০ মিনিট</b>
+                    </div>
+                    <div class="info-item">
+                      <span id="vi-total">পূর্ণমান:</span> <b id="v-total">০</b>
+                    </div>
+                  </div>
+                </div>
+                <div id="qContent" class="paper-content">
+                  <div class="empty-msg">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                    <span id="empty-msg-txt"
+                      >তথ্য পূরণ করে জেনারেট বাটনে ক্লিক করুন...</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- ==================== প্রথম পেজ শেষ ==================== -->
+
+              <!-- ==================== উত্তরপত্র পেজ শুরু ==================== -->
+              <div id="ansPage" class="a4-page" style="display: none">
+                <h2 class="ans-title" id="ans-page-title">
+                  উত্তরপত্র ও AI ব্যাখ্যা
+                </h2>
+                <div id="aContent" class="paper-content"></div>
+              </div>
+              <!-- ==================== উত্তরপত্র পেজ শেষ ==================== -->
+            </div>
+          </section>
+          <!-- ==================== ডান প্যানেল শেষ ==================== -->
+        </div>
+      </main>
+      <!-- ==================== বিল্ডার সেকশন শেষ ==================== -->
+
+      <!-- ==========================================
+           [৩] লাইব্রেরি সেকশন (পুরোনো প্রশ্নপত্র)
+           ========================================== -->
+      <main class="main-content" id="mainLibrary" style="display: none">
+        <header class="top-bar">
+          <h1 class="main-heading" id="lib-title">পুরোনো প্রশ্নপত্র</h1>
+          <button class="btn btn-primary" onclick="showSection('builder')">
+            <i class="fa-solid fa-plus"></i>
+            <span id="lib-new-btn">নতুন প্রশ্নপত্র</span>
+          </button>
+        </header>
+        <div class="library-container">
+          <div class="library-grid" id="libraryGrid">
+            <!-- JS থেকে কার্ড তৈরি হবে -->
+          </div>
+        </div>
+      </main>
+      <!-- ==================== লাইব্রেরি সেকশন শেষ ==================== -->
+    </div>
+    <!-- মেইন কন্টেইনার শেষ -->
+
+    <!-- script.js এ ডাটাবেস, app.js এ সব নতুন লজিক -->
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

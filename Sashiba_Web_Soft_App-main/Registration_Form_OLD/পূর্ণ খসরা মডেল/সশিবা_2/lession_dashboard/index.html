@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="bn">
+  <!-- =========================================================================
+                        সশিবা স্মার্ট শিক্ষা বাতায়ন - লেসন আর্কিটেক্ট হেডার
+       ========================================================================= -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>লেসন আর্কিটেক্ট | স্মার্ট শিক্ষা বাতায়ন</title>
+    <!-- Hind Siliguri বাংলা ফন্ট -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ফন্ট অসম আইকন লাইব্রেরি -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- মেইন কন্টেইনার (লেআউট গ্রিড) -->
+    <div class="app-container">
+      <!-- ==========================================
+           [১] সাইডবার ন্যাভিগেশন মেনু (Sidebar Menu)
+           ========================================== -->
+      <aside class="sidebar">
+        <!-- ব্র্যান্ড লোগো এবং টাইটেল -->
+        <div class="brand">
+          <div class="logo"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="brand-text">
+            <strong>স্মার্ট শিক্ষা</strong><span>বাতায়ন</span>
+          </div>
+        </div>
+
+        <!-- ন্যাভিগেশন অপশনসমূহ -->
+        <nav class="nav-menu">
+          <a
+            href="javascript:void(0)"
+            class="nav-item active"
+            onclick="showSection('builder')"
+            id="sb-dashboard"
+          >
+            <i class="fa-solid fa-house"></i> ড্যাশবোর্ড
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="location.reload()"
+            id="sb-new"
+          >
+            <i class="fa-solid fa-file-circle-plus"></i> নতুন লেসন প্ল্যান
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="nav-item"
+            onclick="showSection('library')"
+            id="sb-library"
+          >
+            <i class="fa-solid fa-clock-rotate-left"></i> পুরোনো লেসন প্ল্যান
+          </a>
+        </nav>
+
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <div class="sidebar-user">
+          <div class="avatar">MA</div>
+          <div class="info">
+            <strong class="user-name">মাগুরিব আলী</strong>
+            <small class="user-role" id="sb-role">প্রধান শিক্ষক</small>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ==========================================
+           [২] প্রধান এডিটর এবং প্রিভিউ সেকশন (Main Workspace)
+           ========================================== -->
+      <main class="main-content" id="mainBuilder">
+        <!-- টপ বার ও এক্সপোর্ট ড্রপডাউন -->
+        <header class="top-bar">
+          <h1 class="main-heading" id="hdr-title">লেসন আর্কিটেক্ট</h1>
+          <div class="actions" style="display: flex; gap: 10px">
+            <!-- ইংরেজি ও বাংলা ভাষা টগল বাটন -->
+            <button
+              class="btn btn-outline"
+              id="langToggleBtn"
+              onclick="toggleLanguage()"
+            >
+              <i class="fa-solid fa-globe"></i>
+              <span>English</span>
+            </button>
+
+            <div class="dropdown-wrapper">
+              <button
+                class="btn btn-primary btn-action-main"
+                onclick="toggleExportMenu()"
+                id="btn-save-text"
+              >
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span>সেভ ও এক্সপোর্ট</span>
+                <i class="fa-solid fa-chevron-down arrow-icon"></i>
+              </button>
+
+              <!-- এক্সপোর্ট ড্রপডাউন মেনু -->
+              <div class="dropdown-menu" id="exportMenu">
+                <!-- ড্রাফট সেভ বাটন -->
+                <button
+                  class="dropdown-item"
+                  onclick="saveDraft()"
+                  id="opt-save"
+                >
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <div class="item-text">
+                    <strong>ড্রাফট সেভ করুন</strong>
+                    <small>লোকাল স্টোরেজে সংরক্ষিত হবে</small>
+                  </div>
+                </button>
+
+                <!-- MS Word ডাউনলোড বাটন -->
+                <button
+                  class="dropdown-item"
+                  onclick="handleSave()"
+                  id="opt-word"
+                >
+                  <i class="fa-solid fa-file-word"></i>
+                  <div class="item-text">
+                    <strong>MS Word ডাউনলোড</strong>
+                    <small>ডকুমেন্ট ফাইল হিসেবে এক্সপোর্ট</small>
+                  </div>
+                </button>
+
+                <!-- PDF প্রিন্ট বাটন -->
+                <button
+                  class="dropdown-item"
+                  onclick="window.print()"
+                  id="opt-pdf"
+                >
+                  <i class="fa-solid fa-file-pdf"></i>
+                  <div class="item-text">
+                    <strong>PDF ডাউনলোড / প্রিন্ট</strong>
+                    <small>A4 সাইজে এক্সপোর্ট করুন</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- ওয়ার্কস্পেস (ইনপুট এবং প্রিভিউ সাইড-বাই-সাইড) -->
+        <div class="workspace">
+          <!-- ইনপুট কন্ট্রোল প্যানেল -->
+          <section class="input-panel">
+            <!-- ১. প্রতিষ্ঠানের তথ্য কার্ড -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-school">
+                <i class="fa-solid fa-school"></i> প্রতিষ্ঠানের তথ্য
+              </summary>
+              <div class="card-body">
+                <input
+                  type="text"
+                  id="schName"
+                  class="form-input"
+                  placeholder="প্রতিষ্ঠানের নাম"
+                  oninput="updatePreview()"
+                />
+                <input
+                  type="text"
+                  id="schAddr"
+                  class="form-input"
+                  placeholder="ঠিকানা"
+                  oninput="updatePreview()"
+                />
+                <div class="grid-2">
+                  <input
+                    type="text"
+                    id="schCode"
+                    class="form-input"
+                    placeholder="স্কুল কোড"
+                    oninput="updatePreview()"
+                  />
+                  <input
+                    type="text"
+                    id="schYear"
+                    class="form-input"
+                    placeholder="প্রতিষ্ঠাকাল"
+                    oninput="updatePreview()"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <!-- ২. একাডেমিক তথ্য কার্ড -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-academic">
+                <i class="fa-solid fa-book"></i> একাডেমিক তথ্য
+              </summary>
+              <div class="card-body">
+                <label class="lbl" id="lbl-board">শিক্ষা বোর্ড</label>
+                <select id="board" class="form-select">
+                  <option>NCTB</option>
+                  <option>মাদ্রাসা</option>
+                  <option>কারিগরি</option>
+                </select>
+                <div class="grid-2">
+                  <div>
+                    <label class="lbl" id="lbl-class">শ্রেণি</label>
+                    <select
+                      id="class"
+                      class="form-select"
+                      onchange="handleClassChange()"
+                    ></select>
+                  </div>
+                  <div id="group-wrapper" style="display: none">
+                    <label class="lbl" id="lbl-group">বিভাগ</label>
+                    <select
+                      id="group"
+                      class="form-select"
+                      onchange="handleClassChange()"
+                    >
+                      <option value="General">আবশ্যিক</option>
+                      <option value="Science">বিজ্ঞান</option>
+                      <option value="Arts">মানবিক</option>
+                      <option value="Commerce">ব্যবসায় শিক্ষা</option>
+                    </select>
+                  </div>
+                </div>
+                <label class="lbl" id="lbl-subject">বিষয়</label>
+                <select
+                  id="subject"
+                  class="form-select"
+                  onchange="loadChapters()"
+                >
+                  <option>শ্রেণি নির্বাচন করুন</option>
+                </select>
+                <input
+                  type="text"
+                  id="bookName"
+                  class="form-input"
+                  readonly
+                  placeholder="বইয়ের নাম অটো ফিল"
+                />
+              </div>
+            </details>
+
+            <!-- ৩. অধ্যায় ও পাঠ কার্ড (ডাইনামিক) -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-chapter">
+                <i class="fa-solid fa-list-ul"></i> অধ্যায় ও পাঠ
+              </summary>
+              <div class="card-body">
+                <div class="list-box-label" id="lbl-chapters">অধ্যায়সমূহ:</div>
+                <div class="list-box" id="chapter-list">
+                  শ্রেণি ও বিষয় নির্বাচন করুন...
+                </div>
+                <div class="list-box-label" id="lbl-topics">পাঠসমূহ:</div>
+                <div class="list-box" id="topic-list">
+                  অধ্যায় নির্বাচন করুন...
+                </div>
+                <input
+                  type="number"
+                  id="duration"
+                  class="form-input"
+                  placeholder="সময় (মিনিট)"
+                  value="45"
+                  oninput="updatePreview()"
+                />
+              </div>
+            </details>
+
+            <!-- ৪. পঠন পদ্ধতি কার্ড -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-methods">
+                <i class="fa-solid fa-chalkboard-user"></i> পঠন পদ্ধতি
+              </summary>
+              <div class="card-body">
+                <div class="methods-grid" id="methods-list"></div>
+              </div>
+            </details>
+
+            <!-- ৫. উদ্দেশ্য ও শিখনফল কার্ড (AI) -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-objective">
+                <i class="fa-solid fa-bullseye"></i> উদ্দেশ্য ও শিখনফল (AI)
+              </summary>
+              <div class="card-body">
+                <textarea
+                  id="lessonObjective"
+                  class="form-input"
+                  placeholder="আজকের পাঠের উদ্দেশ্য লিখুন (যেমন: নিউটনের গতিসূত্র বা ভাষার প্রকারভেদ)"
+                  style="height: 80px; padding: 10px"
+                  oninput="updatePreview()"
+                ></textarea>
+                <p style="font-size: 11px; color: #666" id="lbl-help-obj">
+                  উদ্দেশ্য লিখলে AI শিখনফল ও লেসন টেবিল জেনারেট করবে।
+                </p>
+              </div>
+            </details>
+
+            <!-- ৬. শিক্ষার্থী বিবরণ কার্ড (স্মার্ট গ্রুপিং) -->
+            <details class="card" open>
+              <summary class="card-header" id="ch-grouping">
+                <i class="fa-solid fa-users"></i> শিক্ষার্থী বিবরণ (গ্রুপিং)
+              </summary>
+              <div class="card-body">
+                <input
+                  type="text"
+                  id="roll-vgood"
+                  class="form-input"
+                  placeholder="খুব ভালো রোল (যেমন: ১, ২, ৩)"
+                />
+                <input
+                  type="text"
+                  id="roll-avg"
+                  class="form-input"
+                  placeholder="মাঝারি রোল (যেমন: ৪, ৫, ৬)"
+                />
+                <input
+                  type="text"
+                  id="roll-low"
+                  class="form-input"
+                  placeholder="নিম্নমান রোল (যেমন: ৭, ৮, ৯)"
+                />
+              </div>
+            </details>
+
+            <!-- ७. Bloom's Taxonomy কার্ড -->
+            <details class="card">
+              <summary class="card-header" id="ch-bloom">
+                <i class="fa-solid fa-brain"></i> Bloom's Taxonomy
+              </summary>
+              <div class="card-body">
+                <div class="methods-grid" id="bloom-options"></div>
+              </div>
+            </details>
+
+            <!-- জেনারেট বাটন -->
+            <button
+              class="btn-generate"
+              onclick="generateAI()"
+              id="btn-generate-text"
+            >
+              <i class="fa-solid fa-wand-magic-sparkles"></i> জেনারেট লেসন
+              প্ল্যান
+            </button>
+          </section>
+
+          <!-- প্রিভিউ রাইট প্যানেল (A4 শিট লেআউট) -->
+          <section class="preview-panel">
+            <div class="a4-page" id="printableArea">
+              <!-- ডকুমেন্ট হেডার -->
+              <div class="doc-header">
+                <h1 id="v-schName">প্রতিষ্ঠানের নাম</h1>
+                <p id="v-schAddr">ঠিকানা এখানে আসবে</p>
+                <div class="sch-extra">
+                  কোড: <span id="v-schCode">-</span> | প্রতিষ্ঠাকাল:
+                  <span id="v-schYear">-</span>
+                </div>
+                <div class="meta-row">
+                  <span>শ্রেণি: <b id="v-class">-</b></span>
+                  <span>বিষয়: <b id="v-sub">-</b></span>
+                  <span>সময়: <b id="v-time">৪৫ মিনিট</b></span>
+                </div>
+              </div>
+
+              <!-- ডকুমেন্ট বডি -->
+              <div class="doc-body">
+                <div class="lesson-title">
+                  পাঠের শিরোনাম: <span id="v-title">-</span>
+                </div>
+
+                <!-- শিখনফল বক্স -->
+                <div class="ai-content-box">
+                  <h4 class="ai-label">🎯 উদ্দেশ্য ও শিখনফল (AI Generated):</h4>
+                  <ul id="v-outcomes" class="preview-list">
+                    <li>উদ্দেশ্য লিখলে এখানে আসবে...</li>
+                  </ul>
+                </div>
+
+                <!-- ব্লুমস ট্যাক্সোনমি বক্স -->
+                <div class="ai-content-box bg-light-blue">
+                  <h4 class="ai-label">🧠 AI Bloom's Taxonomy Analysis:</h4>
+                  <div id="v-bloom-badges" class="badge-row"></div>
+                  <p id="v-bloom-desc" class="bloom-text">
+                    বিশ্লেষণ এখানে আসবে...
+                  </p>
+                </div>
+
+                <!-- দলগত বিভাজন বক্স -->
+                <div id="v-group-section"></div>
+
+                <!-- ক্লাস কন্ডাক্ট টাইম টেবিল -->
+                <table class="preview-table">
+                  <thead>
+                    <tr>
+                      <th>সময়</th>
+                      <th>শিক্ষকের কাজ</th>
+                      <th>শিক্ষার্থীর কাজ</th>
+                    </tr>
+                  </thead>
+                  <tbody id="v-table">
+                    <tr>
+                      <td colspan="3" align="center">তথ্য জেনারেট করুন...</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- বাড়ির কাজ বক্স -->
+                <div class="homework-box">
+                  <strong>🏠 বাড়ির কাজ (AI):</strong>
+                  <span id="v-homework">-</span>
+                </div>
+              </div>
+
+              <!-- ডকুমেন্ট ফুটার -->
+              <div class="doc-footer">
+                স্মার্ট শিক্ষা বাতায়ন | AI জেনারেটেড লেসন প্ল্যান
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- ==========================================
+           [৩] সংরক্ষিত লেসন প্ল্যান লাইব্রেরি সেকশন (Library Page)
+           ========================================== -->
+      <main class="main-content" id="librarySection" style="display: none">
+        <header class="top-bar">
+          <h1 class="main-heading" id="lib-heading">
+            আমার লেসন প্ল্যান লাইব্রেরি
+          </h1>
+          <button
+            class="btn btn-outline"
+            onclick="showSection('builder')"
+            id="btn-back-dash"
+          >
+            <i class="fa-solid fa-arrow-left"></i> ব্যাক টু ড্যাশবোর্ড
+          </button>
+        </header>
+        <!-- কার্ড ডিসপ্লে গ্রিড -->
+        <div class="library-grid" id="libraryGrid"></div>
+      </main>
+    </div>
+
+    <!-- মেইন লজিক স্ক্রিপ্ট -->
+    <script src="script.js"></script>
+  </body>
+</html>

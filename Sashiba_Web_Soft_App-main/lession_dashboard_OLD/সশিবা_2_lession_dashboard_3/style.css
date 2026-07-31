@@ -1,0 +1,343 @@
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-main: #fdfdfe; /* খুব হালকা ব্যাকগ্রাউন্ড */
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --text-main: #1a1c1e;
+  --text-muted: #44474e;
+  --border: #dee2f1;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --radius-lg: 24px; /* M3 স্টাইল */
+  --radius-md: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", "Hind Siliguri", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* লেআউট স্পেসিং */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 280px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* সাইডবার মেনু উন্নত করা হয়েছে */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+.brand-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-md);
+  transition: 0.3s;
+  margin-bottom: 8px;
+}
+.nav-item i {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+.nav-item:hover,
+.nav-item.active {
+  background: #f0f0ff;
+  color: var(--primary);
+}
+
+/* টপ বার ও অ্যাকশন বাটন */
+.top-bar {
+  height: 88px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.btn-action {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  transition: 0.2s;
+}
+.btn-action.primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-action.primary:disabled {
+  background: #e1e2ec;
+  color: #9da3b4;
+  cursor: not-allowed;
+}
+.btn-action.secondary {
+  background: #f0f0ff;
+  color: var(--primary);
+}
+
+/* ইনপুট প্যানেল (Builder) */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  height: calc(100vh - 88px);
+}
+.builder-section {
+  padding: 40px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+/* আধুনিক স্টেপার */
+.stepper-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  background: #f8f9ff;
+  padding: 12px 24px;
+  border-radius: 40px;
+}
+.step {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9da3b4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.step span {
+  width: 24px;
+  height: 24px;
+  background: #e1e2ec;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+}
+.step.active {
+  color: var(--primary);
+}
+.step.active span {
+  background: var(--primary);
+}
+
+/* কার্ড স্টাইল */
+.input-card {
+  background: white;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: var(--primary);
+}
+.card-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* আধুনিক ড্রপডাউন */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding-left: 4px;
+}
+select,
+input,
+textarea {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 14px;
+  background: #fbfbff;
+  outline: none;
+  transition: 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2344474e'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+select:disabled {
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+
+/* জেনারেট বাটন */
+.sticky-footer {
+  position: sticky;
+  bottom: -40px;
+  background: white;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.btn-generate {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+  transition: 0.3s;
+}
+.btn-generate:hover {
+  transform: translateY(-2px);
+  background: var(--primary-hover);
+}
+.btn-generate:disabled {
+  background: #e1e2ec;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* প্রিভিউ ও প্লেসহোল্ডার */
+.preview-section {
+  background: #f8f9ff;
+  padding: 48px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.document-canvas {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  padding: 64px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.preview-guide {
+  text-align: center;
+  padding-top: 60px;
+  color: var(--text-muted);
+}
+.guide-icon {
+  font-size: 48px;
+  color: var(--primary);
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+.guide-list {
+  list-style: none;
+  margin-top: 32px;
+  text-align: left;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.guide-list li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.guide-list li i {
+  color: #10b981;
+  font-size: 12px;
+}
+
+/* চিপস */
+.quick-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: #f0f0ff;
+  border: 1px solid #dee2f1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.chip:hover {
+  background: var(--primary);
+  color: white;
+}

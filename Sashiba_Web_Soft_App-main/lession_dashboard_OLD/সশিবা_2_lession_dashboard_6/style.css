@@ -1,0 +1,341 @@
+:root {
+  --primary: #5c67f2;
+  --bg-dark: #f0f2f5;
+  --sidebar-text: #64748b;
+  --border: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", "Hind Siliguri", sans-serif;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+/* প্রিন্ট সেটিংস: শুধুমাত্র printableArea দেখাবে */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printableArea,
+  #printableArea * {
+    visibility: visible;
+  }
+  #printableArea {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20mm;
+    box-shadow: none;
+    background: white;
+  }
+  .footer-note {
+    position: absolute;
+    bottom: 20mm;
+    width: calc(100% - 40mm);
+  }
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* সাইডবার */
+.sidebar {
+  width: 280px;
+  background: white;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.logo-icon {
+  width: 35px;
+  height: 35px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+.brand-name {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 18px;
+}
+
+.nav-menu {
+  flex: 1;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--sidebar-text);
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.nav-item.active {
+  background: #f0f3ff;
+  color: var(--primary);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar-box {
+  width: 45px;
+  height: 45px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+/* মেইন কন্টেন্ট */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.top-bar {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+.v-tag {
+  font-size: 10px;
+  background: #eef2ff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ইনপুট প্যানেল */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  height: calc(100vh - 70px);
+}
+.builder-section {
+  padding: 25px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid var(--border);
+}
+.input-card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.card-header {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 5px;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+textarea {
+  height: 80px;
+  resize: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.chips span {
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-generate-best {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(92, 103, 242, 0.3);
+}
+
+/* প্রিভিউ */
+.preview-section {
+  background: #f0f2f5;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  padding: 20mm;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.paper-header {
+  text-align: center;
+  border-bottom: 2px solid #1e293b;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+.nctb-badge {
+  background: #10b981;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.meta-line {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: left;
+  background: #f8fafc;
+  padding: 10px;
+}
+
+.section-h {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+.paper-body ul {
+  padding-left: 20px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 13px;
+}
+.lesson-table th,
+.lesson-table td {
+  border: 1px solid #1e293b;
+  padding: 12px;
+  text-align: left;
+}
+.lesson-table th {
+  background: #f8fafc;
+}
+
+.footer-note {
+  margin-top: 40px;
+  font-size: 11px;
+  text-align: center;
+  color: #94a3b8;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 10px;
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 180px;
+  z-index: 100;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 13px;
+}
+.dropdown-content a:hover {
+  background: #f8fafc;
+}

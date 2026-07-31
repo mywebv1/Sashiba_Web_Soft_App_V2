@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সশিবা | স্মার্ট শিক্ষা বাতায়ন</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-[100] nav-bg px-8 py-4">
+      <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-6">
+          <div onclick="showHome()" class="logo-text cursor-pointer">সশিবা</div>
+
+          <div class="hidden xl:flex items-center gap-1">
+            <!-- শিক্ষক বাতায়ন মেনু -->
+            <div class="dropdown">
+              <div id="nav-teacher" class="nav-link">শিক্ষক বাতায়ন</div>
+              <div class="dropdown-content">
+                <a
+                  href="javascript:void(0)"
+                  onclick="openPortal('lesson')"
+                  >লেসন প্ল্যান</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openPortal('question')"
+                  >পরীক্ষা তৈরি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openPortal('question')"
+                  >উত্তরপত্র</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('মূল্যায়ন', 'teacher')"
+                  >মূল্যায়ন</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('রিপোর্ট', 'teacher')"
+                  >রিপোর্ট</a
+                >
+              </div>
+            </div>
+
+            <!-- শিক্ষার্থী বাতায়ন মেনু -->
+            <div class="dropdown">
+              <div id="nav-student" class="nav-link">শিক্ষার্থী বাতায়ন</div>
+              <div class="dropdown-content">
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('প্রাথমিক শ্রেণি', 'student')"
+                  >প্রাথমিক শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('মাধ্যমিক শ্রেণি', 'student')"
+                  >মাধ্যমিক শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('উচ্চ মাধ্যমিক', 'student')"
+                  >উচ্চ মাধ্যমিক</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('SSC প্রস্তুতি', 'student')"
+                  >SSC প্রস্তুতি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('HSC প্রস্তুতি', 'student')"
+                  >HSC প্রস্তুতি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('ভর্তি প্রস্তুতি', 'student')"
+                  >ভর্তি প্রস্তুতি</a
+                >
+              </div>
+            </div>
+
+            <!-- তথ্য বাতায়ন মেনু -->
+            <div class="dropdown">
+              <div id="nav-info" class="nav-link">তথ্য বাতায়ন</div>
+              <div class="dropdown-content">
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('বাংলা', 'info')"
+                  >বাংলা</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('ইংরেজি', 'info')"
+                  >ইংরেজি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('গণিত', 'info')"
+                  >গণিত</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('বিজ্ঞান', 'info')"
+                  >বিজ্ঞান</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('ডিজিটাল প্রযুক্তি', 'info')"
+                  >ডিজিটাল প্রযুক্তি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('ধর্মশিক্ষা', 'info')"
+                  >ধর্মশিক্ষা</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openDashboard('শিল্প ও সংস্কৃতি', 'info')"
+                  >শিল্প ও সংস্কৃতি</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div
+            class="cursor-pointer text-2xl"
+            onclick="toggleMode()"
+            id="mode-btn"
+          >
+            🌙
+          </div>
+          <button class="btn-orange text-sm shadow-sm" onclick="openSignupModal()">সাইন আপ ➔</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <section
+      id="home-page"
+      class="flex flex-col items-center justify-start min-h-screen pt-[25vh] px-6 text-center"
+    >
+      <!-- Typing Animation Container -->
+      <div class="h-24 md:h-36 flex items-center justify-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+          <span id="typewriter-text"></span><span id="cursor">|</span>
+        </h1>
+      </div>
+
+      <!-- Subtitle with Soft Reveal -->
+      <p
+        id="subtitle"
+        class="text-xl mb-12 max-w-2xl mx-auto opacity-0 translate-y-4 transition-all duration-1000 ease-out"
+      >
+        <span class="subtitle-gradient"
+          >আপনার শিক্ষা ও পাঠদান হোক আরও আধুনিক, সহজ এবং সমৃদ্ধ।</span
+        >
+      </p>
+
+      <!-- Search Box -->
+      <div class="search-wrapper mb-20 mx-auto">
+        <input
+          type="text"
+          id="main-search"
+          placeholder="আপনার প্রয়োজনীয় বিষয়টি এখানে খুঁজুন..."
+        />
+        <button class="fat-search-btn" onclick="triggerSearch()">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            viewBox="0 0 512 512"
+            height="20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0034.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 00327.3 362.6l94.09 94.09a25 25 0 0035.3-35.3zM98 222.72a124.72 124.72 0 11124.72 124.72A124.86 124.86 0 0198 222.72z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Feature Cards (White Background & White Border as per Screenshot) -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl w-full mx-auto pb-20"
+      >
+        <div
+          class="feature-card"
+          onclick="openPortal('question')"
+        >
+          <h3>১ মিনিটে প্রশ্নপত্র</h3>
+          <p>
+            সকল বিষয়ের মানসম্মত প্রশ্নপত্র তৈরি করুন মাত্র ১ মিনিটে। সহজ
+            ড্যাশবোর্ড এবং নির্ভুল সিলোকশন নিশ্চিত করুন।
+          </p>
+          <div class="footer-link">বিস্তারিত দেখুন ➔</div>
+        </div>
+
+        <div
+          class="feature-card"
+          onclick="openPortal('question')"
+        >
+          <h3>১ মিনিটে উত্তরপত্র</h3>
+          <p>
+            প্রশ্নপত্রের সাথে সাথে উত্তরপত্রও তৈরি হবে স্বয়ংক্রিয়ভাবে। সময়
+            বাঁচান এবং মূল্যায়ন প্রক্রিয়া সহজ করুন।
+          </p>
+          <div class="footer-link">বিস্তারিত দেখুন ➔</div>
+        </div>
+
+        <div
+          class="feature-card"
+          onclick="openPortal('lesson')"
+        >
+          <h3>লেসন প্ল্যান</h3>
+          <p>
+            আধুনিক কারিকুলাম অনুযায়ী প্রতিটি ক্লাসের জন্য স্মার্ট লেসন প্ল্যান
+            তৈরি করুন খুব সহজেই।
+          </p>
+          <div class="footer-link">বিস্তারিত দেখুন ➔</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD PAGE -->
+    <section id="dashboard-page" class="pt-32 pb-20 px-8 hidden">
+      <div class="max-w-[1440px] mx-auto">
+        <h2 id="dash-title" class="sync-title-size mb-8 text-3xl">টাইটেল</h2>
+        <div class="flex flex-col lg:flex-row gap-16">
+          <div class="lg:w-1/4 h-fit">
+            <h3 class="text-2xl font-bold mb-8 opacity-70">বিষয় তালিকা</h3>
+            <div id="sidebar-list" class="flex flex-col gap-2"></div>
+          </div>
+          <div class="lg:w-3/4">
+            <div class="glass-card p-12">
+              <h3 class="sync-title-size mb-6">বিস্তারিত বিবরণ</h3>
+              <p
+                id="dash-intro"
+                class="text-xl opacity-80 mb-10 leading-relaxed"
+              ></p>
+              <div
+                id="dash-features"
+                class="grid grid-cols-1 md:grid-cols-2 gap-10"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMBEDDED IFRAME PORTALS -->
+    <section id="iframe-page" class="hidden">
+      <iframe id="portal-iframe" src="about:blank" class="w-full h-full border-none"></iframe>
+    </section>
+
+    <!-- SIGN UP MODAL -->
+    <div id="signup-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4">
+      <!-- Modal Overlay Background with Glassmorphism -->
+      <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="closeSignupModal()"></div>
+      
+      <!-- Modal Content Box -->
+      <div id="signup-modal-content" class="relative w-full max-w-5xl h-[85vh] bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col transform scale-95 opacity-0 transition-all duration-300 ease-out">
+        <!-- Close Button -->
+        <button class="absolute top-4 right-4 z-50 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shadow-md transition-colors" onclick="closeSignupModal()">
+          ✕
+        </button>
+        
+        <!-- Iframe to load registration form -->
+        <iframe src="about:blank" id="signup-iframe" class="w-full h-full border-none"></iframe>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

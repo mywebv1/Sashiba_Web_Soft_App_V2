@@ -1,0 +1,255 @@
+/* গ্লোবাল সেটিংস */
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --bg-light: #f1f5f9;
+  --text-main: #1e293b;
+  --border: #e2e8f0;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", "Hind Siliguri", sans-serif;
+  background: #e2e8f0;
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+/* সাইডবার ও মেইন লেআউট */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid var(--border);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  height: calc(100vh - 80px);
+}
+
+/* টপ বার */
+.top-bar {
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+/* কার্ড ডিজাইন */
+.builder-section {
+  padding: 30px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid var(--border);
+}
+.input-card {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+}
+
+/* বাটন ডিজাইন (জেনারেট বাটন হাইলাইট) */
+.btn-generate-main {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), #6366f1);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-generate-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+.btn-generate-main:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* প্রিভিউ এরিয়া (A4 Paper Style) */
+.preview-section {
+  padding: 40px;
+  background: #cbd5e1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.a4-container {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  padding: 20mm;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 2px;
+}
+
+.lesson-paper {
+  color: #000;
+  line-height: 1.6;
+}
+.paper-header {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.school-placeholder {
+  font-size: 12px;
+  color: #64748b;
+  border: 1px dashed #cbd5e1;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: left;
+  background: #f8fafc;
+  padding: 10px;
+}
+
+/* প্রিন্ট লজিক */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printableArea,
+  #printableArea * {
+    visibility: visible;
+  }
+  #printableArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}
+
+/* অন্যান্য UI এলিমেন্ট */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+}
+select,
+textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  outline: none;
+  font-family: inherit;
+}
+.quick-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.chip {
+  padding: 5px 12px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 40px;
+  top: 70px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  min-width: 200px;
+  padding: 10px;
+  border: 1px solid var(--border);
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 14px;
+  border-radius: 6px;
+}
+.dropdown-content a:hover {
+  background: #f1f5f9;
+}
+.show {
+  display: block;
+}
+.watermark {
+  text-align: center;
+  padding-top: 100px;
+  color: #e2e8f0;
+}
+.watermark i {
+  font-size: 80px;
+  margin-bottom: 20px;
+}

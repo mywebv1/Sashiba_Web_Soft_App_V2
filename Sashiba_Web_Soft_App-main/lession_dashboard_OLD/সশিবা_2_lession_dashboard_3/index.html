@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Lesson Architect | স্মার্ট শিক্ষা বাতায়ন</title>
+    <!-- Google Fonts: Inter & Hind Siliguri -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (Thin/Minimal Icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- সাইডবার -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo-icon">AI</div>
+          <span class="brand-name">শিক্ষা বাতায়ন</span>
+        </div>
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active"
+            ><i class="fa-solid fa-house-chimney"></i> ড্যাশবোর্ড</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-plus-square"></i> নতুন লেসন প্ল্যান</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-book-bookmark"></i> আমার লাইব্রেরি</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Teacher&background=4f46e5&color=fff"
+              alt="User"
+            />
+            <div class="user-info">
+              <strong>মোঃ রহমান</strong>
+              <span>সহকারী শিক্ষক</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- মেইন কন্টেন্ট এরিয়া -->
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="page-title">
+            <h1>লেসন আর্কিটেক্ট <span class="ai-badge">AI Powered</span></h1>
+          </div>
+          <div class="top-actions">
+            <div class="export-wrapper">
+              <button class="btn-action secondary" id="exportBtn">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i> এক্সপোর্ট
+              </button>
+              <div class="export-dropdown" id="exportMenu">
+                <a href="#" onclick="window.print()"
+                  ><i class="fa-solid fa-file-pdf"></i> PDF / Print</a
+                >
+                <a href="#"><i class="fa-solid fa-file-word"></i> MS Word</a>
+              </div>
+            </div>
+            <button
+              class="btn-action primary"
+              id="topGenBtn"
+              onclick="generateLesson()"
+              disabled
+            >
+              <i class="fa-solid fa-wand-magic-sparkles"></i> জেনারেট
+            </button>
+          </div>
+        </header>
+
+        <div class="workspace-grid">
+          <!-- ইনপুট প্যানেল (Builder) -->
+          <section class="builder-section">
+            <!-- প্রগ্রেস স্টেপার -->
+            <div class="stepper-container">
+              <div class="step active" data-sec="sec1">
+                <span>১</span> একাডেমিক
+              </div>
+              <div class="step" data-sec="sec2"><span>২</span> ক্লাস তথ্য</div>
+              <div class="step" data-sec="sec3"><span>৩</span> AI গাইড</div>
+            </div>
+
+            <div class="form-container">
+              <!-- কার্ড ১: একাডেমিক তথ্য -->
+              <div class="input-card" id="sec1">
+                <div class="card-header">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <h3>একাডেমিক তথ্য</h3>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>শিক্ষা বোর্ড</label>
+                    <select id="board" onchange="handleDependency('board')">
+                      <option value="">নির্বাচন করুন</option>
+                      <option value="NCTB">জাতীয় শিক্ষাক্রম (NCTB)</option>
+                      <option value="Madrasah">মাদ্রাসা</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>শ্রেণি</label>
+                    <select
+                      id="class"
+                      onchange="handleDependency('class')"
+                      disabled
+                    >
+                      <option value="">বোর্ড বেছে নিন</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>বিষয়</label>
+                    <select
+                      id="subject"
+                      onchange="handleDependency('subject')"
+                      disabled
+                    >
+                      <option value="">শ্রেণি বেছে নিন</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>বইয়ের নাম</label>
+                    <select
+                      id="book"
+                      onchange="handleDependency('book')"
+                      disabled
+                    >
+                      <option value="">বিষয় বেছে নিন</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- কার্ড ২: ক্লাস তথ্য -->
+              <div class="input-card" id="sec2">
+                <div class="card-header">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                  <h3>অধ্যায় ও পাঠের তথ্য</h3>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>অধ্যায়</label>
+                    <select
+                      id="chapter"
+                      onchange="handleDependency('chapter')"
+                      disabled
+                    >
+                      <option value="">বই বেছে নিন</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>পাঠ (Lesson)</label>
+                    <select id="lesson" onchange="validateForm()" disabled>
+                      <option value="">অধ্যায় বেছে নিন</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>ক্লাসের সময়</label>
+                  <select id="duration" onchange="updatePreview()">
+                    <option value="35">৩৫ মিনিট</option>
+                    <option value="40">৪০ মিনিট</option>
+                    <option value="45" selected>৪৫ মিনিট</option>
+                    <option value="60">৬০ মিনিট</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- কার্ড ৩: AI নির্দেশনা -->
+              <div class="input-card" id="sec3">
+                <div class="card-header">
+                  <i class="fa-solid fa-robot"></i>
+                  <h3>AI নির্দেশনা</h3>
+                </div>
+                <textarea
+                  id="aiNote"
+                  placeholder="যেমন: বাস্তব উদাহরণ বেশি ব্যবহার করো..."
+                ></textarea>
+                <div class="quick-chips">
+                  <button class="chip" onclick="addChip('সহজ ভাষা')">
+                    + সহজ ভাষা
+                  </button>
+                  <button class="chip" onclick="addChip('বাস্তব উদাহরণ')">
+                    + বাস্তব উদাহরণ
+                  </button>
+                  <button class="chip" onclick="addChip('STEM ভিত্তিক')">
+                    + STEM
+                  </button>
+                  <button class="chip" onclick="addChip('কুইজ যোগ করো')">
+                    + Quiz
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- স্টিকি ফুটার বাটন -->
+            <div class="sticky-footer">
+              <button
+                class="btn-generate"
+                id="stickyGenBtn"
+                onclick="generateLesson()"
+                disabled
+              >
+                <i class="fa-solid fa-wand-magic-sparkles"></i> জেনারেট লেসন
+                প্ল্যান
+              </button>
+            </div>
+          </section>
+
+          <!-- প্রিভিউ প্যানেল -->
+          <section class="preview-section">
+            <div class="document-canvas" id="printableArea">
+              <!-- গাইডলাইন প্লেসহোল্ডার (যখন কিছু জেনারেট হয়নি) -->
+              <div id="preview-guide" class="preview-guide">
+                <i class="fa-solid fa-wand-sparkles guide-icon"></i>
+                <h2>লেসন প্রিভিউ গাইড</h2>
+                <p>বাম পাশের তথ্যগুলো পূরণ করে 'জেনারেট' বাটনে ক্লিক করুন।</p>
+                <ul class="guide-list">
+                  <li>
+                    <i class="fa-solid fa-check"></i> NCTB কারিকুলাম ২০২৩
+                    অনুযায়ী সাজানো হবে।
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i> Bloom's Taxonomy অনুসরণ
+                    করা হবে।
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i> শিখনফল ও সময় বণ্টন
+                    স্বয়ংক্রিয়ভাবে তৈরি হবে।
+                  </li>
+                </ul>
+              </div>
+
+              <!-- আসল লেসন কন্টেন্ট (শুরুতে লুকানো থাকবে) -->
+              <article
+                class="lesson-plan"
+                id="real-lesson"
+                style="display: none"
+              >
+                <header class="doc-header">
+                  <div class="badge" id="v-board">NCTB কারিকুলাম ২০২৩</div>
+                  <h2 id="v-title">পাঠের শিরোনাম</h2>
+                  <p id="v-meta">শ্রেণি: - | বিষয়: - | সময়: ৪৫ মিনিট</p>
+                </header>
+                <div class="doc-body">
+                  <div id="v-outcomes"></div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

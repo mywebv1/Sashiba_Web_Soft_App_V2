@@ -1,0 +1,716 @@
+/* =========================================================================
+                      সশিবা স্মার্ট শিক্ষা বাতায়ন - লেসন প্ল্যান ড্যাশবোর্ড স্টাইল
+   ========================================================================= */
+/* এই ফাইলে ড্যাশবোর্ড লেআউট, ইনপুট ফরম্যাট এবং প্রিন্টিং স্টাইলসমূহ রয়েছে। */
+
+/* ==========================================
+   [১] গ্লোবাল স্টাইল এবং ভ্যারিয়েবল (Global Settings & Variables)
+   ========================================== */
+:root {
+  --primary: #4f46e5;
+  --bg-app: #ffffff;
+  --border: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+body {
+  background: var(--bg-app);
+  height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ==========================================
+   [২] সাইডবার স্টাইল (Sidebar Styling)
+   ========================================== */
+.sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.brand {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.brand-text strong {
+  color: #1e293b;
+  font-size: 16px;
+}
+
+.brand-text span {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.nav-menu {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.nav-item {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: #f8fafc;
+  color: var(--primary);
+}
+
+.nav-item.active {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.sidebar-user {
+  padding: 25px 15px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #e2e8f0;
+  color: #475569;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.user-role {
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* ==========================================
+   [৩] মেইন কন্টেন্ট এবং টপবার (Main Content Layout & Topbar)
+   ========================================== */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+
+.top-bar {
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* ==========================================
+   [৪] ওয়ার্কস্পেস গ্রিড এবং ইনপুট কার্ড (Workspace Inputs)
+   ========================================== */
+.workspace {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  overflow: hidden;
+}
+
+.input-panel {
+  background: white;
+  border-right: 1px solid var(--border);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 12px 15px;
+  background: #f8fafc;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--primary);
+  outline: none;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #1e293b;
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--primary);
+}
+
+.lbl {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.list-box-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.list-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.methods-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.methods-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn-generate {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  transition: opacity 0.2s;
+}
+
+.btn-generate:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   [৫] প্রিভিউ প্যানেল ও A4 লেআউট (A4 Sheet Layout)
+   ========================================== */
+.preview-panel {
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.a4-page {
+  width: 210mm;
+  min-height: 297mm; /* min-height ব্যবহারের ফলে তথ্য বেশি হলে পেজ বড় হতে পারবে */
+  background: white;
+  padding: 20mm;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-header {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.doc-header h1 {
+  font-size: 24px;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.doc-header p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.sch-extra {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+}
+
+.doc-body {
+  flex-grow: 1;
+}
+
+.lesson-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.ai-content-box {
+  margin-top: 15px;
+  padding: 15px;
+  border-left: 4px solid var(--primary);
+  background: #f5f7ff;
+  border-radius: 4px;
+}
+
+.ai-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #312e81;
+  margin-bottom: 8px;
+}
+
+.preview-list {
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.bg-light-blue {
+  background: #f0fdf4;
+  border-left-color: #10b981;
+}
+
+.bg-light-blue .ai-label {
+  color: #064e3b;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bloom-badge {
+  background: #10b981;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.bloom-text {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.preview-table th {
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.preview-table th,
+.preview-table td {
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.group-card {
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: #f8fafc;
+  line-height: 1.6;
+}
+
+.homework-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fffbeb;
+  border: 1px dashed #d97706;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.doc-footer {
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 10px;
+  margin-top: 30px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ==========================================
+   [৬] বোতাম এবং ড্রপডাউন এক্সপোর্ট মেনু (Buttons & Dropdowns)
+   ========================================== */
+.btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background: white;
+  border: 1px solid var(--border);
+  color: #475569;
+}
+
+.btn-outline:hover {
+  background: #f8fafc;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.btn-action-main {
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow-icon {
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+
+.dropdown-wrapper:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 260px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #f1f5f9;
+}
+
+.dropdown-item i {
+  font-size: 16px;
+  color: #4f46e5;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-text strong {
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.item-text small {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ==========================================
+   [৭] লাইব্রেরি গ্রিড এবং কার্ডস (My Library Grid & Cards)
+   ========================================== */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.library-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.library-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-class {
+  background: #eff6ff;
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-date {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.card-subject {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.card-school {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.card-objective {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+/* ==========================================
+   [৮] প্রিন্ট করার মিডিয়া কুয়েরি (Print Optimization)
+   ========================================== */
+@media print {
+  /* প্রিন্ট করার সময় শুধু printableArea দেখাবো, বাকি সবকিছু হাইড থাকবে */
+  body * {
+    visibility: hidden;
+  }
+
+  #printableArea,
+  #printableArea * {
+    visibility: visible;
+  }
+
+  #printableArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .a4-page {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* পেজ ব্রেক কন্ট্রোল (তথ্য ২য় পেজে গেলে যেন সুন্দরভাবে পেজ ব্রেক হয়) */
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .ai-content-box,
+  .homework-box,
+  .doc-header {
+    page-break-inside: avoid;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

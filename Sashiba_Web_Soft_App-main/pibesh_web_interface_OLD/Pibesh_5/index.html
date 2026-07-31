@@ -1,0 +1,1622 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pibesh | প্রজেক্ট বেজড লার্নিং প্ল্যাটফর্ম</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="theme-dark font-['Hind_Siliguri'] transition-colors duration-300 relative antialiased"
+  >
+    <!-- ডায়নামিক এডুকেশনাল ব্যাকগ্রাউন্ড কন্টেইনার -->
+    <div
+      id="dynamic-educational-bg"
+      class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden"
+    ></div>
+
+    <!-- ==========================================
+         MAIN NAVIGATION BAR (HEADER)
+         ========================================== -->
+    <nav
+      class="fixed top-0 left-0 w-full z-[100] nav-bg border-b border-theme px-4 py-3.5 shadow-md"
+    >
+      <div
+        class="max-w-[1440px] mx-auto flex items-center justify-between gap-3"
+      >
+        <!-- Logo -->
+        <div class="flex items-center gap-6 flex-shrink-0">
+          <div
+            onclick="goHome()"
+            class="text-2xl font-black tracking-tighter text-cyan-500 cursor-pointer select-none flex items-center gap-1.5"
+          >
+            <span>PIBESH</span>
+            <span
+              class="text-[10px] font-bold tracking-normal px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+              >beta</span
+            >
+          </div>
+
+          <!-- Desktop Navigation Menu (Font Size: 15px, Weight: Semibold) -->
+          <div
+            class="hidden xl:flex items-center space-x-5 text-[15px] font-semibold text-theme"
+          >
+            <!-- ১. স্কুল (School) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>📚</span> <span data-key="nav-school">স্কুল</span>
+                <span class="text-[10px] text-gray-500">▼</span>
+              </button>
+              <div
+                class="absolute top-full left-0 w-52 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('স্কুল', '১ম–৫ম')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-school-1"
+                  >১ম–৫ম শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('স্কুল', '৬ষ্ঠ–১০ম')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-school-2"
+                  >৬ষ্ঠ–১০ম শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('স্কুল', 'SSC প্রস্তুতি')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-school-3"
+                  >SSC প্রস্তুতি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('স্কুল', 'NCTB বই')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-school-4"
+                  >NCTB বই</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('স্কুল', 'গাইড ও সহায়ক বই')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-school-5"
+                  >গাইড ও সহায়ক বই</a
+                >
+              </div>
+            </div>
+
+            <!-- ২. কলেজ (College) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>🎓</span> <span data-key="nav-college">কলেজ</span>
+                <span class="text-[10px] text-gray-500">▼</span>
+              </button>
+              <div
+                class="absolute top-full left-0 w-52 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('কলেজ', 'একাদশ')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-college-1"
+                  >একাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('কলেজ', 'দ্বাদশ')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-college-2"
+                  >দ্বাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('কলেজ', 'HSC প্রস্তুতি')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-college-3"
+                  >HSC প্রস্তুতি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('কলেজ', 'এডমিশন')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-college-4"
+                  >এডমিশন</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('কলেজ', 'বোর্ড প্রশ্ন')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-college-5"
+                  >বোর্ড প্রশ্ন</a
+                >
+              </div>
+            </div>
+
+            <!-- ৩. উচ্চশিক্ষা (Higher Education) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>🏛️</span> <span data-key="nav-higher">উচ্চশিক্ষা</span>
+                <span class="text-[10px] text-gray-500">▼</span>
+              </button>
+              <div
+                class="absolute top-full left-0 w-60 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('উচ্চশিক্ষা', 'মেডিকেল')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-1"
+                  >মেডিকেল</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('উচ্চশিক্ষা', 'ইঞ্জিনিয়ারিং')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-2"
+                  >ইঞ্জিনিয়ারিং</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="
+                    loadCategoryPage('উচ্চশিক্ষা', 'জাতীয় বিশ্ববিদ্যালয়')
+                  "
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-3"
+                  >জাতীয় বিশ্ববিদ্যালয়</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="
+                    loadCategoryPage('উচ্চশিক্ষা', 'উন্মুক্ত বিশ্ববিদ্যালয়')
+                  "
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-4"
+                  >উন্মুক্ত বিশ্ববিদ্যালয়</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('উচ্চশিক্ষা', 'BBA')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-5"
+                  >BBA</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('উচ্চশিক্ষা', 'আইন')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-6"
+                  >আইন</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('উচ্চশিক্ষা', 'ইসলামিক স্টাডিজ')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-higher-7"
+                  >ইসলামিক স্টাডিজ</a
+                >
+              </div>
+            </div>
+
+            <!-- ৪. প্রজেক্ট ল্যাব (Project Lab) -->
+            <a
+              href="javascript:void(0)"
+              onclick="loadProjectsPage()"
+              class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+            >
+              <span>🚀</span>
+              <span data-key="nav-projects">প্রজেক্ট ল্যাব</span>
+            </a>
+
+            <!-- ৫. দক্ষতা উন্নয়ন (Skills) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>🛠️</span> <span data-key="nav-skills">দক্ষতা উন্নয়ন</span>
+                <span class="text-[10px] text-gray-400">▼</span>
+              </button>
+              <div
+                class="absolute top-full left-0 w-56 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Kids Zone')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-1"
+                  >Kids Zone</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Upper Zone')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-2"
+                  >Upper Zone</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'AI')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-3"
+                  >AI (কৃত্রিম বুদ্ধিমত্তা)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Programming')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-4"
+                  >Programming</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Design')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-5"
+                  >UI/UX & Design</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Freelancing')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-6"
+                  >Freelancing</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('দক্ষতা উন্নয়ন', 'Communication')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-skills-7"
+                  >Communication</a
+                >
+              </div>
+            </div>
+
+            <!-- ৬. Publications (পাবলিকেশনস) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>📖</span> <span data-key="nav-pub">Publications</span>
+                <span class="text-[10px] text-gray-500">▼</span>
+              </button>
+              <div
+                class="absolute top-full left-0 w-52 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Publications', 'বই')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-pub-1"
+                  >বই</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Publications', 'নোট')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-pub-2"
+                  >নোট</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Publications', 'Hand Notes')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-pub-3"
+                  >Hand Notes</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Publications', 'Sample')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-pub-4"
+                  >Sample</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Publications', 'নতুন প্রকাশনা')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-pub-5"
+                  >নতুন প্রকাশনা</a
+                >
+              </div>
+            </div>
+
+            <!-- ৭. Question Bank (প্রশ্ন ব্যাংক) -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                <span>❓</span> <span data-key="nav-qbank">Question Bank</span>
+                <span class="text-[10px] text-gray-500">▼</span>
+              </button>
+              <div
+                class="absolute top-full right-0 w-56 dropdown-bg border border-theme rounded-xl py-2.5 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Question Bank', 'MCQ')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-qbank-1"
+                  >MCQ ব্যাংক</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Question Bank', 'CQ')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-qbank-2"
+                  >CQ (সৃজনশীল)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Question Bank', 'বোর্ড প্রশ্ন')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-qbank-3"
+                  >বোর্ড প্রশ্ন আর্কাইভ</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCategoryPage('Question Bank', 'Model Test')"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] transition"
+                  data-key="sub-qbank-4"
+                  >Model Test</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="openQGenModal()"
+                  class="block px-4 py-2 hover:bg-cyan-500/10 hover:text-cyan-400 text-[13px] font-bold text-emerald-400 transition"
+                  data-key="sub-qbank-5"
+                  >⚡ Question Generator</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Header Controls -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <!-- Search Box -->
+          <div class="relative hidden lg:block w-52 xl:w-60">
+            <input
+              type="text"
+              id="header-search-box"
+              data-placeholder-key="search-placeholder"
+              placeholder="সার্চ করুন..."
+              class="w-full bg-theme border border-theme rounded-full py-1.5 pl-4 pr-10 text-xs text-theme focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+              onkeyup="handleHeaderSearch(event)"
+            />
+            <button
+              onclick="triggerHeaderSearch()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-cyan-300 transition"
+            >
+              🔍
+            </button>
+          </div>
+
+          <!-- Light / Dark Theme Button -->
+          <button
+            id="theme-toggle"
+            onclick="toggleTheme()"
+            class="p-2.5 rounded-xl bg-theme-hover border border-theme text-yellow-400 hover:scale-105 transition"
+            title="থিম পরিবর্তন করুন"
+          >
+            <span id="sun-icon" class="block">☀️</span>
+            <span id="moon-icon" class="hidden">🌙</span>
+          </button>
+
+          <!-- Language Button -->
+          <div
+            class="flex bg-theme-hover rounded-xl p-0.5 border border-theme text-xs font-bold"
+          >
+            <button
+              id="lang-bn"
+              onclick="changeLanguage('BN')"
+              class="bg-cyan-500 text-black px-2.5 py-1 rounded-lg transition duration-200"
+            >
+              BN
+            </button>
+            <button
+              id="lang-en"
+              onclick="changeLanguage('EN')"
+              class="px-2.5 py-1 text-gray-400 transition duration-200"
+            >
+              EN
+            </button>
+          </div>
+
+          <!-- VIP Button -->
+          <button
+            onclick="openSubscriptionModal()"
+            class="hidden sm:block bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-1.5 px-3.5 rounded-xl text-xs hover:scale-105 transition shadow-lg"
+            data-key="btn-vip"
+          >
+            💎 PRO
+          </button>
+
+          <!-- Login Button -->
+          <button
+            onclick="openLoginModal()"
+            class="bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-extrabold py-1.5 px-4 rounded-xl text-xs transition shadow-lg"
+          >
+            <span data-key="btn-login-header">লগইন</span>
+          </button>
+
+          <!-- Mobile Toggle Button -->
+          <button
+            onclick="toggleMobileDrawer()"
+            class="xl:hidden p-2 rounded-xl bg-theme-hover border border-theme text-theme"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ==========================================
+         MOBILE DRAWER NAVIGATION
+         ========================================== -->
+    <div
+      id="mobile-drawer"
+      class="fixed inset-0 z-[120] bg-black/80 backdrop-blur-sm hidden flex justify-end"
+    >
+      <div
+        class="bg-theme w-80 h-full p-6 overflow-y-auto border-l border-theme space-y-6 flex flex-col justify-between"
+      >
+        <div class="space-y-6">
+          <div
+            class="flex items-center justify-between border-b border-theme pb-4"
+          >
+            <span class="text-xl font-black text-cyan-400">PIBESH MENU</span>
+            <button
+              onclick="toggleMobileDrawer()"
+              class="text-xl font-bold text-theme hover:text-red-400"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Mobile Search -->
+          <div class="relative">
+            <input
+              type="text"
+              id="mobile-search-box"
+              placeholder="সার্চ করুন..."
+              class="w-full bg-theme-hover border border-theme rounded-xl py-2.5 px-3 text-sm text-theme focus:outline-none"
+            />
+          </div>
+
+          <!-- Mobile Menu List -->
+          <div
+            class="space-y-3 text-sm font-bold text-theme divide-y divide-theme/40"
+          >
+            <div class="pt-2">
+              <span class="text-cyan-400 block mb-1">📚 স্কুল</span>
+              <div class="pl-4 space-y-1 text-xs text-theme-muted font-normal">
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('স্কুল', '১ম–৫ম')"
+                  class="block py-1 hover:text-cyan-400"
+                  >১ম–৫ম শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('স্কুল', '৬ষ্ঠ–১০ম')"
+                  class="block py-1 hover:text-cyan-400"
+                  >৬ষ্ঠ–১০ম শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('স্কুল', 'SSC প্রস্তুতি')"
+                  class="block py-1 hover:text-cyan-400"
+                  >SSC প্রস্তুতি</a
+                >
+              </div>
+            </div>
+            <div class="pt-2">
+              <span class="text-cyan-400 block mb-1">🎓 কলেজ</span>
+              <div class="pl-4 space-y-1 text-xs text-theme-muted font-normal">
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('কলেজ', 'একাদশ')"
+                  class="block py-1 hover:text-cyan-400"
+                  >একাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('কলেজ', 'দ্বাদশ')"
+                  class="block py-1 hover:text-cyan-400"
+                  >দ্বাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('কলেজ', 'HSC প্রস্তুতি')"
+                  class="block py-1 hover:text-cyan-400"
+                  >HSC প্রস্তুতি</a
+                >
+              </div>
+            </div>
+            <div class="pt-2">
+              <span class="text-cyan-400 block mb-1">🏛️ উচ্চশিক্ষা</span>
+              <div class="pl-4 space-y-1 text-xs text-theme-muted font-normal">
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('উচ্চশিক্ষা', 'মেডিকেল')"
+                  class="block py-1 hover:text-cyan-400"
+                  >মেডিকেল</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="mobileNavSelect('উচ্চশিক্ষা', 'ইঞ্জিনিয়ারিং')"
+                  class="block py-1 hover:text-cyan-400"
+                  >ইঞ্জিনিয়ারিং</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-theme">
+          <button
+            onclick="
+              openSubscriptionModal();
+              toggleMobileDrawer();
+            "
+            class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-3 rounded-xl text-sm shadow-lg"
+          >
+            💎 PRO মেম্বারশিপ নিন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA
+         ========================================== -->
+    <main id="main-content" class="min-h-screen pt-16">
+      <!-- ১. HERO / HOME SECTION -->
+      <section
+        id="hero-section"
+        class="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden py-16 px-4"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-transparent to-indigo-900/10 z-0 animate-pulse"
+        ></div>
+
+        <div
+          class="relative z-10 text-center max-w-4xl mx-auto mb-16 space-y-6"
+        >
+          <div
+            class="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold tracking-wide"
+          >
+            ✨ বাংলাদেশের প্রথম পূর্ণ ও ইন্টারেক্টিভ লার্নিং ইকোসিস্টেম
+          </div>
+
+          <h1
+            class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-theme"
+          >
+            <span data-key="hero-title-top" class="block"
+              >স্মার্ট বাংলাদেশের,</span
+            >
+            <span
+              class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 -mt-3 sm:-mt-5 md:-mt-7"
+              data-key="hero-title-bottom"
+            >
+              একমাত্র শিক্ষা বাতায়ন।
+            </span>
+          </h1>
+
+          <p
+            class="text-theme-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-normal"
+            data-key="hero-desc"
+          >
+            স্কুল থেকে উচ্চশিক্ষা—প্রতিটি অধ্যায়ের কনসেপ্ট বুক, প্র্যাক্টিকাল
+            ভিডিও, হ্যান্ডনোট ও অটোমেটেড এমসিকিউ পরীক্ষা এখন এক প্ল্যাটফর্মে।
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-4 pt-2">
+            <button
+              onclick="loadCategoryPage('স্কুল', '৬ষ্ঠ–১০ম')"
+              class="bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold py-3.5 px-8 rounded-xl hover:scale-105 transition shadow-xl shadow-cyan-500/20 text-sm"
+              data-key="btn-free-trial"
+            >
+              পড়া শুরু করুন ➔
+            </button>
+            <button
+              onclick="loadProjectsPage()"
+              class="bg-theme-secondary hover:bg-theme-hover border border-theme py-3.5 px-8 rounded-xl transition font-bold text-theme text-sm"
+              data-key="btn-explore-projects"
+            >
+              🚀 প্রজেক্ট ল্যাব দেখুন
+            </button>
+          </div>
+        </div>
+
+        <!-- FEATURED PUBLICATIONS GRID -->
+        <div class="relative z-10 w-full max-w-[1320px] mx-auto px-4 mt-8">
+          <div
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 border-b border-theme pb-4"
+          >
+            <div>
+              <span
+                class="text-xs font-bold text-cyan-400 uppercase tracking-wider"
+                data-key="pub-badge"
+                >ফিচার্ড প্রকাশনা</span
+              >
+              <h2
+                class="text-2xl font-extrabold text-theme mt-1"
+                data-key="pub-header"
+              >
+                ই-বুক ও স্টাডি নোটস
+              </h2>
+            </div>
+            <button
+              onclick="loadCategoryPage('Publications', 'বই')"
+              class="text-xs font-bold text-cyan-400 hover:underline"
+            >
+              সকল প্রকাশনা দেখুন ➔
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            id="publications-grid"
+          >
+            <!-- Dynamic publications loaded from script -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ২. DYNAMIC CHAPTER & LEARNING DASHBOARD SECTION -->
+      <section
+        id="dynamic-page"
+        class="hidden py-12 px-4 bg-theme-secondary min-h-screen"
+      >
+        <div class="max-w-[1400px] mx-auto space-y-6">
+          <!-- Breadcrumb Navigation Bar -->
+          <div
+            id="breadcrumb-container"
+            class="flex items-center gap-2 text-xs font-semibold text-theme-muted bg-theme px-4 py-2.5 rounded-xl border border-theme w-fit"
+          >
+            <span>🏠 হোম</span> <span class="text-gray-500">/</span>
+            <span id="bc-level">স্কুল</span>
+            <span class="text-gray-500">/</span>
+            <span id="bc-subject" class="text-cyan-400 font-bold"
+              >পদার্থবিজ্ঞান</span
+            >
+          </div>
+
+          <!-- Section Header Layout -->
+          <div class="bg-theme border border-theme rounded-2xl p-6 space-y-6">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+            >
+              <div>
+                <span
+                  id="dynamic-badge"
+                  class="text-[11px] font-extrabold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-2 inline-block"
+                  >অধ্যায়ভিত্তিক লার্নিং</span
+                >
+                <h2
+                  id="dynamic-title"
+                  class="text-2xl sm:text-3xl font-black text-theme"
+                >
+                  লোড হচ্ছে...
+                </h2>
+                <p
+                  id="dynamic-subtitle"
+                  class="text-theme-muted text-xs sm:text-sm mt-1"
+                >
+                  বাম পাশ থেকে আপনার অধ্যায় নির্বাচন করুন এবং ওপরের ট্যাব দিয়ে
+                  পড়াশোনা করুন
+                </p>
+              </div>
+
+              <!-- Quick Chapter Switcher Dropdown -->
+              <div class="w-full md:w-auto">
+                <select
+                  id="fast-chapter-select"
+                  onchange="handleFastChapterSelect(this.value)"
+                  class="w-full md:w-56 bg-theme-secondary border border-theme rounded-xl px-4 py-2.5 text-xs font-bold text-theme focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                >
+                  <option value="">অধ্যায় পরিবর্তন করুন...</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- =======================================================
+                 NEW: INTERMEDIATE FILTER (CLASS & STREAM SELECTION)
+                 ======================================================= -->
+            <div class="border-t border-theme/60 pt-4 flex flex-col gap-4">
+              <!-- Class Filter (For Primary / School Categories) -->
+              <div id="class-filter-container" class="hidden">
+                <span class="text-xs text-theme-muted font-bold block mb-2"
+                  >🎯 নির্দিষ্ট শ্রেণি নির্বাচন করুন:</span
+                >
+                <div class="flex flex-wrap gap-2" id="class-buttons-list">
+                  <!-- Rendered dynamically (১ম শ্রেণি, ২য় শ্রেণি, ৩য় শ্রেণি...) -->
+                </div>
+              </div>
+
+              <!-- Stream Filter (For College / SSC / HSC Categories) -->
+              <div id="stream-filter-container" class="hidden">
+                <span class="text-xs text-theme-muted font-bold block mb-2"
+                  >🛡️ আপনার বিভাগ (Stream) নির্বাচন করুন:</span
+                >
+                <div class="flex flex-wrap gap-2" id="stream-buttons-list">
+                  <button
+                    onclick="selectStream('বিজ্ঞান')"
+                    class="px-4 py-2 rounded-xl text-xs font-bold border border-theme bg-theme-hover text-theme hover:border-cyan-500 transition"
+                  >
+                    বিজ্ঞান (Science)
+                  </button>
+                  <button
+                    onclick="selectStream('মানবিক')"
+                    class="px-4 py-2 rounded-xl text-xs font-bold border border-theme bg-theme-hover text-theme hover:border-cyan-500 transition"
+                  >
+                    মানবিক (Arts)
+                  </button>
+                  <button
+                    onclick="selectStream('ব্যবসায় শিক্ষা')"
+                    class="px-4 py-2 rounded-xl text-xs font-bold border border-theme bg-theme-hover text-theme hover:border-cyan-500 transition"
+                  >
+                    ব্যবসায় শিক্ষা (Commerce)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Layout: Sidebar List + Right Tabbed Dashboard -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <!-- Left Sidebar: Subject & Chapter Accordion -->
+            <div
+              id="dynamic-sidebar"
+              class="lg:col-span-3 bg-theme border border-theme rounded-2xl p-5 space-y-3 sticky top-24 max-h-[80vh] overflow-y-auto"
+            >
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Right Area: Chapter Content Dashboard -->
+            <div class="lg:col-span-9 space-y-6">
+              <!-- CHAPTER TAB BAR (Overview | Learn | Practice | Resources) -->
+              <div
+                class="bg-theme border border-theme rounded-2xl p-2 flex flex-wrap gap-2 text-xs sm:text-sm font-bold shadow-md"
+              >
+                <button
+                  id="tab-btn-overview"
+                  onclick="switchChapterTab('overview')"
+                  class="flex-1 py-3 px-4 rounded-xl transition text-center bg-cyan-500 text-black shadow-md"
+                >
+                  📖 <span data-key="tab-overview">Overview (পরিচিতি)</span>
+                </button>
+
+                <button
+                  id="tab-btn-learn"
+                  onclick="switchChapterTab('learn')"
+                  class="flex-1 py-3 px-4 rounded-xl transition text-center text-theme-muted hover:bg-theme-secondary hover:text-theme"
+                >
+                  🎓 <span data-key="tab-learn">Learn (শিখুন)</span>
+                </button>
+
+                <button
+                  id="tab-btn-practice"
+                  onclick="switchChapterTab('practice')"
+                  class="flex-1 py-3 px-4 rounded-xl transition text-center text-theme-muted hover:bg-theme-secondary hover:text-theme"
+                >
+                  ❓ <span data-key="tab-practice">Practice (অনুশীলন)</span>
+                </button>
+
+                <button
+                  id="tab-btn-resources"
+                  onclick="switchChapterTab('resources')"
+                  class="flex-1 py-3 px-4 rounded-xl transition text-center text-theme-muted hover:bg-theme-secondary hover:text-theme"
+                >
+                  📂 <span data-key="tab-resources">Resources (রিসোর্স)</span>
+                </button>
+              </div>
+
+              <!-- TAB 1: OVERVIEW CONTAINER -->
+              <div id="tab-overview" class="tab-panel space-y-6">
+                <!-- Inside Overview: Introduction, Outcomes -->
+                <div
+                  class="bg-theme border border-theme rounded-2xl p-6 space-y-4"
+                >
+                  <h3
+                    class="text-lg font-bold text-cyan-400 border-b border-theme pb-2"
+                  >
+                    🎯 অধ্যায়ের সারসংক্ষেপ ও শিখনফল
+                  </h3>
+                  <p
+                    id="overview-intro"
+                    class="text-sm text-theme-muted leading-relaxed"
+                  >
+                    এই অধ্যায়ে আমরা গতি, গতির সমীকরণ ও নিউটনের সূত্রসমূহের মৌলিক
+                    ধারণা অর্জন করব।
+                  </p>
+                  <div
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2"
+                    id="overview-outcomes"
+                  >
+                    <!-- Rendered by JS -->
+                  </div>
+                </div>
+
+                <!-- =======================================================
+                     NEW: CLICKABLE DISCUSSION TOPICS (আলোচ্য বিষয়সমূহ)
+                     ======================================================= -->
+                <div
+                  class="bg-theme border border-theme rounded-2xl p-6 space-y-4"
+                >
+                  <h3
+                    class="text-lg font-bold text-cyan-400 border-b border-theme pb-2"
+                  >
+                    💡 অধ্যায়ের গুরুত্বপূর্ণ ক্লিকেবল টপিক (ট্যাপ করে বিস্তারিত
+                    জানুন)
+                  </h3>
+                  <p class="text-xs text-theme-muted leading-relaxed mb-4">
+                    নিচের টপিকগুলোতে ক্লিক করে দেশের প্রেক্ষাপট, আন্তর্জাতিক মান
+                    ও গবেষণার ইতিহাস আবিষ্কার করুন:
+                  </p>
+
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    id="clickable-topics-list"
+                  >
+                    <!-- Dynamic klicky topics lists (e.g., নিউটনের গতিসূত্র, ঘর্ষণ বল, গতির সমীকরণ...) -->
+                  </div>
+
+                  <!-- Dynamically Toggled Sub-Topic Detailed Interface -->
+                  <div
+                    id="topic-detail-card"
+                    class="hidden mt-6 bg-theme-secondary border-2 border-dashed border-cyan-500/40 rounded-2xl p-6 space-y-6 animate-fadeIn"
+                  >
+                    <div
+                      class="flex items-center justify-between border-b border-theme pb-3"
+                    >
+                      <h4
+                        id="detail-topic-title"
+                        class="text-lg font-black text-cyan-400"
+                      >
+                        নিউটনের ১ম সূত্র
+                      </h4>
+                      <button
+                        onclick="closeTopicDetailCard()"
+                        class="text-xs font-bold text-red-400 hover:underline"
+                      >
+                        ✕ বন্ধ করুন
+                      </button>
+                    </div>
+
+                    <!-- Discussion Inside Sub-Tabs (BD, Global, Research) -->
+                    <div
+                      class="flex bg-theme rounded-xl p-1 border border-theme text-xs font-bold shadow-inner"
+                    >
+                      <button
+                        id="subtab-btn-bd"
+                        onclick="switchTopicSubTab('bd')"
+                        class="flex-1 py-2.5 rounded-lg text-center bg-cyan-500 text-black"
+                      >
+                        🇧🇩 দেশের প্রয়োগ
+                      </button>
+                      <button
+                        id="subtab-btn-global"
+                        onclick="switchTopicSubTab('global')"
+                        class="flex-1 py-2.5 rounded-lg text-center text-theme-muted hover:text-theme"
+                      >
+                        🌍 বিদেশের লেখাপড়া
+                      </button>
+                      <button
+                        id="subtab-btn-research"
+                        onclick="switchTopicSubTab('research')"
+                        class="flex-1 py-2.5 rounded-lg text-center text-theme-muted hover:text-theme"
+                      >
+                        🔬 আবিষ্কার ও গবেষণা
+                      </button>
+                    </div>
+
+                    <!-- Sub-Tab Contents -->
+                    <div
+                      id="subtab-content-bd"
+                      class="subtab-panel text-sm text-theme-muted space-y-2 leading-relaxed"
+                    >
+                      <!-- Rendered via JS -->
+                    </div>
+                    <div
+                      id="subtab-content-global"
+                      class="subtab-panel hidden text-sm text-theme-muted space-y-2 leading-relaxed"
+                    >
+                      <!-- Rendered via JS -->
+                    </div>
+                    <div
+                      id="subtab-content-research"
+                      class="subtab-panel hidden text-sm text-theme-muted space-y-2 leading-relaxed"
+                    >
+                      <!-- Rendered via JS -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: LEARN CONTAINER -->
+              <div id="tab-learn" class="tab-panel hidden space-y-6">
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                  id="learn-cards-area"
+                >
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+
+              <!-- TAB 3: PRACTICE CONTAINER -->
+              <div id="tab-practice" class="tab-panel hidden space-y-6">
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                  id="practice-cards-area"
+                >
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+
+              <!-- TAB 4: RESOURCES CONTAINER -->
+              <div id="tab-resources" class="tab-panel hidden space-y-6">
+                <div
+                  class="bg-theme border border-theme rounded-2xl p-6 space-y-4"
+                  id="resources-list-area"
+                >
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER SECTION
+         ========================================== -->
+    <footer
+      class="footer-bg border-t border-theme pt-14 pb-8 px-6 text-theme mt-20"
+    >
+      <div
+        class="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+      >
+        <!-- Col 1 -->
+        <div class="space-y-4">
+          <div class="text-2xl font-black text-cyan-400">PIBESH</div>
+          <p
+            class="text-xs text-theme-muted leading-relaxed"
+            data-key="footer-desc"
+          >
+            প্রজেক্ট ভিত্তিক শিক্ষা ব্যবস্থা ও স্কিল ডেভেলপমেন্টের জন্য
+            বাংলাদেশের নির্ভরযোগ্য প্ল্যাটফর্ম। আমরা তৈরি করি আগামীর উদ্ভাবক।
+          </p>
+          <div class="pt-2">
+            <span
+              class="text-[11px] font-bold text-theme uppercase tracking-wider block mb-2"
+              data-key="footer-app"
+              >মোবাইল অ্যাপ ডাউনলোড করুন</span
+            >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Google Play"
+              class="h-9 cursor-pointer border border-theme rounded-lg"
+            />
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h3
+            class="font-extrabold text-sm mb-4 border-b border-theme pb-2 text-cyan-400"
+            data-key="footer-col-explore"
+          >
+            এক্সপ্লোর করুন
+          </h3>
+          <ul class="space-y-2.5 text-xs text-theme-muted font-medium">
+            <li>
+              <a
+                href="javascript:void(0)"
+                onclick="loadCategoryPage('স্কুল', '৬ষ্ঠ–১০ম')"
+                class="hover:text-cyan-400 transition"
+                >স্কুল কারিকুলাম</a
+              >
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                onclick="loadCategoryPage('কলেজ', 'HSC প্রস্তুতি')"
+                class="hover:text-cyan-400 transition"
+                >কলেজ ও HSC প্রস্তুতি</a
+              >
+            </li>
+            <li>
+              <a
+                href="javascript:void(0)"
+                onclick="loadProjectsPage()"
+                class="hover:text-cyan-400 transition"
+                >প্রজেক্ট ল্যাব</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h3
+            class="font-extrabold text-sm mb-4 border-b border-theme pb-2 text-cyan-400"
+            data-key="footer-col-support"
+          >
+            হেল্প ও সাপোর্ট
+          </h3>
+          <ul class="space-y-2.5 text-xs text-theme-muted font-medium">
+            <li>
+              <a href="#" class="hover:text-cyan-400 transition"
+                >ব্যবহারের শর্তাবলী</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-cyan-400 transition"
+                >গোপনীয়তা নীতি</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div>
+          <h3
+            class="font-extrabold text-sm mb-4 border-b border-theme pb-2 text-cyan-400"
+            data-key="footer-col-contact"
+          >
+            যোগাযোগ
+          </h3>
+          <ul class="space-y-3 text-xs text-theme-muted font-medium">
+            <li class="flex items-start gap-2">
+              <span>📍</span>
+              <span>হাউজ # 142/46,মদিনা নগর, রাজশাহী-6203, বাংলাদেশ</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span>📞</span> <span>01751095560</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="max-w-[1400px] mx-auto text-center mt-12 pt-6 border-t border-theme text-xs text-theme-muted"
+      >
+        &copy; ২০২৬ পিবেশ বাংলাদেশ। সর্বস্বত্ব সংরক্ষিত।
+      </div>
+    </footer>
+
+    <!-- Word List Modal -->
+    <div
+      id="word-list-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-cyan-600 text-white p-5 flex justify-between items-center"
+        >
+          <span class="font-bold text-base">📖 Word List (শব্দ তালিকা)</span>
+          <button
+            onclick="closeModal('word-list-modal')"
+            class="font-bold text-lg"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 space-y-4">
+          <input
+            type="text"
+            id="word-search"
+            placeholder="সার্চ করুন..."
+            class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-2.5 text-xs text-theme"
+            oninput="filterWordList()"
+          />
+          <div
+            class="border border-theme rounded-xl overflow-hidden max-h-60 overflow-y-auto"
+          >
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-theme-secondary border-b border-theme">
+                  <th class="p-3">Word</th>
+                  <th class="p-3">অর্থ</th>
+                  <th class="p-3 text-right">স্ট্যাটাস</th>
+                </tr>
+              </thead>
+              <tbody id="word-table-body" class="divide-y divide-theme"></tbody>
+            </table>
+          </div>
+          <div class="flex justify-between items-center text-xs font-bold">
+            <button
+              id="wl-prev-btn"
+              onclick="prevWordPage()"
+              class="px-3 py-1.5 border border-theme rounded-lg"
+            >
+              ⬅ Prev
+            </button>
+            <span id="wl-pagination-text">Page 1</span>
+            <button
+              id="wl-next-btn"
+              onclick="nextWordPage()"
+              class="px-3 py-1.5 border border-theme rounded-lg"
+            >
+              Next ➡
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spelling Practice Modal -->
+    <div
+      id="spelling-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-purple-600 text-white p-5 flex justify-between items-center"
+        >
+          <span class="font-bold text-base">🔤 বানান চর্চা</span>
+          <button
+            onclick="closeModal('spelling-modal')"
+            class="font-bold text-lg"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 text-center space-y-4">
+          <p class="text-xs text-theme-muted">
+            অর্থ দেখে সঠিক ইংরেজি বানানটি টাইপ করুন:
+          </p>
+          <h4 id="spelling-bangla" class="text-xl font-bold text-cyan-400">
+            আপেল
+          </h4>
+          <input
+            type="text"
+            id="spelling-input"
+            placeholder="বানান লিখুন..."
+            class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-2.5 text-center font-bold text-theme"
+          />
+          <div id="spelling-feedback" class="text-xs font-bold h-4"></div>
+          <button
+            onclick="checkSpelling()"
+            class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-xs"
+          >
+            যাচাই করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Flashcard Modal -->
+    <div
+      id="meaning-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-emerald-600 text-white p-5 flex justify-between items-center"
+        >
+          <span class="font-bold text-base">💡 শব্দের অর্থ (Flashcard)</span>
+          <button
+            onclick="closeModal('meaning-modal')"
+            class="font-bold text-lg"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 flex flex-col items-center space-y-4">
+          <div
+            onclick="flipFlashcard()"
+            class="w-full h-40 bg-theme-hover border border-dashed border-cyan-500/50 rounded-2xl flex flex-col justify-center items-center cursor-pointer p-4 text-center"
+          >
+            <span class="text-[10px] text-theme-muted mb-1"
+              >[ ট্যাপ করুন কার্ডটি উল্টাতে ]</span
+            >
+            <h3 id="card-main-text" class="text-3xl font-black text-cyan-400">
+              Apple
+            </h3>
+            <p
+              id="card-sub-text"
+              class="text-base font-bold text-theme mt-2 hidden"
+            >
+              আপেল
+            </p>
+          </div>
+          <div class="flex gap-3 w-full text-xs font-bold">
+            <button
+              onclick="prevFlashcard()"
+              class="flex-1 border border-theme py-2 rounded-xl"
+            >
+              পূর্ববর্তী
+            </button>
+            <button
+              onclick="nextFlashcard()"
+              class="flex-1 bg-emerald-600 text-white py-2 rounded-xl"
+            >
+              পরবর্তী ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive MCQ Exam Modal -->
+    <div
+      id="mcq-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-indigo-600 text-white p-5 flex justify-between items-center"
+        >
+          <div>
+            <h3 class="font-bold text-base">☑ অধ্যায়ভিত্তিক এমসিকিউ পরীক্ষা</h3>
+            <p id="mcq-modal-subtitle" class="text-[10px] text-indigo-200">
+              পদার্থবিজ্ঞান → ১ম অধ্যায়
+            </p>
+          </div>
+          <button onclick="closeModal('mcq-modal')" class="font-bold text-lg">
+            ✕
+          </button>
+        </div>
+        <div
+          class="p-6 max-h-[60vh] overflow-y-auto space-y-4"
+          id="mcq-questions-container"
+        ></div>
+        <div
+          class="bg-theme-secondary p-4 flex justify-between items-center border-t border-theme text-xs font-bold"
+        >
+          <span
+            >স্কোর:
+            <span id="mcq-solved-count" class="text-cyan-400">০/০</span></span
+          >
+          <button
+            onclick="closeModal('mcq-modal')"
+            class="bg-indigo-600 text-white px-4 py-2 rounded-xl"
+          >
+            পরীক্ষা শেষ করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Generator Modal -->
+    <div
+      id="qgen-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-emerald-600 text-white p-5 flex justify-between items-center"
+        >
+          <span class="font-bold text-base"
+            >⚡ ১-ক্লিকে প্রশ্নপত্র তৈরি করুন</span
+          >
+          <button onclick="closeModal('qgen-modal')" class="font-bold text-lg">
+            ✕
+          </button>
+        </div>
+        <div class="p-6 space-y-4 text-xs font-bold">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-theme-secondary p-3 rounded-xl border border-theme">
+              শ্রেণি:
+              <span id="qgen-lbl-class" class="text-cyan-400">৯ম শ্রেণি</span>
+            </div>
+            <div class="bg-theme-secondary p-3 rounded-xl border border-theme">
+              বিষয়:
+              <span id="qgen-lbl-subject" class="text-cyan-400"
+                >পদার্থবিজ্ঞান</span
+              >
+            </div>
+          </div>
+          <button
+            onclick="triggerGeneratePaper()"
+            class="w-full bg-emerald-600 text-white py-3 rounded-xl shadow-lg"
+          >
+            🖨️ প্রশ্নপত্র জেনারেট ও প্রিন্ট করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Printable Paper Modal -->
+    <div
+      id="print-paper-modal"
+      class="hidden fixed inset-0 z-[200] bg-slate-950/90 overflow-y-auto p-6"
+    >
+      <div
+        class="max-w-3xl mx-auto bg-white text-slate-900 p-8 rounded-2xl shadow-2xl relative"
+      >
+        <div class="absolute top-4 right-4 flex gap-2 print:hidden">
+          <button
+            onclick="window.print()"
+            class="bg-emerald-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold"
+          >
+            🖨️ Print
+          </button>
+          <button
+            onclick="closeModal('print-paper-modal')"
+            class="bg-slate-200 text-slate-800 px-4 py-1.5 rounded-lg text-xs font-bold"
+          >
+            Close
+          </button>
+        </div>
+        <div class="text-center border-b border-slate-300 pb-4 mb-6">
+          <h2 class="text-xl font-bold">PIBESH DIGITAL SCHOOL</h2>
+          <p class="text-xs text-slate-500 font-semibold">
+            Class Assessment Examination Paper
+          </p>
+        </div>
+        <div
+          id="printed-questions-area"
+          class="space-y-4 text-xs font-semibold"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div
+      id="course-details"
+      class="hidden fixed inset-0 z-[150] bg-black/85 backdrop-blur-sm overflow-y-auto p-4 md:p-10"
+    >
+      <div
+        class="max-w-4xl mx-auto bg-theme text-theme rounded-2xl border border-theme overflow-hidden shadow-2xl"
+      >
+        <div
+          class="p-5 border-b border-theme flex justify-between items-center bg-theme-secondary"
+        >
+          <span class="font-bold text-sm text-cyan-400"
+            >💡 বিস্তারিত বিবরণ</span
+          >
+          <button
+            onclick="closeModal('course-details')"
+            class="font-bold text-base"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div class="space-y-4">
+            <h3 id="detail-title" class="text-2xl font-bold text-theme">
+              কোর্সের নাম
+            </h3>
+            <div
+              class="aspect-video bg-black rounded-xl overflow-hidden border border-theme"
+            >
+              <iframe
+                id="detail-video-iframe"
+                class="w-full h-full"
+                src=""
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p
+              id="detail-desc"
+              class="text-xs text-theme-muted leading-relaxed"
+            ></p>
+          </div>
+          <div
+            class="bg-theme-secondary p-5 rounded-2xl border border-theme space-y-4"
+          >
+            <div class="flex items-center gap-2">
+              <span id="detail-price" class="text-2xl font-black text-cyan-400"
+                >৳ ৯৯৯</span
+              >
+              <span
+                id="detail-old-price"
+                class="text-xs text-theme-muted line-through"
+              ></span>
+              <span
+                id="detail-discount"
+                class="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold"
+              ></span>
+            </div>
+            <div class="border-t border-theme pt-3 space-y-2.5 text-xs">
+              <input
+                type="text"
+                id="order-name"
+                placeholder="আপনার নাম..."
+                class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-theme"
+              />
+              <input
+                type="text"
+                id="order-phone"
+                placeholder="মোবাইল নম্বর..."
+                class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-theme"
+              />
+              <textarea
+                id="order-address"
+                rows="2"
+                placeholder="ঠিকানা..."
+                class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-theme"
+              ></textarea>
+            </div>
+            <button
+              onclick="submitOrder()"
+              class="w-full bg-cyan-500 text-black font-extrabold py-3 rounded-xl text-xs"
+            >
+              অর্ডার নিশ্চিত করুন ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login / Register Modal -->
+    <div
+      id="login-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div class="p-5 text-center border-b border-theme bg-theme-secondary">
+          <span class="text-xl font-black text-cyan-400">PIBESH</span>
+          <p class="text-xs text-theme-muted mt-1" id="auth-title">
+            লগইন করুন অথবা নতুন অ্যাকাউন্ট খুলুন
+          </p>
+        </div>
+        <div class="flex border-b border-theme text-xs font-bold">
+          <button
+            id="auth-tab-login"
+            onclick="switchAuthTab('login')"
+            class="flex-1 py-3 text-cyan-400 border-b-2 border-cyan-400"
+          >
+            লগইন
+          </button>
+          <button
+            id="auth-tab-register"
+            onclick="switchAuthTab('register')"
+            class="flex-1 py-3 text-theme-muted"
+          >
+            রেজিস্ট্রেশন
+          </button>
+        </div>
+        <div class="p-6 space-y-4 text-xs font-bold">
+          <div id="auth-field-name" class="hidden space-y-1">
+            <label class="text-theme-muted">পূর্ণ নাম</label>
+            <input
+              type="text"
+              id="auth-name-input"
+              placeholder="আপনার নাম"
+              class="w-full bg-theme-hover border border-theme rounded-xl px-3 py-2.5 text-theme"
+            />
+          </div>
+          <div class="space-y-1">
+            <label class="text-theme-muted">মোবাইল নম্বর / ইমেইল</label>
+            <input
+              type="text"
+              id="auth-phone-input"
+              placeholder="017xxxxxxxx"
+              class="w-full bg-theme-hover border border-theme rounded-xl px-3 py-2.5 text-theme"
+            />
+          </div>
+          <div class="space-y-1">
+            <label class="text-theme-muted">পাসওয়ার্ড</label>
+            <input
+              type="password"
+              id="auth-pass-input"
+              placeholder="••••••••"
+              class="w-full bg-theme-hover border border-theme rounded-xl px-3 py-2.5 text-theme"
+            />
+          </div>
+          <button
+            onclick="handleAuthSubmit()"
+            id="auth-btn-submit"
+            class="w-full bg-cyan-500 text-black font-extrabold py-3 rounded-xl shadow-md"
+          >
+            লগইন করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIP Subscription Modal -->
+    <div
+      id="subscription-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-theme p-6 text-center space-y-4"
+      >
+        <span
+          class="text-xs font-bold bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full border border-amber-500/30"
+          >VIP ACCESS</span
+        >
+        <h3 class="text-2xl font-black">PRO মেম্বারশিপ</h3>
+        <p class="text-xs text-theme-muted">
+          সকল প্রিমিয়াম লেকচার ও প্রজেক্ট আনলক করুন মাত্র ৪৯৯ টাকায়।
+        </p>
+        <input
+          type="text"
+          id="sub-phone"
+          placeholder="বিকাশ / নগদ নম্বর..."
+          class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-2.5 text-center text-xs font-bold text-theme"
+        />
+        <div class="flex gap-3">
+          <button
+            onclick="closeModal('subscription-modal')"
+            class="flex-1 border border-theme py-2.5 rounded-xl text-xs font-bold"
+          >
+            বাতিল
+          </button>
+          <button
+            onclick="submitSubscription()"
+            class="flex-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-2.5 rounded-xl text-xs"
+          >
+            নিশ্চিত করুন 💎
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept PDF Reader Modal -->
+    <div
+      id="pdf-reader-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-4xl h-[85vh] rounded-2xl shadow-2xl overflow-hidden border border-theme flex flex-col"
+      >
+        <div
+          class="p-4 border-b border-theme bg-theme-secondary flex justify-between items-center text-xs font-bold"
+        >
+          <span id="pdf-reader-title" class="text-cyan-400">কনসেপ্ট বুক</span>
+          <div class="flex gap-3 items-center">
+            <button
+              onclick="adjustReaderFont('minus')"
+              class="px-2 py-1 border border-theme rounded"
+            >
+              A-
+            </button>
+            <button
+              onclick="adjustReaderFont('plus')"
+              class="px-2 py-1 border border-theme rounded"
+            >
+              A+
+            </button>
+            <button
+              onclick="closeModal('pdf-reader-modal')"
+              class="text-base font-extrabold ml-2"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+        <div
+          id="pdf-reader-body"
+          class="flex-1 overflow-y-auto p-6 md:p-10 text-sm leading-relaxed space-y-4"
+        ></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

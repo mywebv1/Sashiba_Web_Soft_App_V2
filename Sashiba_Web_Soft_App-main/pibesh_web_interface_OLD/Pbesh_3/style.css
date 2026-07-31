@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* global layout setup */
+* {
+  box-sizing: border-box;
+  font-family: "Hind Siliguri", "Inter", sans-serif;
+}
+
+/* theme dark colors (Default) */
+.theme-dark {
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-hover: #334155;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(9, 13, 22, 0.85);
+  background-color: var(--bg-primary);
+}
+
+/* theme light colors */
+.theme-light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-hover: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --nav-bg: rgba(248, 250, 252, 0.85);
+  background-color: var(--bg-primary);
+}
+
+/* map values into classes so Tailwind classes compile beautifully */
+.nav-bg {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px);
+}
+
+.dropdown-bg {
+  background-color: var(--bg-card);
+}
+
+.bg-theme {
+  background-color: var(--bg-card);
+}
+
+.bg-theme-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-theme-hover {
+  background-color: var(--bg-hover);
+}
+
+.text-theme {
+  color: var(--text-primary);
+}
+
+.text-theme-muted {
+  color: var(--text-muted);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+/* ensure line-height prevents vertical overlapping of bengali fonts */
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+a {
+  line-height: 1.625 !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Print Friendly Layout styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-paper-modal,
+  #print-paper-modal * {
+    visibility: visible;
+  }
+  #print-paper-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+}

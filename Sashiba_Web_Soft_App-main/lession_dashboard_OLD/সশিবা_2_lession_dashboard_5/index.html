@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Lesson Architect | স্মার্ট শিক্ষা বাতায়ন</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- সাইডবার -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo-icon">AI</div>
+          <span class="brand-name">শিক্ষা বাতায়ন</span>
+        </div>
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active"
+            ><i class="fa-solid fa-house"></i> ড্যাশবোর্ড</a
+          >
+          <a href="javascript:void(0)" class="nav-item" onclick="newLesson()"
+            ><i class="fa-solid fa-file-circle-plus"></i> নতুন লেসন প্ল্যান</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-book-bookmark"></i> আমার লাইব্রেরি</a
+          >
+        </nav>
+
+        <!-- শিক্ষক প্রোফাইল নিচে বাম দিকে -->
+        <div class="sidebar-footer">
+          <div class="user-profile">
+            <div class="avatar-box">TE</div>
+            <div class="user-info">
+              <strong>মোঃ রায়হান আলী</strong>
+              <span>সহকারী শিক্ষক</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="page-title">
+            <h1>লেসন আর্কিটেক্ট <span class="v-tag">v2.0</span></h1>
+          </div>
+          <div class="top-actions">
+            <div class="dropdown">
+              <button class="btn-secondary" onclick="toggleDropdown()">
+                <i class="fa-solid fa-file-export"></i> এক্সপোর্ট / প্রিন্ট
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div id="exportDropdown" class="dropdown-content">
+                <a href="#" onclick="printLesson()"
+                  ><i class="fa-solid fa-print"></i> সরাসরি প্রিন্ট করুন</a
+                >
+                <a href="#" onclick="printLesson()"
+                  ><i class="fa-solid fa-file-pdf"></i> PDF হিসেবে সেভ করুন</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="workspace-grid">
+          <!-- বাম পাশ (সেরা ইনপুট প্যানেল) -->
+          <section class="builder-section">
+            <div class="stepper-minimal">
+              <span class="st active">১. একাডেমিক তথ্য</span>
+              <span class="st">২. ক্লাস সেটিংস</span>
+              <span class="st">৩. AI গাইড</span>
+            </div>
+
+            <div class="input-card">
+              <div class="card-header">
+                <i class="fa-solid fa-graduation-cap"></i> একাডেমিক তথ্য
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>শিক্ষা বোর্ড</label>
+                  <select id="board" onchange="updateChain('board')">
+                    <option value="">নির্বাচন করুন</option>
+                    <option>জাতীয় শিক্ষাক্রম (NCTB)</option>
+                    <option>মাদ্রাসা</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>শ্রেণি</label>
+                  <select id="class" onchange="updateChain('class')">
+                    <option value="">নির্বাচন করুন</option>
+                    <option>১ম</option>
+                    <option>২য়</option>
+                    <option>৩য়</option>
+                    <option>৪র্থ</option>
+                    <option>৫ম</option>
+                    <option>৬ষ্ঠ</option>
+                    <option>৭ম</option>
+                    <option>৮ম</option>
+                    <option>৯ম</option>
+                    <option>১০ম</option>
+                    <option>১১শ</option>
+                    <option>১২শ</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>বিষয়</label>
+                  <select id="subject" onchange="updateChain('subject')">
+                    <option value="">নির্বাচন করুন</option>
+                    <option>বাংলা</option>
+                    <option>ইংরেজি</option>
+                    <option>গণিত</option>
+                    <option>বিজ্ঞান</option>
+                    <option>সামাজিক বিজ্ঞান</option>
+                    <option>জীবন ও জীবিকা</option>
+                    <option>ডিজিটাল প্রযুক্তি</option>
+                    <option>স্বাস্থ্য সুরক্ষা</option>
+                    <option>ধর্মশিক্ষা</option>
+                    <option>শিল্প ও সংস্কৃতি</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>বইয়ের নাম</label>
+                  <select id="book">
+                    <option>বই নির্বাচন করুন</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-card">
+              <div class="card-header">
+                <i class="fa-solid fa-book-open"></i> অধ্যায় ও পাঠের তথ্য
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>অধ্যায়</label>
+                  <select id="chapter">
+                    <option>অধ্যায় ১</option>
+                    <option>অধ্যায় ২</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>পাঠ (Lesson)</label>
+                  <select id="lesson">
+                    <option>পাঠ ১</option>
+                    <option>পাঠ ২</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>ক্লাসের সময়</label>
+                <select id="duration" onchange="syncData()">
+                  <option>৩৫ মিনিট</option>
+                  <option>৪০ মিনিট</option>
+                  <option selected>৪৫ মিনিট</option>
+                  <option>৬০ মিনিট</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-card">
+              <div class="card-header">
+                <i class="fa-solid fa-robot"></i> AI নির্দেশনা
+              </div>
+              <textarea
+                id="aiPrompt"
+                placeholder="যেমন: সহজ ভাষা ব্যবহার করো..."
+              ></textarea>
+              <div class="chips">
+                <span onclick="addChip('সহজ ভাষা')">+ সহজ ভাষা</span>
+                <span onclick="addChip('বাস্তব উদাহরণ')">+ বাস্তব উদাহরণ</span>
+                <span onclick="addChip('কুইজ')">+ কুইজ</span>
+              </div>
+            </div>
+
+            <button class="btn-generate-best" onclick="generateOutput()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> জেনারেট লেসন
+              প্ল্যান করুন
+            </button>
+          </section>
+
+          <!-- ডান পাশ (সেরা আউটপুট প্যানেল) -->
+          <section class="preview-section">
+            <div class="a4-page" id="printableArea">
+              <div class="paper-header">
+                <div class="logo-text">লোগো / প্রতিষ্ঠানের নাম</div>
+                <div class="nctb-badge">জাতীয় শিক্ষাক্রম (NCTB)</div>
+                <h1 id="out-title">সংখ্যার গল্প</h1>
+                <div class="meta-line">
+                  <span
+                    ><strong>শ্রেণি:</strong>
+                    <span id="out-class">৬ষ্ঠ</span></span
+                  >
+                  <span
+                    ><strong>বিষয়:</strong>
+                    <span id="out-subject">গণিত</span></span
+                  >
+                  <span
+                    ><strong>সময়:</strong>
+                    <span id="out-time">৪০ মিনিট</span></span
+                  >
+                </div>
+              </div>
+
+              <div class="paper-body">
+                <h3 class="section-h">
+                  <i class="fa-solid fa-bullseye"></i> ১. শিখনফল (Learning
+                  Outcomes)
+                </h3>
+                <ul id="out-outcomes">
+                  <li>শিক্ষার্থীরা বিষয়টি গভীরভাবে ব্যাখ্যা করতে পারবে।</li>
+                  <li>
+                    বাস্তব জীবনের উদাহরণের মাধ্যমে ধারণাটি বিশ্লেষণ করতে সক্ষম
+                    হবে।
+                  </li>
+                </ul>
+
+                <table class="lesson-table">
+                  <thead>
+                    <tr>
+                      <th>সময়</th>
+                      <th>শিক্ষকের কাজ</th>
+                      <th>শিক্ষার্থীর কাজ</th>
+                    </tr>
+                  </thead>
+                  <tbody id="out-table-body">
+                    <tr>
+                      <td>১০ মিনিট</td>
+                      <td>পূর্বজ্ঞান যাচাই ও আলোচনা।</td>
+                      <td>প্রশ্নের উত্তর প্রদান।</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="footer-note">
+                  স্মার্ট শিক্ষা বাতায়ন - AI আর্কিটেক্ট দ্বারা প্রস্তুত পৃষ্ঠা
+                  ০১
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

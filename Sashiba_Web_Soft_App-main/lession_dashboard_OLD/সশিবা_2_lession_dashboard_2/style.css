@@ -1,0 +1,309 @@
+:root {
+  --primary: #4f46e5;
+  --primary-light: #eef2ff;
+  --bg-main: #f8fafc;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", "Hind Siliguri", sans-serif;
+  background: var(--bg-main);
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* সাইডবার */
+.sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  border-right: 4px solid var(--primary);
+}
+
+/* মেইন কন্টেন্ট */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.top-bar {
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.ai-badge {
+  font-size: 10px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* গ্রিড ও ফর্ম */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  height: calc(100vh - 80px);
+}
+.builder-section {
+  padding: 30px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+.stepper {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.step {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+.step.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.step.completed {
+  color: #10b981;
+}
+
+.input-card {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+.input-card h3 {
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: var(--text-main);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+input,
+select,
+textarea {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+}
+select:disabled {
+  background: #e2e8f0;
+  cursor: not-allowed;
+}
+
+/* চিপস ও স্টিকি বাটন */
+.quick-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.chip:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.sticky-footer {
+  position: sticky;
+  bottom: -30px;
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.full-btn {
+  width: 100%;
+  justify-content: center;
+  height: 50px;
+  font-size: 16px;
+}
+
+/* প্রিভিউ প্যানেল */
+.preview-section {
+  background: #e2e8f0;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.document-canvas {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  padding: 60px;
+  min-height: 1000px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.doc-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 20px;
+}
+.badge {
+  background: #10b981;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* বাটনস ও ড্রপডাউন */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.btn-primary:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+.btn-secondary {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.export-wrapper {
+  position: relative;
+}
+.export-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 160px;
+  display: none;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.export-dropdown a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+.export-dropdown a:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.export-wrapper:hover .export-dropdown {
+  display: block;
+}
+
+.skeleton-text {
+  height: 12px;
+  background: #f1f5f9;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.w-75 {
+  width: 75%;
+}

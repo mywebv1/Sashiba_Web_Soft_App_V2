@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pibesh | প্রজেক্ট বেজড লার্নিং প্ল্যাটফর্ম</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts Google -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Style Link -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="theme-dark font-['Hind_Siliguri'] transition-colors duration-300"
+  >
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-[100] nav-bg border-b border-theme px-4 py-3">
+      <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-8">
+          <div
+            onclick="goHome()"
+            class="text-2xl font-black tracking-tighter text-cyan-400 cursor-pointer select-none"
+          >
+            PIBESH
+            <span class="text-xs font-light italic text-theme">beta</span>
+          </div>
+
+          <!-- Desktop Navigation Menu -->
+          <div
+            class="hidden lg:flex items-center space-x-6 text-[15px] font-semibold text-theme"
+          >
+            <!-- স্কুল কারিকুলাম -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🏫 <span data-key="nav-school">স্কুল কারিকুলাম</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-52 dropdown-bg border border-theme rounded-xl py-2 hidden group-hover:block shadow-2xl z-[110]"
+              >
+                <div class="grid grid-cols-2 gap-1 px-2">
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('১ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >১ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('২য় শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >২য় শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৩য় শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৩য় শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৪র্থ শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৪র্থ শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৫ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৫ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৬ষ্ঠ শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৬ষ্ঠ শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৭ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৭ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৮ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৮ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('৯ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >৯ম শ্রেণি</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    onclick="loadSchoolPage('১০ম শ্রেণি')"
+                    class="hover:bg-cyan-500/10 p-2 rounded-lg text-xs hover:text-cyan-400"
+                    >১০ম শ্রেণি</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- কলেজ কারিকুলাম -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🎓 <span data-key="nav-college">কলেজ কারিকুলাম</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-44 dropdown-bg border border-theme rounded-xl py-2 hidden group-hover:block shadow-xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('একাদশ শ্রেণি')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >একাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('দ্বাদশ শ্রেণি')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >দ্বাদশ শ্রেণি</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadCollegePage('এডমিশন')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >এডমিশন</a
+                >
+              </div>
+            </div>
+
+            <!-- ইউনিভার্সিটি কারিকুলাম -->
+            <div class="relative group">
+              <button
+                class="flex items-center gap-1 hover:text-cyan-400 transition py-2"
+              >
+                🏛️ <span data-key="nav-university">ইউনিভার্সিটি</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="absolute top-full left-0 w-60 dropdown-bg border border-theme rounded-xl py-2 hidden group-hover:block shadow-xl z-[110]"
+              >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('CSE')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >কম্পিউটার সায়েন্স (CSE)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('EEE')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >ইলেকট্রিক্যাল (EEE)</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('Civil')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >সিভিল ইঞ্জিনিয়ারিং</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  onclick="loadUniversityPage('Mechanical')"
+                  class="block hover:bg-cyan-500/10 px-4 py-2 text-sm hover:text-cyan-400"
+                  >মেকানিক্যাল</a
+                >
+              </div>
+            </div>
+
+            <a
+              href="javascript:void(0)"
+              onclick="loadProjectsPage()"
+              class="hover:text-cyan-400 transition"
+              >🚀 <span data-key="nav-projects">প্রোজেক্টস</span></a
+            >
+            <a
+              href="javascript:void(0)"
+              onclick="loadSkillsPage()"
+              class="hover:text-cyan-400 transition"
+              >🛠️ <span data-key="nav-skills">স্কিলস</span></a
+            >
+          </div>
+        </div>
+
+        <!-- Right Side Controls -->
+        <div class="flex items-center gap-4">
+          <!-- Light / Dark Theme Button -->
+          <button
+            id="theme-toggle"
+            onclick="toggleTheme()"
+            class="p-2 rounded-full bg-theme-hover border border-theme text-yellow-400 hover:scale-105 transition duration-200"
+          >
+            <!-- Default Dark Icon (Sun) -->
+            <svg
+              id="sun-icon"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
+              ></path>
+            </svg>
+            <!-- Moon Icon (Hidden by default) -->
+            <svg
+              id="moon-icon"
+              class="w-5 h-5 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Language Button -->
+          <div
+            class="flex bg-theme-hover rounded-lg p-0.5 border border-theme text-xs font-bold"
+          >
+            <button
+              id="lang-bn"
+              onclick="changeLanguage('BN')"
+              class="bg-cyan-500 text-black px-2.5 py-1 rounded transition duration-200"
+            >
+              BN
+            </button>
+            <button
+              id="lang-en"
+              onclick="changeLanguage('EN')"
+              class="px-2.5 py-1 text-gray-400 transition duration-200"
+            >
+              EN
+            </button>
+          </div>
+
+          <!-- Subscription Button -->
+          <button
+            onclick="openSubscriptionModal()"
+            class="hidden md:block bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-2 px-4 rounded-lg text-xs hover:scale-105 transition shadow-lg shadow-yellow-500/10"
+          >
+            💎 VIP ACCESS
+          </button>
+
+          <!-- Premium Cyan-Indigo Login Button (Removed Ugly Green) -->
+          <button
+            onclick="openLoginModal()"
+            class="bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-extrabold py-2 px-6 rounded-lg text-sm transition-all shadow-lg shadow-indigo-500/25"
+          >
+            লগ-ইন
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content Containers -->
+    <main id="main-content" class="min-h-screen">
+      <!-- HERO / HOME SECTION -->
+      <section
+        id="hero-section"
+        class="relative h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-transparent to-indigo-900/10 z-0"
+        ></div>
+        <div
+          class="absolute w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px] animate-pulse"
+        ></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+          <h1
+            class="text-5xl md:text-8xl font-extrabold mb-8 tracking-tight leading-tight"
+          >
+            শুধু শিখবেন না, <br />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"
+              >তৈরি করতে শিখুন।</span
+            >
+          </h1>
+          <p
+            class="text-theme-muted text-lg md:text-2xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            পিবেশ—বাংলাদেশের প্রথম প্রজেক্ট-বেজড এডুকেশন সিস্টেম। এখানে আমরা
+            থিওরি নয়, সরাসরি হাতে-কলমে প্রজেক্ট কাজ শিখি।
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              onclick="loadSchoolPage('১ম শ্রেণি')"
+              class="bg-cyan-500 text-black font-extrabold py-4 px-10 rounded-xl hover:bg-cyan-400 hover:scale-105 transition-all shadow-xl shadow-cyan-500/20"
+            >
+              ফ্রি ট্রায়াল শুরু করুন
+            </button>
+            <button
+              onclick="openSubscriptionModal()"
+              class="border border-theme py-4 px-10 rounded-xl hover:bg-theme-hover transition-all font-bold text-theme"
+            >
+              প্রিমিয়াম মেম্বারশিপ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- DYNAMIC CURRICULUM SECTION -->
+      <section
+        id="dynamic-page"
+        class="hidden pt-28 pb-24 px-6 bg-theme-secondary min-h-screen"
+      >
+        <div class="max-w-[1400px] mx-auto">
+          <!-- Page Header -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-theme pb-6 mb-8 gap-4"
+          >
+            <div>
+              <h2 id="dynamic-title" class="text-3xl font-black text-theme">
+                লোড হচ্ছে...
+              </h2>
+              <p id="dynamic-subtitle" class="text-theme-muted text-sm mt-1">
+                আপনার প্রয়োজনীয় বিষয় বা কোর্সটি বেছে নিন
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <span id="dynamic-count" class="text-theme font-semibold text-sm"
+                >কনটেন্টসমূহ</span
+              >
+              <div class="relative">
+                <select
+                  class="bg-theme border border-theme rounded-xl px-4 py-2 text-sm text-theme font-medium focus:outline-none focus:ring-2 focus:ring-cyan-500 appearance-none pr-8 cursor-pointer"
+                >
+                  <option>Default Sorting</option>
+                  <option>Newest first</option>
+                  <option>Popularity</option>
+                </select>
+                <span
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                  >▼</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Sidebar + Right Grid -->
+          <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Navigation -->
+            <div
+              id="dynamic-sidebar"
+              class="w-full lg:w-[320px] flex-shrink-0 bg-theme border border-theme rounded-2xl p-6 space-y-4 shadow-sm h-fit"
+            >
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Cards Container -->
+            <div class="flex-1">
+              <div
+                id="dynamic-grid"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================
+         INTERACTIVE POPUP MODALS (DYNAMIC & MODERN)
+         ========================================== -->
+
+    <!-- ১. Word List Modal -->
+    <div
+      id="word-list-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-cyan-600 text-white p-6 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📖</span>
+            <div>
+              <h3 class="text-xl font-bold">Word List (শব্দ তালিকা)</h3>
+              <p class="text-xs text-cyan-100" id="wl-modal-subtitle">
+                ১ম শ্রেণি → ইংরেজি
+              </p>
+            </div>
+          </div>
+          <button
+            onclick="closeModal('word-list-modal')"
+            class="text-white hover:text-red-200 text-xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <input
+              type="text"
+              id="word-search"
+              placeholder="🔍 সার্চ করুন (শব্দ বা অর্থ)..."
+              class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-theme"
+              oninput="filterWordList()"
+            />
+          </div>
+          <div class="border border-theme rounded-xl overflow-hidden mb-4">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-theme-secondary text-theme text-xs font-bold border-b border-theme"
+                >
+                  <th class="p-3">Word</th>
+                  <th class="p-3">বাংলা অর্থ</th>
+                  <th class="p-3 text-right">স্ট্যাটাস</th>
+                </tr>
+              </thead>
+              <tbody
+                id="word-table-body"
+                class="text-theme text-sm divide-y divide-theme"
+              >
+                <!-- Dynamic -->
+              </tbody>
+            </table>
+          </div>
+          <div class="flex justify-between items-center text-xs font-bold mt-4">
+            <button
+              id="wl-prev-btn"
+              onclick="prevWordPage()"
+              class="px-4 py-2 border border-theme rounded-lg bg-theme-hover text-theme disabled:opacity-50"
+            >
+              ⬅ Previous
+            </button>
+            <span id="wl-pagination-text" class="text-theme-muted"
+              >Page 1 of 1</span
+            >
+            <button
+              id="wl-next-btn"
+              onclick="nextWordPage()"
+              class="px-4 py-2 border border-theme rounded-lg bg-theme-hover text-theme disabled:opacity-50"
+            >
+              Next ➡
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ২. Spelling Modal -->
+    <div
+      id="spelling-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-purple-600 text-white p-6 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🔤</span>
+            <div>
+              <h3 class="text-xl font-bold">বানান চর্চা (Spelling Practice)</h3>
+              <p class="text-xs text-purple-100">শুদ্ধ বানানে ফোকাস দিন</p>
+            </div>
+          </div>
+          <button
+            onclick="closeModal('spelling-modal')"
+            class="text-white hover:text-red-200 text-xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 text-center">
+          <p class="text-sm text-theme-muted mb-2">
+            অর্থ দেখে সঠিক ইংরেজি বানানটি টাইপ করুন:
+          </p>
+          <h4
+            id="spelling-bangla"
+            class="text-2xl font-black text-cyan-400 mb-6"
+          >
+            আপেল
+          </h4>
+          <input
+            type="text"
+            id="spelling-input"
+            placeholder="এখানে বানানটি লিখুন..."
+            class="w-full bg-theme-hover border-2 border-theme rounded-xl px-4 py-3 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-purple-500 text-theme mb-4"
+          />
+          <div id="spelling-feedback" class="text-sm font-bold h-6 mb-4"></div>
+          <button
+            onclick="checkSpelling()"
+            class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition"
+          >
+            উত্তর যাচাই করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৩. Word Meaning Flashcard Modal -->
+    <div
+      id="meaning-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-emerald-600 text-white p-6 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">💡</span>
+            <div>
+              <h3 class="text-xl font-bold">শব্দের অর্থ (Word Flashcard)</h3>
+              <p class="text-xs text-emerald-100">
+                ক্লিক করে অর্থ উন্মোচন করুন
+              </p>
+            </div>
+          </div>
+          <button
+            onclick="closeModal('meaning-modal')"
+            class="text-white hover:text-red-200 text-xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 flex flex-col items-center">
+          <!-- Card with flip animation effect simulated in UI -->
+          <div
+            onclick="flipFlashcard()"
+            class="w-full h-48 bg-theme-hover border-2 border-dashed border-cyan-500/50 rounded-2xl flex flex-col justify-center items-center cursor-pointer p-4 select-none mb-6 text-center hover:bg-cyan-500/5 transition"
+          >
+            <span class="text-xs text-theme-muted mb-2"
+              >[ ট্যাপ করুন কার্ডটি উল্টাতে ]</span
+            >
+            <h3 id="card-main-text" class="text-4xl font-black text-cyan-400">
+              Apple
+            </h3>
+            <p
+              id="card-sub-text"
+              class="text-lg font-bold text-theme-muted mt-4 hidden"
+            >
+              আপেল
+            </p>
+          </div>
+          <div class="flex gap-4 w-full">
+            <button
+              onclick="prevFlashcard()"
+              class="flex-1 bg-theme border border-theme py-2.5 rounded-xl text-sm font-bold text-theme"
+            >
+              পূর্ববর্তী
+            </button>
+            <button
+              onclick="nextFlashcard()"
+              class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-bold"
+            >
+              পরবর্তী ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৪. MCQ Practice Modal -->
+    <div
+      id="mcq-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-indigo-600 text-white p-6 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">☑</span>
+            <div>
+              <h3 class="text-xl font-bold">Interactive MCQ Practice</h3>
+              <p class="text-xs text-indigo-100" id="mcq-modal-subtitle">
+                ১ম শ্রেণি → ইংরেজি
+              </p>
+            </div>
+          </div>
+          <button
+            onclick="closeModal('mcq-modal')"
+            class="text-white hover:text-red-200 text-xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
+        <div
+          class="p-6 max-h-[60vh] overflow-y-auto space-y-6"
+          id="mcq-questions-container"
+        >
+          <!-- Dynamic MCQ items load here -->
+        </div>
+        <div
+          class="bg-theme-secondary px-6 py-4 flex justify-between items-center border-t border-theme"
+        >
+          <div class="text-sm font-bold text-theme">
+            🏆 স্কোর:
+            <span id="mcq-solved-count" class="text-indigo-500">০/০</span>
+          </div>
+          <button
+            onclick="closeModal('mcq-modal')"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition"
+          >
+            পড়া শেষ করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৫. Question Generator Modal -->
+    <div
+      id="qgen-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-emerald-600 text-white p-6 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📄</span>
+            <div>
+              <h3 class="text-xl font-bold">Question Paper Generator</h3>
+              <p class="text-xs text-emerald-100">
+                ইনস্ট্যান্ট প্রশ্ন এবং উত্তরপত্র তৈরি করুন
+              </p>
+            </div>
+          </div>
+          <button
+            onclick="closeModal('qgen-modal')"
+            class="text-white hover:text-red-200 text-xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-theme-secondary p-3 rounded-xl border border-theme">
+              <span class="text-xs text-theme-muted block font-bold"
+                >শ্রেণি/লেভেল</span
+              >
+              <span class="text-sm font-bold text-theme" id="qgen-lbl-class"
+                >১ম শ্রেণি</span
+              >
+            </div>
+            <div class="bg-theme-secondary p-3 rounded-xl border border-theme">
+              <span class="text-xs text-theme-muted block font-bold">বিষয়</span>
+              <span class="text-sm font-bold text-theme" id="qgen-lbl-subject"
+                >ইংরেজি</span
+              >
+            </div>
+            <div class="bg-theme-secondary p-3 rounded-xl border border-theme">
+              <span class="text-xs text-theme-muted block font-bold"
+                >অধ্যায়</span
+              >
+              <span class="text-sm font-bold text-theme" id="qgen-lbl-chapter"
+                >১ম অধ্যায়</span
+              >
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-theme mb-3"
+              >প্রশ্ন ধরন নির্বাচন করুন</label
+            >
+            <div class="grid grid-cols-2 gap-3">
+              <label
+                class="flex items-center gap-3 bg-theme-hover px-4 py-3 rounded-xl border border-theme cursor-pointer text-sm font-bold"
+              >
+                <input
+                  type="checkbox"
+                  checked
+                  class="w-4 h-4 text-emerald-600"
+                />
+                MCQ (বহুনির্বাচনী)
+              </label>
+              <label
+                class="flex items-center gap-3 bg-theme-hover px-4 py-3 rounded-xl border border-theme cursor-pointer text-sm font-bold"
+              >
+                <input
+                  type="checkbox"
+                  checked
+                  class="w-4 h-4 text-emerald-600"
+                />
+                CQ (সৃজনশীল)
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-theme mb-3"
+              >পূর্ণমান (Marks)</label
+            >
+            <div class="flex gap-4">
+              <label
+                class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-theme bg-theme-hover cursor-pointer text-sm font-bold"
+              >
+                <input type="radio" name="marks" value="১০" checked /> ১০
+              </label>
+              <label
+                class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-theme bg-theme-hover cursor-pointer text-sm font-bold"
+              >
+                <input type="radio" name="marks" value="৫০" /> ৫০
+              </label>
+              <label
+                class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-theme bg-theme-hover cursor-pointer text-sm font-bold"
+              >
+                <input type="radio" name="marks" value="১০০" /> ১০০
+              </label>
+            </div>
+          </div>
+          <button
+            onclick="triggerGeneratePaper()"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2"
+          >
+            🟢 Generate Paper (প্রশ্ন তৈরি করুন)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৬. Printable Paper Modal -->
+    <div
+      id="print-paper-modal"
+      class="hidden fixed inset-0 z-[200] bg-slate-950/90 overflow-y-auto p-8"
+    >
+      <div
+        class="max-w-4xl mx-auto bg-white text-slate-900 p-12 rounded-3xl shadow-2xl relative border border-slate-200"
+      >
+        <div class="absolute top-6 right-6 flex gap-3 print:hidden">
+          <button
+            onclick="window.print()"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition"
+          >
+            🖨️ Print Paper
+          </button>
+          <button
+            onclick="closeModal('print-paper-modal')"
+            class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-5 py-2.5 rounded-xl text-sm font-bold"
+          >
+            বন্ধ করুন
+          </button>
+        </div>
+        <div
+          class="text-center border-b-2 border-double border-slate-800 pb-6 mb-8 mt-4"
+        >
+          <h1 class="text-3xl font-extrabold text-slate-950">
+            PIBESH DIGITAL SCHOOL
+          </h1>
+          <p class="text-sm font-bold text-slate-500 mt-1">
+            Class Assessment Examination
+          </p>
+          <div class="grid grid-cols-3 mt-6 text-sm font-bold text-slate-700">
+            <span class="text-left"
+              >Class: <span id="p-class">১ম শ্রেণি</span></span
+            >
+            <span>Subject: <span id="p-subject">ইংরেজি</span></span>
+            <span class="text-right"
+              >Full Marks: <span id="p-marks">৫০</span></span
+            >
+          </div>
+        </div>
+        <div
+          id="printed-questions-area"
+          class="space-y-6 text-slate-800 leading-relaxed"
+        >
+          <!-- Dynamic questions -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ৭. Skill / Course Detail Modal -->
+    <div
+      id="course-details"
+      class="hidden fixed inset-0 z-[150] bg-black/85 backdrop-blur-sm overflow-y-auto p-4 md:p-12"
+    >
+      <div
+        class="max-w-6xl mx-auto bg-theme text-theme rounded-3xl border border-theme overflow-hidden shadow-2xl"
+      >
+        <div
+          class="p-6 md:p-8 border-b border-theme flex justify-between items-center bg-theme-secondary"
+        >
+          <span class="text-cyan-400 font-extrabold tracking-widest text-sm"
+            >💡 DETAIL SPECIFICATIONS</span
+          >
+          <button
+            onclick="closeModal('course-details')"
+            class="text-theme hover:text-red-500 font-extrabold text-lg"
+          >
+            ✕ Close
+          </button>
+        </div>
+        <div class="p-6 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2 space-y-6">
+            <h2
+              id="detail-title"
+              class="text-4xl font-extrabold text-theme leading-tight"
+            >
+              কোর্সের নাম
+            </h2>
+            <div
+              class="aspect-video bg-black rounded-2xl overflow-hidden border border-theme relative flex items-center justify-center"
+            >
+              <iframe
+                id="detail-video-iframe"
+                class="w-full h-full"
+                src=""
+                title="Video tutorial"
+                frameborder="0"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p
+              id="detail-desc"
+              class="text-theme-muted text-lg leading-relaxed"
+            >
+              বিস্তারিত বিবরণ...
+            </p>
+            <div class="space-y-4">
+              <h3 class="text-xl font-bold border-b border-theme pb-2">
+                প্রজেক্ট কারিকুলাম
+              </h3>
+              <div class="grid grid-cols-1 gap-2 text-sm">
+                <div
+                  class="p-4 bg-theme-secondary rounded-xl flex items-center justify-between"
+                >
+                  <span>০১. প্রজেক্ট সেটআপ ও টুলস ওরিয়েন্টেশন</span>
+                  <span
+                    class="text-xs bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full"
+                    >ফ্রি ট্রায়াল</span
+                  >
+                </div>
+                <div
+                  class="p-4 bg-theme-secondary rounded-xl opacity-60 flex items-center justify-between"
+                >
+                  <span>০২. রিয়েল ওয়ার্ল্ড ডেভলপমেন্ট ইমপ্লিমেন্টেশন</span>
+                  <span class="text-xs text-theme-muted">🔒 লকড</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-1">
+            <div
+              class="sticky top-12 bg-theme-secondary border border-theme p-8 rounded-3xl space-y-6 shadow-xl"
+            >
+              <div class="text-4xl font-black text-cyan-400" id="detail-price">
+                ৳ ৯৯৯
+              </div>
+              <p class="text-xs text-theme-muted italic">
+                একবার কিনলে লাইফটাইম এক্সেস + সার্টিফাইড সার্টিফিকেট
+              </p>
+
+              <!-- Order checkout form simulator -->
+              <div class="border-t border-theme pt-4 space-y-3">
+                <h4 class="text-sm font-bold text-theme">
+                  অর্ডার করুন (Shipping Details):
+                </h4>
+                <input
+                  type="text"
+                  id="order-name"
+                  placeholder="আপনার নাম..."
+                  class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-xs text-theme focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                />
+                <input
+                  type="text"
+                  id="order-phone"
+                  placeholder="মোবাইল নম্বর..."
+                  class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-xs text-theme focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                />
+                <textarea
+                  id="order-address"
+                  rows="2"
+                  placeholder="ডেলিভারি ঠিকানা..."
+                  class="w-full bg-theme border border-theme rounded-xl px-3 py-2 text-xs text-theme focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                ></textarea>
+              </div>
+
+              <button
+                onclick="submitOrder()"
+                class="w-full bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-black font-extrabold py-4 rounded-xl transition duration-300 shadow-lg shadow-cyan-500/10"
+              >
+                অর্ডার নিশ্চিত করুন ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৮. Premium Subscription Modal -->
+    <div
+      id="subscription-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div
+          class="bg-gradient-to-r from-amber-500 to-yellow-500 p-8 text-center text-slate-950 relative"
+        >
+          <button
+            onclick="closeModal('subscription-modal')"
+            class="absolute top-4 right-4 text-slate-950 font-bold hover:opacity-70 text-lg"
+          >
+            ✕
+          </button>
+          <span
+            class="text-xs font-black bg-slate-950 text-yellow-400 px-3 py-1 rounded-full"
+            >PIBESH VIP CLUB</span
+          >
+          <h3 class="text-3xl font-black mt-3">PRO মেম্বারশিপ</h3>
+          <p class="text-xs font-bold opacity-80 mt-1">
+            সব ভিডিও টিউটোরিয়াল এবং ইউনিক প্রজেক্ট অ্যাক্সেস করুন এক প্ল্যানে
+          </p>
+        </div>
+        <div class="p-8 space-y-6">
+          <div class="text-center">
+            <span class="text-5xl font-black text-cyan-400">৳ ৪৯৯</span>
+            <span class="text-theme-muted text-sm font-bold"> / প্রতি মাস</span>
+          </div>
+          <ul class="space-y-3.5 text-sm font-semibold">
+            <li class="flex items-center gap-3">
+              ✅
+              <span class="text-theme"
+                >১ম-১০ম সকল বিষয়ের পূর্ণাংগ ভিডিও টিউটোরিয়াল</span
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              ✅
+              <span class="text-theme"
+                >ইউনিভার্সিটি সেমিস্টার-ভিত্তিক হ্যান্ডস-অন প্রজেক্টস</span
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              ✅
+              <span class="text-theme"
+                >ফিজিক্যাল বিজ্ঞান বাক্সের উপর ১৫% সরাসরি ক্যাশব্যাক
+                ডিসকাউন্ট</span
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              ✅
+              <span class="text-theme"
+                >সার্বক্ষণিক ডেডিকেটেড মেন্টর সাপোর্ট</span
+              >
+            </li>
+          </ul>
+          <div class="space-y-2">
+            <input
+              type="text"
+              id="sub-phone"
+              placeholder="বিকাশ / নগদ নম্বর..."
+              class="w-full bg-theme-hover border-2 border-theme rounded-xl px-4 py-3 text-center text-sm font-bold text-theme focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+          </div>
+          <button
+            onclick="submitSubscription()"
+            class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black py-4 rounded-xl text-md hover:scale-[1.02] transition shadow-lg shadow-yellow-500/20"
+          >
+            সাবস্ক্রিপশন নিশ্চিত করুন 💎
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ৯. Login Modal -->
+    <div
+      id="login-modal"
+      class="hidden fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-theme text-theme w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden border border-theme"
+      >
+        <div class="p-8 space-y-6">
+          <div class="text-center">
+            <h3 class="text-2xl font-black text-theme">সদস্য লগইন</h3>
+            <p class="text-xs text-theme-muted mt-1">
+              লগইন করে আপনার ড্যাশবোর্ডে প্রবেশ করুন
+            </p>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-theme-muted mb-1"
+                >ইমেইল / ইউজারনেম</label
+              >
+              <input
+                type="email"
+                id="login-email"
+                placeholder="example@email.com"
+                class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-3 text-sm text-theme focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-theme-muted mb-1"
+                >পাসওয়ার্ড</label
+              >
+              <input
+                type="password"
+                id="login-pass"
+                placeholder="••••••••"
+                class="w-full bg-theme-hover border border-theme rounded-xl px-4 py-3 text-sm text-theme focus:outline-none focus:ring-1 focus:ring-cyan-500"
+              />
+            </div>
+          </div>
+          <button
+            onclick="simulateLogin()"
+            class="w-full bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-extrabold py-3.5 rounded-xl transition shadow-lg"
+          >
+            লগ-ইন করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
