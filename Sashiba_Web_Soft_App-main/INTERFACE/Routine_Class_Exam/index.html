@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routine C&E - Academic Routine Dashboard (Version 14)</title>
+  <meta name="description" content="Routine C&E - Academic Routine Dashboard with Deep Slate Sidebar, Floating Table Text, Teacher Hover Cards, Multi-Month Stacking, and Universal Keyboard Shortcuts.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+
+    <!-- 1. Left Collapsible Sidebar (#0f172a Deep Slate Theme) -->
+    <aside class="sidebar-v14" id="sidebar">
+      <div class="sidebar-logo-area">
+        <button class="logo-square" id="sidebarToggleBtn" title="Toggle Sidebar">
+          <span>AP</span>
+        </button>
+        <span class="sidebar-brand-text" data-i18n="brand">Antigravity Portal</span>
+        <div class="status-dot-orange" title="System Online"></div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Dashboard -->
+        <button class="nav-item active" data-view="dashboard" title="Dashboard">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="8" height="8" rx="1.5"></rect>
+            <rect x="13" y="3" width="8" height="8" rx="1.5"></rect>
+            <rect x="3" y="13" width="8" height="8" rx="1.5"></rect>
+            <rect x="13" y="13" width="8" height="8" rx="1.5"></rect>
+          </svg>
+          <span class="nav-text" data-i18n="nav_dashboard">Dashboard</span>
+        </button>
+
+        <!-- Calendar -->
+        <button class="nav-item" data-view="calendar" title="Calendar View">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="nav-text" data-i18n="nav_calendar">Calendar</span>
+        </button>
+
+        <!-- Documents -->
+        <button class="nav-item" data-view="documents" title="Documents">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 2-2 2v16a2 2 0 0 2 2 2h12a2 2 0 0 2 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span class="nav-text" data-i18n="nav_documents">Documents</span>
+        </button>
+
+        <!-- Users -->
+        <button class="nav-item" data-view="users" title="Users List">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="nav-text" data-i18n="nav_users">Users</span>
+          <span class="nav-badge badge-orange">8</span>
+        </button>
+
+        <!-- Institutes -->
+        <button class="nav-item" data-view="institutes" title="Institutes">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="nav-text" data-i18n="nav_institutes">Institutes</span>
+          <span class="nav-badge badge-orange">5</span>
+        </button>
+
+        <!-- Classes -->
+        <button class="nav-item" data-view="classes" title="Classes Routine">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span class="nav-text" data-i18n="nav_classes">Classes</span>
+          <span class="nav-badge badge-red">9+</span>
+        </button>
+
+        <!-- Messages -->
+        <button class="nav-item" data-view="messages" title="SMS & Notices">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="nav-text" data-i18n="nav_messages">Messages</span>
+          <span class="nav-badge badge-red">9+</span>
+        </button>
+
+        <!-- Analytics -->
+        <button class="nav-item" data-view="analytics" title="Analytics">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span class="nav-text" data-i18n="nav_analytics">Analytics</span>
+        </button>
+
+        <!-- Search -->
+        <button class="nav-item" id="sidebarSearchBtn" title="Search Portal">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="nav-text" data-i18n="nav_search">Search</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="sidebarPinBtn" title="Location Pin">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="nav-text" data-i18n="nav_location">Location</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Container -->
+    <main class="main-wrapper-v14">
+
+      <!-- Top Header Bar (Matched #0f172a Deep Slate) -->
+      <header class="header-bar-v14">
+        <div class="header-left">
+          <!-- Year Selector -->
+          <div class="year-pill-v14">
+            <select id="yearSelect" class="year-select-v14" aria-label="Select Academic Year">
+              <option value="2024" selected>2024 ▾</option>
+              <option value="2026">2026 ▾</option>
+              <option value="2025">2025 ▾</option>
+            </select>
+          </div>
+
+          <!-- Status Indicators -->
+          <div class="status-indicators-v14">
+            <span class="dot-3d-green"></span>
+            <span class="dot-3d-green"></span>
+            <span class="status-txt-saved" data-i18n="status_saved">Saved</span>
+            <span class="divider-pipe">|</span>
+            <span class="status-txt-live" data-i18n="status_live">Live</span>
+            <span class="dot-small">•</span>
+            <span class="status-txt-connected" data-i18n="status_connected">Connected</span>
+          </div>
+
+          <!-- Conflict Badge Button -->
+          <button class="btn-conflict-v14" id="headerConflictBadge" title="Filter Conflicts" data-i18n="conflict_badge">
+            ⚡ 1 conflict
+          </button>
+        </div>
+
+        <!-- Search Bar (Focused via Ctrl+K / Cmd+K) -->
+        <div class="search-box-v14">
+          <svg class="search-icon-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input-v14" placeholder="Search teacher, student, subject, room, code... (Ctrl+K)" aria-label="Search Routine">
+          <kbd class="kbd-badge">⌘K</kbd>
+        </div>
+
+        <!-- Header Right Actions -->
+        <div class="header-right-v14">
+          <!-- Language Selector -->
+          <button class="btn-lang-v14" id="langToggleBtn" title="Toggle Language">
+            <span class="flag-bd" id="langFlag">BD</span> <span id="langLabel">বাংলা</span>
+          </button>
+
+          <!-- Form Fill-Up Button -->
+          <button class="btn-fillup-v14" id="formFillUpBtn" data-i18n="btn_fillup">+ Form Fill-Up</button>
+          
+          <!-- Notifications Popover Toggle -->
+          <div class="popover-wrapper">
+            <button class="btn-icon-v14 notif-wrap" id="notifBtn" title="Notifications">
+              <span class="bell-emoji">🔔</span>
+              <span class="notif-count-badge">3</span>
+            </button>
+            <div class="popover-menu" id="notifPopover">
+              <div class="popover-head">
+                <strong data-i18n="notif_head">Notifications (3)</strong>
+                <button class="btn-text-sm" id="markAllReadBtn" data-i18n="mark_read">Mark all read</button>
+              </div>
+              <div class="popover-list">
+                <div class="popover-item unread">
+                  <span class="p-icon">⚠️</span>
+                  <div>
+                    <div class="p-title">Class XI Routine Conflict</div>
+                    <div class="p-desc">Principal Razia Begum updated 3 entries in Mathematics.</div>
+                    <div class="p-time">2 min ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme Switcher Button -->
+          <button class="btn-icon-v14" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+            <span class="moon-emoji">🌙</span>
+          </button>
+
+          <!-- Admin Square Menu Button -->
+          <div class="popover-wrapper">
+            <button class="btn-admin-sq-v14" id="adminSquareBtn" title="Admin Quick Settings Menu">
+              ⚙️
+            </button>
+            <div class="popover-menu right-aligned" id="adminQuickPopover">
+              <div class="popover-head">
+                <strong>Admin Quick Settings</strong>
+              </div>
+              <button class="menu-item-btn" onclick="showToast('Academic Calendar Config opened')">📅 Academic Calendar Config</button>
+              <button class="menu-item-btn" onclick="showToast('Teacher Roster Preferences')">👨‍🏫 Teacher Roster Matrix</button>
+            </div>
+          </div>
+
+          <!-- User Profile Dropdown -->
+          <div class="popover-wrapper">
+            <button class="btn-user-v14" id="userMenuBtn">
+              <span class="avatar-circle-v14">A</span>
+              <span class="user-txt">Admin ▾</span>
+            </button>
+            <div class="popover-menu right-aligned" id="userPopover">
+              <div class="user-profile-head">
+                <div class="avatar-circle-lg">A</div>
+                <div>
+                  <strong id="userProfileName">Principal Admin</strong>
+                  <div class="user-email">admin@schoolportal.edu</div>
+                </div>
+              </div>
+              <div class="popover-divider"></div>
+              <button class="menu-item-btn" onclick="showToast('Profile Settings opened')">👤 Profile & Account</button>
+              <div class="popover-divider"></div>
+              <button class="menu-item-btn text-danger" onclick="showToast('Logged out successfully')">🚪 Log Out</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Filter Controls Strip -->
+      <section class="filter-strip-v14">
+        <div class="filter-top-row">
+          <div class="filter-left-actions">
+            <!-- Segmented Buttons -->
+            <button class="segment-btn-v14 active" data-type-filter="ALL" data-i18n="filter_all">All</button>
+            <button class="segment-btn-v14" data-type-filter="CLASS" data-i18n="filter_class">🏢 Class</button>
+            <button class="segment-btn-v14" data-type-filter="EXAM" data-i18n="filter_exam">📝 Exam</button>
+
+            <span class="divider-pipe">|</span>
+
+            <!-- Class Dropdown -->
+            <select id="classSelect" class="filter-select-v14" aria-label="Filter Class">
+              <option value="ALL" selected data-i18n="opt_all_classes">🎓 All Classes ▾</option>
+              <option value="Class 1">Class 1</option>
+              <option value="Class 2">Class 2</option>
+              <option value="Class 3">Class 3</option>
+              <option value="Class 4">Class 4</option>
+              <option value="Class 5">Class 5</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
+              <option value="Class 11">Class 11</option>
+              <option value="Class 12">Class 12</option>
+            </select>
+
+            <span class="divider-pipe">|</span>
+
+            <!-- Shift Dropdown -->
+            <select id="shiftSelect" class="filter-select-v14" aria-label="Filter Shift">
+              <option value="ALL" selected data-i18n="opt_both_shifts">⏱️ Both ▾</option>
+              <option value="Morning" data-i18n="opt_morning">Morning</option>
+              <option value="Evening" data-i18n="opt_evening">Evening</option>
+            </select>
+          </div>
+
+          <div class="filter-right-actions">
+            <button class="btn-outline-v14" id="calendarViewBtn" data-i18n="btn_calendar">🗓️ Calendar</button>
+            <button class="btn-outline-v14" id="dateRangeBtn" data-i18n="btn_daterange">--- Date Range</button>
+          </div>
+        </div>
+
+        <!-- 3. Month Selection Row with Reset / Clear Button -->
+        <div class="month-row-v14">
+          <span class="month-lbl-v14" data-i18n="lbl_month">MONTH</span>
+          <div class="month-pills-wrap" id="monthPillsContainer">
+            <button class="m-pill" data-month="Jan">Jan</button>
+            <button class="m-pill" data-month="Feb">Feb</button>
+            <button class="m-pill" data-month="Mar">Mar</button>
+            <button class="m-pill" data-month="Apr">Apr</button>
+            <button class="m-pill" data-month="May">May</button>
+            <button class="m-pill" data-month="Jun">Jun</button>
+            <button class="m-pill" data-month="Jul">Jul</button>
+            <button class="m-pill active" data-month="Aug">Aug</button>
+            <button class="m-pill" data-month="Sep">Sep</button>
+            <button class="m-pill" data-month="Oct">Oct</button>
+            <button class="m-pill" data-month="Nov">Nov</button>
+            <button class="m-pill" data-month="Dec">Dec</button>
+          </div>
+
+          <!-- Month Controls (All, Clear / Reset, Counter) -->
+          <div class="month-ctrls">
+            <button class="btn-m-action" id="selectAllMonthsBtn" data-i18n="btn_all_months">All</button>
+            <button class="btn-m-action btn-m-clear" id="clearMonthsBtn" data-i18n="btn_clear_months">Clear / Reset</button>
+            <span class="m-counter-pill" id="selectedMonthCounter">1 / 12 selected</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Cards -->
+      <section class="kpi-cards-grid-v14">
+        <!-- Total Students -->
+        <div class="kpi-card-sleek card-accent-blue" data-kpi-action="total-students">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_total_students">Total Students</span>
+            <span class="kpi-icon-badge badge-blue">🎓</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumTotal">847</div>
+          <div class="kpi-sub-sleek pos">+12 enrolled</div>
+        </div>
+
+        <!-- Dropped -->
+        <div class="kpi-card-sleek card-accent-red" data-kpi-action="dropped">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_dropped">Dropped</span>
+            <span class="kpi-icon-badge badge-red">📉</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumDropped">12</div>
+          <div class="kpi-sub-sleek neg">-3 this week</div>
+        </div>
+
+        <!-- Eligible -->
+        <div class="kpi-card-sleek card-accent-green" data-kpi-action="eligible">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_eligible">Eligible</span>
+            <span class="kpi-icon-badge badge-green">✅</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumEligible">791</div>
+          <div class="kpi-sub-sleek pos">93.5% rate</div>
+        </div>
+
+        <!-- Ineligible -->
+        <div class="kpi-card-sleek card-accent-amber" data-kpi-action="ineligible">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_ineligible">Ineligible</span>
+            <span class="kpi-icon-badge badge-amber">⚠️</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumIneligible">44</div>
+          <div class="kpi-sub-sleek warn">Hover for reason</div>
+        </div>
+
+        <!-- Today's Classes -->
+        <div class="kpi-card-sleek card-accent-purple" data-kpi-action="todays-classes">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_todays_classes">Today's Classes</span>
+            <span class="kpi-icon-badge badge-purple">📖</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumClasses">8</div>
+          <div class="kpi-sub-sleek muted">3 yet to start</div>
+        </div>
+
+        <!-- Today's Exams -->
+        <div class="kpi-card-sleek card-accent-teal" data-kpi-action="todays-exams">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_todays_exams">Today's Exams</span>
+            <span class="kpi-icon-badge badge-teal">📝</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumExams">2</div>
+          <div class="kpi-sub-sleek muted">Hall A & B</div>
+        </div>
+
+        <!-- Busy Teachers -->
+        <div class="kpi-card-sleek card-accent-magenta" id="kpiBusyTeachersCard" data-kpi-action="busy-teachers">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_busy_teachers">Busy Teachers</span>
+            <span class="kpi-icon-badge badge-magenta">👨‍🏫</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumTeachers">6</div>
+          <div class="kpi-sub-sleek action">View Matrix</div>
+        </div>
+
+        <!-- Available Rooms -->
+        <div class="kpi-card-sleek card-accent-cyan" id="kpiAvailableRoomsCard" data-kpi-action="available-rooms">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_available_rooms">Available Rooms</span>
+            <span class="kpi-icon-badge badge-cyan">🏫</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumRooms">5</div>
+          <div class="kpi-sub-sleek action">Rooms 103–107</div>
+        </div>
+
+        <!-- Pending SMS -->
+        <div class="kpi-card-sleek card-accent-violet" id="kpiPendingSmsCard" data-kpi-action="pending-sms">
+          <div class="kpi-header-sleek">
+            <span class="kpi-title-sleek" data-i18n="card_pending_sms">Pending SMS</span>
+            <span class="kpi-icon-badge badge-violet">💬</span>
+          </div>
+          <div class="kpi-num-sleek" id="kpiNumSms">47</div>
+          <div class="kpi-sub-sleek action">Tap to send</div>
+        </div>
+      </section>
+
+      <!-- Alert Banner -->
+      <div class="alert-banner-v14" id="staleAlertBanner">
+        <div class="alert-left-v14">
+          <span class="alert-icon-v14">🔔</span>
+          <span class="alert-txt-v14">
+            <strong>Principal Razia Begum</strong> updated 3 entries in Class XI — Your view may be stale. <a href="#" id="refreshBtn" class="alert-link">Refresh Now</a>
+          </span>
+        </div>
+        <div class="alert-right-v14">
+          <span class="alert-time">2 min ago</span>
+          <button class="alert-close" onclick="document.getElementById('staleAlertBanner').style.display='none'">✕</button>
+        </div>
+      </div>
+
+      <!-- 2. CLEANED UP TABLE TOOLBAR (Redundant batch text removed) -->
+      <div class="table-header-v14">
+        <div class="table-title-wrap-v14">
+          <h2 class="table-title-v14" data-i18n="tbl_title">Schedule Entries</h2>
+          <span class="records-tag-v14" id="totalRecordsBadge">0 records</span>
+          <span class="conflict-tag-v14" id="totalConflictsBadge">⚡ 1 conflict</span>
+        </div>
+
+        <div class="table-tools-v14">
+          <button class="btn-table-v14" id="importCsvBtn" title="Import Schedule CSV" data-i18n="btn_import">📊 Import</button>
+          <button class="btn-table-v14" id="exportCsvBtn" title="Export Schedule CSV" data-i18n="btn_export">📥 Export</button>
+          <button class="btn-table-v14" id="smsTriggerBtn" title="Send SMS Broadcast" data-i18n="btn_sms">💬 SMS</button>
+          <button class="btn-table-v14" id="printBtn" title="Print Clean Data Table (Ctrl+P)" data-i18n="btn_print">🖨️ Print A4</button>
+          <button class="btn-add-v14" id="addEntryBtn" title="Add Entry (Alt+N)" data-i18n="btn_add_entry">+ Add Entry</button>
+          
+          <div class="rows-wrap-v14">
+            <span data-i18n="lbl_rows">Rows:</span>
+            <select id="rowsSelect" class="rows-select-v14" aria-label="Rows per page limit">
+              <option value="10" selected>10 ▾</option>
+              <option value="20">20 ▾</option>
+              <option value="30">30 ▾</option>
+              <option value="40">40 ▾</option>
+              <option value="50">50 ▾</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TRANSPARENT MULTI-MONTH VERTICALLY STACKED CONTAINER -->
+      <div id="multiMonthTableContainer" class="tables-stack-v14">
+        <!-- Injected dynamically by app.js -->
+      </div>
+
+      <!-- Table Pagination Controls -->
+      <div class="pagination-footer-v14" id="paginationFooter">
+        <div class="pagination-info" id="paginationInfoTxt">Showing 1 to 10 of 20 records</div>
+        <div class="pagination-controls-wrap" id="paginationControls">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- 4. Footer Keyboard Shortcut Instructions -->
+      <div class="footer-kbd-bottom">
+        <kbd>Ctrl+S</kbd> Save Entry · <kbd>Ctrl+K</kbd> Search · <kbd>Alt+N</kbd> Add Entry · <kbd>Ctrl+P</kbd> Print · <kbd>Esc</kbd> Close
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Add / Edit Schedule Entry Modal -->
+  <div class="modal-backdrop" id="modalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Add New Schedule Entry</h3>
+        <button class="btn-close-modal" id="closeModalBtn" aria-label="Close">✖</button>
+      </div>
+
+      <form id="routineForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="formDate">Date</label>
+            <input type="date" id="formDate" class="form-input" required value="2026-08-03">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formClass">Class</label>
+            <select id="formClass" class="form-input" required>
+              <option value="Class 1">Class 1</option>
+              <option value="Class 2">Class 2</option>
+              <option value="Class 3">Class 3</option>
+              <option value="Class 4">Class 4</option>
+              <option value="Class 5">Class 5</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9" selected>Class 9</option>
+              <option value="Class 10">Class 10</option>
+              <option value="Class 11">Class 11</option>
+              <option value="Class 12">Class 12</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formCode">Subject Code</label>
+            <input type="text" id="formCode" class="form-input" placeholder="e.g. MTH-901" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formSubject">Subject Name</label>
+            <input type="text" id="formSubject" class="form-input" placeholder="e.g. Mathematics" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formType">Type</label>
+            <select id="formType" class="form-input" required>
+              <option value="CLASS">CLASS</option>
+              <option value="PRACT">PRACT</option>
+              <option value="EXAM">EXAM</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formShift">Shift</label>
+            <select id="formShift" class="form-input" required>
+              <option value="Morning">Morning</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formRoom">Room / Hall</label>
+            <input type="text" id="formRoom" class="form-input" placeholder="e.g. Room 101" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formTeacher">Teacher Name</label>
+            <input type="text" id="formTeacher" class="form-input" placeholder="e.g. A. Sharma" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formStartTime">Start Time</label>
+            <input type="time" id="formStartTime" class="form-input" value="08:00" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="formEndTime">End Time</label>
+            <input type="time" id="formEndTime" class="form-input" value="08:45" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="formStatus">Status</label>
+            <select id="formStatus" class="form-input" required>
+              <option value="Upcoming">Upcoming</option>
+              <option value="Completed">Completed</option>
+              <option value="Conflict">Conflict</option>
+              <option value="Rescheduled">Rescheduled</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn-save">Save Entry (Ctrl+S)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Import CSV Modal -->
+  <div class="modal-backdrop" id="importModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Import Schedule Entries (CSV)</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('importModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="modal-body-pad">
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">Upload a CSV file containing schedule entries.</p>
+        <div class="file-drop-area">
+          <input type="file" id="csvFileInput" accept=".csv" class="file-input-hidden">
+          <label for="csvFileInput" class="file-drop-label">
+            <span style="font-size: 1.8rem;">📁</span>
+            <strong style="font-size: 0.86rem; color: var(--primary);">Choose CSV File or Drag & Drop</strong>
+            <span style="font-size: 0.72rem; color: var(--text-light);" id="csvFileNameTxt">Supports .csv files up to 5MB</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('importModalOverlay').classList.remove('open')">Cancel</button>
+        <button type="button" class="btn-save" id="submitImportCsvBtn">Process & Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS Modal -->
+  <div class="modal-backdrop" id="smsModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Dispatch SMS Notifications</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('smsModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="modal-body-pad">
+        <div class="form-group">
+          <label class="form-label">Recipient Group</label>
+          <select class="form-input">
+            <option>All Enrolled Students & Parents (47 Pending)</option>
+            <option>Class 9 Students Only</option>
+            <option>Assigned Teachers</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-top: 10px;">
+          <label class="form-label">Message Content</label>
+          <textarea class="form-input" rows="3">Notice: Class & Exam routine for August 2026 has been updated by Principal office.</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('smsModalOverlay').classList.remove('open')">Cancel</button>
+        <button type="button" class="btn-save" id="sendSmsConfirmBtn">Send 47 Messages</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Available Rooms Modal -->
+  <div class="modal-backdrop" id="roomsModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Room Availability Matrix</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('roomsModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="modal-body-pad">
+        <div class="matrix-list">
+          <div class="matrix-item avail"><strong>Room 103</strong> <span>Available</span></div>
+          <div class="matrix-item avail"><strong>Room 104</strong> <span>Available</span></div>
+          <div class="matrix-item avail"><strong>Room 105</strong> <span>Available</span></div>
+          <div class="matrix-item occupied"><strong>Room 101</strong> <span>Class 9 Math (Occupied)</span></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('roomsModalOverlay').classList.remove('open')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Busy Teachers Modal -->
+  <div class="modal-backdrop" id="teachersModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Teacher Assignment Matrix</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('teachersModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="modal-body-pad">
+        <div class="matrix-list">
+          <div class="matrix-item busy"><strong>A. Sharma (AS)</strong> <span>Room 101 • Class 9 Math</span></div>
+          <div class="matrix-item busy"><strong>K. Uddin (KU)</strong> <span>Lab 201 • Class 10 Physics</span></div>
+          <div class="matrix-item free"><strong>F. Begum (FB)</strong> <span>Free until 14:00</span></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('teachersModalOverlay').classList.remove('open')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Fill-Up Modal -->
+  <div class="modal-backdrop" id="fillUpModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Form Fill-Up Portal (2024-2026)</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('fillUpModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="modal-body-pad">
+        <div class="form-group">
+          <label class="form-label">Student Roll / ID</label>
+          <input type="text" class="form-input" placeholder="Enter student roll number...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('fillUpModalOverlay').classList.remove('open')">Close</button>
+        <button type="button" class="btn-save" onclick="showToast('Form Fill-Up submitted!'); document.getElementById('fillUpModalOverlay').classList.remove('open');">Submit Form</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Modal -->
+  <div class="modal-backdrop" id="calendarModalOverlay">
+    <div class="modal-card wide">
+      <div class="modal-header">
+        <h3 class="modal-title">Academic Schedule Calendar</h3>
+        <button class="btn-close-modal" onclick="document.getElementById('calendarModalOverlay').classList.remove('open')">✖</button>
+      </div>
+      <div class="calendar-grid-demo">
+        <div class="cal-day-head">Sun</div><div class="cal-day-head">Mon</div><div class="cal-day-head">Tue</div><div class="cal-day-head">Wed</div><div class="cal-day-head">Thu</div><div class="cal-day-head">Fri</div><div class="cal-day-head">Sat</div>
+        <div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell">1</div><div class="cal-cell">2</div>
+        <div class="cal-cell active-day">3 <span class="cal-event blue">4 Classes</span></div>
+        <div class="cal-cell active-day">4 <span class="cal-event green">3 Classes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
