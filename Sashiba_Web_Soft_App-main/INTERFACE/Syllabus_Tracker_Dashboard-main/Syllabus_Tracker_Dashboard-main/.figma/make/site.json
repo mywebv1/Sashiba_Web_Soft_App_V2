@@ -1,0 +1,10 @@
+{
+  "description": "Streamline academic curriculum planning with dynamic filters, interactive scheduling, AI assistance, and real-time metrics for educators and administrators.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

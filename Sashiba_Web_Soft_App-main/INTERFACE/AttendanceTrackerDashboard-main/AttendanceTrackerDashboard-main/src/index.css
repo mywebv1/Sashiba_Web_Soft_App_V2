@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+/* ─── Dark-mode class variant ─────────────────────────────────────────── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Light theme (default) ────────────────────────────────────────────── */
+:root {
+  /* Base surfaces */
+  --app-bg:         #EEF2F7;
+  --app-surface:    #FFFFFF;
+  --app-raised:     #F1F5F9;
+  --app-hover:      #E2E8F0;
+  --app-border:     rgba(203, 213, 225, 0.85);
+  --app-border-2:   rgba(148, 163, 184, 0.65);
+
+  /* Typography */
+  --app-t1:         #0F172A;
+  --app-t2:         #334155;
+  --app-t3:         #64748B;
+  --app-t4:         #94A3B8;
+
+  /* Navigation */
+  --app-nav:        rgba(255, 255, 255, 0.97);
+
+  /* Table */
+  --app-thead:      #F1F5F9;
+  --app-subhead:    rgba(241, 245, 249, 0.9);
+  --app-cell-even:  #FFFFFF;
+  --app-cell-odd:   #F8FAFC;
+  --app-cell-sel:   rgba(204, 251, 241, 0.45);
+  --app-row-alt:    rgba(248, 250, 252, 0.9);
+  --app-row-sel:    rgba(20, 184, 166, 0.06);
+  --app-exp-bg:     #F1F5F9;
+
+  /* Shadows */
+  --app-shadow-sm:  0 1px 2px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.07);
+  --app-shadow-md:  0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.05);
+  --app-shadow-lg:  0 4px 20px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+  --app-shadow-xl:  0 8px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ─── Dark theme ───────────────────────────────────────────────────────── */
+.dark {
+  /* Base surfaces */
+  --app-bg:         #0F172A;
+  --app-surface:    #1E293B;
+  --app-raised:     #162033;
+  --app-hover:      #1a2840;
+  --app-border:     rgba(51, 65, 85, 0.85);
+  --app-border-2:   rgba(71, 85, 105, 0.8);
+
+  /* Typography */
+  --app-t1:         #F1F5F9;
+  --app-t2:         #94A3B8;
+  --app-t3:         #64748B;
+  --app-t4:         #475569;
+
+  /* Navigation */
+  --app-nav:        rgba(15, 23, 42, 0.97);
+
+  /* Table */
+  --app-thead:      #1E293B;
+  --app-subhead:    rgba(22, 32, 51, 0.9);
+  --app-cell-even:  #0F172A;
+  --app-cell-odd:   #1E293B;
+  --app-cell-sel:   rgba(13, 42, 40, 0.75);
+  --app-row-alt:    rgba(22, 32, 51, 0.45);
+  --app-row-sel:    rgba(13, 148, 136, 0.10);
+  --app-exp-bg:     rgba(15, 23, 42, 0.85);
+
+  /* Shadows */
+  --app-shadow-sm:  0 1px 2px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.2);
+  --app-shadow-md:  0 2px 8px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25);
+  --app-shadow-lg:  0 4px 20px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.3);
+  --app-shadow-xl:  0 8px 40px rgba(0,0,0,0.60), 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ─── Tailwind v4 theme token mapping ──────────────────────────────────── */
+@theme inline {
+  --color-app-bg:       var(--app-bg);
+  --color-app-surface:  var(--app-surface);
+  --color-app-raised:   var(--app-raised);
+  --color-app-hover:    var(--app-hover);
+  --color-app-border:   var(--app-border);
+  --color-app-border2:  var(--app-border-2);
+  --color-app-t1:       var(--app-t1);
+  --color-app-t2:       var(--app-t2);
+  --color-app-t3:       var(--app-t3);
+  --color-app-t4:       var(--app-t4);
+  --color-app-nav:      var(--app-nav);
+  --color-app-thead:    var(--app-thead);
+  --color-app-exp:      var(--app-exp-bg);
+  --color-app-row-sel:  var(--app-row-sel);
+}
+
+/* ─── Global transition for theme switching ─────────────────────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Exclude transitions from animations/transforms so they don't slow down UI */
+[class*="animate-"],
+[style*="animation"] {
+  transition-property: background-color, border-color, color;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--app-bg);
+  color: var(--app-t1);
+}
+
+.font-mono-data {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── Card / surface shadow helpers ─────────────────────────────────────── */
+.shadow-card  { box-shadow: var(--app-shadow-sm); }
+.shadow-panel { box-shadow: var(--app-shadow-md); }
+.shadow-float { box-shadow: var(--app-shadow-lg); }
+.shadow-modal { box-shadow: var(--app-shadow-xl); }
+
+/* ─── Custom scrollbars ─────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--app-border-2) transparent;
+}
+*::-webkit-scrollbar { width: 5px; height: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background-color: var(--app-border-2);
+  border-radius: 3px;
+}
+
+/* ─── Sticky table cell theme helpers ───────────────────────────────────── */
+.cell-even  { background: var(--app-cell-even); }
+.cell-odd   { background: var(--app-cell-odd); }
+.cell-sel   { background: var(--app-cell-sel); }
+.cell-head  { background: var(--app-thead); }
+.cell-sub   { background: var(--app-subhead); }
+.cell-exp   { background: var(--app-exp-bg); }
+.row-alt    { background: var(--app-row-alt); }
+.row-sel    { background: var(--app-row-sel); }
+
+/* ─── Animations ────────────────────────────────────────────────────────── */
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.animate-slide-up { animation: slide-up 0.22s cubic-bezier(0.16,1,0.3,1); }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.97) translateY(-4px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.15s ease-out; }
+
+@keyframes tooltip-in {
+  from { opacity: 0; transform: translateX(-50%) scale(0.94); }
+  to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.animate-tooltip { animation: tooltip-in 0.12s ease-out forwards; }
+
+/* ─── Print ─────────────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}

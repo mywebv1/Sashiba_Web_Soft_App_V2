@@ -1,0 +1,10 @@
+{
+  "description": "Streamline attendance and syllabus tracking for schools with an interactive dashboard offering dynamic filters, bulk actions, and detailed student insights.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
